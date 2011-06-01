@@ -1,14 +1,13 @@
 <%= content_for :stylesheets do %>
-  <!--link rel="stylesheet" 'jquery.ui.selectmenu'
-  , 'multipleselectbox' -->
-<% end %>
-<%= content_for :ui_flags do %>
-<% @ui_flag = true %>
+  <link rel="stylesheet" src="/assets/jquery-ui-1.8.9.custom.css" type="text/css"/>
+  <link rel="stylesheet" src="/assets/jquery.ui.selectmenu.css" type="text/css"/>
+  <link rel="stylesheet" src="/assets/multipleselectbox.css" type="text/css" />
 <% end %>
 <%= content_for :javascripts do %>
-<script type="text/javascript" src="/javascripts/jquery-ui-1.8.10.custom.min"/> 
-<!-- javascript_include_tag "jquery.ui.datepicker-ru", 'jquery.ui.selectmenu.js' -->
-<!-- javascript_include_tag "jquery.multipleselectbox-min" -->
+  <script type="text/javascript" src="/assets/jquery-ui-1.8.10.custom.js"></script> 
+  <script type="text/javascript" src="/assets/jquery.ui.datepicker-ru.js"></script>
+  <script type="text/javascript" src="/assets/jquery.ui.selectmenu.js"></script>
+  <script type="text/javascript" src="/assets/jquery.multipleselectbox-min.js"></script>
 <% end %>
 
 <%= form_for([messages_ma, @message], :html => { :autocomplete => :off }) do |f| %>
