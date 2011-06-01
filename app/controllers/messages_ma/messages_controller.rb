@@ -55,15 +55,11 @@ class MessagesController < ApplicationController
   end
 
   def change_to_many_receivers
-    render :update do |page|  
-      page << "$('#receiver').html('#{escape_javascript(render :partial => 'many_receivers.html.erb', :locals => { :to => params[:to]} )}')"
-    end
+    respond_to{|format| format.js}
   end
 
   def change_to_one_receiver
-    render :update do |page|  
-      page << "$('#receiver').html('#{escape_javascript(render :partial => 'one_receiver.html.erb', :locals => {:to => params[:to]} )}')"
-    end
+    respond_to{|format| format.js}
   end
 
   def archive
