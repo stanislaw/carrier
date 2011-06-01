@@ -3,7 +3,7 @@
 <div class="message_date"><%= raw message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
 <div class="message_user"><%= message.from_name %></div>
 <div>
-	<%= raw(" <b class='small red'>непрочитано</b>") if Message.unread_by(current_user).include? (message)%>
+	<%= raw(" <b class='small red'>непрочитано</b>") if @_messages.include? (message)%>
 	<%= raw truncate raw("#{ message.subject } &raquo; ") + message.content, :length => 88 %>
 </div>
 

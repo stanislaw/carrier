@@ -10,7 +10,7 @@ MessagesMa::Engine.routes.draw do
 
   resources :messages do
     member do
-      get :as_sent, :reply
+      get :as_sent, :reply, :reply_form
     end
     collection do
       get :sent

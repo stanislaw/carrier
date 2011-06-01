@@ -13,8 +13,8 @@ class MessagesController < ApplicationController
   
   def reply_form
     prepare_message_for_reply(params[:id])
-    render :update do |page|
-      page << "$('#reply_form').html('#{escape_javascript(render :partial => 'reply_form.html.erb')}');"
+    respond_to do |format|
+      format.js
     end
   end
   
@@ -77,15 +77,6 @@ class MessagesController < ApplicationController
     @chains = Chain.with_messages_for(current_user).page params[:page]
     respond_to do |format|
       format.html 
-    end
-  end
-
- 
-  def w_instructors
-    @chains = Chain.with_instructors_for(current_user).page params[:page]
-
-    respond_to do |format|
-      format.html { render 'index' }
     end
   end
 
@@ -153,19 +144,13 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if @message.save
         format.html { redirect_to(@message, :notice => 'Сообщение создано') }
-        format.js {
-          render :update do |page|
-            page << "document.location.href = '/messages/#{@message.id}'" #reload(true);"
-          end
-        }
+        format.js
       else
         format.js {
           if re_m = params[:message][:set_answers_to]
             @re_message = Message.find(re_m.to_i)
           end
-          render :updage do |page|
-            page << "$('#reply_form').html('#{escape_javascript(render :partial => 'reply_form.html.erb')}');"
-          end
+          render :action => "new"
         }
         format.html { render :action => "new" }
       end

@@ -32,11 +32,6 @@
 
   <div class="message_body">
     <%= raw truncate raw("<span class='has_new'>#{ chain.chain_type==:report ? 'переписка по поводу отчёта '+chain.report.id.to_s : chain.last_message.subject }</span> &raquo; ") + chain.last_message.content, :length => 90 %>
-    <% if chain.last_message.about? %>
-    <span>
-      по поводу: <%= chain.last_message.about_name %>
-    </span>
-    <% end %>
   </div>
   <div class="clear"></div>
 <% end %>
