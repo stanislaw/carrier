@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   #attr_accessor :login
   #attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :login, :avatar, :name, :surname, :middlename, :about_me, :mobile_number, :passport, :real_address, :city, :role_input, :role
-  #acts_as_reader
+  acts_as_reader
 
   # Associations
   

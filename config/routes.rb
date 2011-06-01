@@ -19,4 +19,11 @@ MessagesMa::Engine.routes.draw do
     end
   end
 
+  resources :chains do 
+    member do
+      post :archive
+      post :unarchive
+    end
+  end
+
 end

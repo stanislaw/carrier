@@ -11,6 +11,7 @@
 <% if @archive_index %>
   <h6>Сообщения в архиве:</h6>
 <% end %>
+
 <% @chains.each do |chain| %>
 <% m = (@_messages - (@_messages - chain.messages)).size; 
  %>

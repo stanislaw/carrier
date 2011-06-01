@@ -1,6 +1,7 @@
 # encoding: UTF-8
 module MessagesMa
 class Message < ActiveRecord::Base
+  set_table_name "messages_ma_messages"
   paginates_per 25
 
   serialize :to
@@ -11,7 +12,7 @@ class Message < ActiveRecord::Base
   delegate :about?, :about_name, :to => :chain
  
   # Scopes
-  scope :with_messages_for, lambda {|user| where("\"to\" ~ '\\D#{user.id}\\D'").select('messages.id') }
+  scope :with_messages_for, lambda {|user| where("\"to\" ~ '\\D#{user.id}\\D'").select('messages_ma_messages.id') }
   scope :with, lambda {|user| where("\"from\" = :from OR (\"to\" ~ '\\D#{user.id}\\D')", {:from => user.id }) }
   acts_as_readable :on => :created_at
 

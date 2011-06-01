@@ -8,7 +8,7 @@
 </div>
 
 <div class="column-left-tiny">
-  <%= link_to_ui 'Новое письмо', new_message_path, :class => "ui_btn ", :span_class => "ui-icon ui-icon-comment" %>
+  <%= link_to 'Новое письмо', new_message_path, :class => "ui_btn ", :span_class => "ui-icon ui-icon-comment" %>
 </div>
 <div class="column-right-tiny last">
 	<%= render :partial => 'nav_messages' %>
@@ -37,10 +37,9 @@
 <div><b><%= @message.subject %></b></div>
 <div class="inner"><%= @message.content %></div>
 </div>
-<%= link_to_ui 'Ответить в ветку сообщений', "/messages/#{@message.id}/reply_form", :remote => true, :class => "ui_btn ", :span_class => "ui-icon ui-icon-circle-triangle-s" %>
+<%= link_to 'Ответить в ветку сообщений', "/messages/#{@message.id}/reply_form", :remote => true, :class => "ui_btn ", :span_class => "ui-icon ui-icon-circle-triangle-s" %>
 
 <div id="reply_form"></div>
 
-
 </div>
-<%= loader_tag %>
+<!-- %= loader_tag % -->

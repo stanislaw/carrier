@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601143509) do
+ActiveRecord::Schema.define(:version => 20110601171138) do
 
   create_table "messages_ma_chains", :force => true do |t|
     t.string   "participants",      :default => "--- []\n\n"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(:version => 20110601143509) do
 
   add_index "messages_ma_messages", ["chain_id"], :name => "index_messages_ma_messages_on_chain_id"
   add_index "messages_ma_messages", ["created_at"], :name => "index_messages_ma_messages_on_created_at"
+
+  create_table "read_marks", :force => true do |t|
+    t.integer  "readable_id"
+    t.integer  "user_id",                     :null => false
+    t.string   "readable_type", :limit => 20, :null => false
+    t.datetime "timestamp"
+  end
+
+  add_index "read_marks", ["user_id", "readable_type", "readable_id"], :name => "index_read_marks_on_user_id_and_readable_type_and_readable_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"

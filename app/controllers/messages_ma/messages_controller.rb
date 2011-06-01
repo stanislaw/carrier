@@ -74,7 +74,7 @@ class MessagesController < ApplicationController
   end
 
   def index
-    @chains = MessagesMa::Chain.with_messages_for(current_user).page params[:page]
+    @chains = Chain.with_messages_for(current_user).page params[:page]
     respond_to do |format|
       format.html 
     end
