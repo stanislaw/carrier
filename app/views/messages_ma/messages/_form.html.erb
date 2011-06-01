@@ -1,12 +1,24 @@
-<%= content_for :stylesheets do %>
-  <link rel="stylesheet" src="/assets/jquery-ui-1.8.9.custom.css" type="text/css"/>
-  <link rel="stylesheet" src="/assets/jquery.ui.selectmenu.css" type="text/css"/>
-  <link rel="stylesheet" src="/assets/multipleselectbox.css" type="text/css" />
+<% content_for :stylesheets do %>
+<link type="text/css" href="/assets/jquery.ui.core.css" rel="stylesheet" />
+<link type="text/css" href="/assets/jquery.ui.theme.css" rel="stylesheet" />
+
+<link type="text/css" href="/assets/jquery.ui.selectmenu.css" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/multipleselectbox.css" type="text/css" />
+<style type="text/css">
+  /* demo styles */
+  /*body {font-size: 62.5%; font-family:"Verdana",sans-serif; }*/
+  fieldset { border:0; }	
+  label,select,.ui-select-menu { float: left; margin-right: 10px; }
+  select { width: 200px; }		
+  .wrap span.ui-selectmenu-item-header,
+  .wrap ul.ui-selectmenu-menu li a { text-decoration: underline !important; }
+</style>
 <% end %>
-<%= content_for :javascripts do %>
-  <script type="text/javascript" src="/assets/jquery-ui-1.8.10.custom.js"></script> 
-  <script type="text/javascript" src="/assets/jquery.ui.datepicker-ru.js"></script>
-  <script type="text/javascript" src="/assets/jquery.ui.selectmenu.js"></script>
+<% content_for :javascripts do %>
+ 	<script type="text/javascript" src="/assets/jquery.ui.core.js"></script>
+	<script type="text/javascript" src="/assets/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="/assets/jquery.ui.position.js"></script>
+	<script type="text/javascript" src="/assets/jquery.ui.selectmenu.js"></script>
   <script type="text/javascript" src="/assets/jquery.multipleselectbox-min.js"></script>
 <% end %>
 
