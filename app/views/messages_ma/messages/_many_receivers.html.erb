@@ -1,0 +1,55 @@
+<% select_tag "message[recipients_ids][]", options_for_select( User.all.without(current_user).collect {|user| [user.username, user.id] }, to ), { :multiple => true, :size =>6 } %>
+<% @recipients = User.all.without(current_user) %>
+<div id="event"></div>
+<% text_field_tag "message[recipients_ids][]", 'click me' %>
+<%= link_to 'Переключить на одного адресата', {:action => 'change_to_one_receiver', :to => to }, :remote => true %>
+<div class="quiet small">Щелкните в поле ввода, для выбора нескольких адресатов (в выпадающем списке) используйте клавиши Ctrl или Shift</div>
+<%= text_field_tag 'message[recipients_names]', User.find(to.to_i).username, :onkeydown => "return false;" %>
+<div id="contentDropDown" style="">
+<ul id="MultipleSelectBox_DropDown"	style="position: absolute; background-color: white; display: none;">
+<% @recipients.each do |recipient| %>
+  <li><%= recipient.username %></li>
+<% end %>
+</ul>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var controlDropDown = document.getElementById("message_recipients_names");
+
+		var $dropDownContainer = $("#MultipleSelectBox_DropDown").multipleSelectBox({
+			onSelectEnd : function(e, resultList) {
+				controlDropDown.value = resultList.join();
+			}
+		});
+
+    $("#contentDropDown, #contentDropDown > *").click(function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+    });
+    $(document).not("#contentDropDown, #contentDropDown > li, #MultipleSelectBox_DropDown").bind("click", function() {
+      $dropDownContainer.slideUp("slow");
+    });
+
+    validateUsernames = function(ifield) {
+      var usernames = $(ifield).attr('value');
+      if (usernames.match(/^\w+(,\w+)*(,\w+)?$/g)) {
+      }
+      else {
+        alert('Имена пользователей, разделенные запятыми!');
+      }
+    }
+    $(controlDropDown).change(function(e) {
+      validateUsernames(this);
+      e.stopPropagation();
+			$(document).one("click", function() {
+			});
+		});
+
+		$(controlDropDown).click(function(e) {
+      e.stopPropagation();
+      validateUsernames(this);
+			$dropDownContainer.slideDown("slow");
+			$(document).one("click", function() {
+			});
+		});
+	});
+</script>

@@ -1,0 +1,19 @@
+<div class="column-title">
+	<div class="ui-corner-all right">
+		
+	</div>
+	<h1 class="ui-corner-right">Личная переписка</h1>
+</div>
+
+<div class="column-left">
+    &nbsp;<%= link_to 'Новое сообщение', new_message_path %>
+</div>
+<div class="column-right last">
+
+<h1>Editing message</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @message %> |
+<%= link_to 'Back', messages_path %>
+</div>

@@ -1,0 +1,52 @@
+<%= content_for :stylesheets do %>
+  <!--link rel="stylesheet" 'jquery.ui.selectmenu'
+  , 'multipleselectbox' -->
+<% end %>
+<%= content_for :ui_flags do %>
+<% @ui_flag = true %>
+<% end %>
+<%= content_for :javascripts do %>
+<script type="text/javascript" src="/javascripts/jquery-ui-1.8.10.custom.min"/> 
+<!-- javascript_include_tag "jquery.ui.datepicker-ru", 'jquery.ui.selectmenu.js' -->
+<!-- javascript_include_tag "jquery.multipleselectbox-min" -->
+<% end %>
+
+<%= form_for([messages_ma, @message], :html => { :autocomplete => :off }) do |f| %>
+<% if @message.errors.any? %>
+  <div id="error_explanation">
+    <h2>Пожалуйста, проверьте правильность заполнения следующих полей:</h2>
+
+    <ul>
+    <% @message.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="new_message">
+	
+	  <div class="field">
+    <%= f.label "Кому:" %><br />
+    <% f.text_field :to %>
+      <div id="receiver">
+        <%= render :partial => 'one_receiver', :locals => {:to => @message.recipients_ids } unless @message.new_record? %>
+        <%= render :partial => 'one_receiver', :locals => {:to => ( params[:to] || 1 + rand(User.all.count) ) } if @message.new_record? %>
+      </div>
+  </div>
+  <div class="field">
+    <%= f.label "Тема:" %><br />
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label "Сообщение:" %><br />
+    <%= f.text_area :content, :rows => 6 %>
+  </div>
+  <%= f.hidden_field :from, :value => current_user.id %>
+  <div class="actions">
+    <%= f.submit "Отправить", :class => "ui_btn" %>
+  </div>
+  
+</div>
+
+<% end %>

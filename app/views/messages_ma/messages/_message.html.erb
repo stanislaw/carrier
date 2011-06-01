@@ -1,0 +1,21 @@
+<%= javascript_tag("$('#loader').css('top','-100px');") %>
+<% if mode == 'short' %>
+<div class="message_date"><%= raw message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
+<div class="message_user"><%= message.from_name %></div>
+<div>
+	<%= raw(" <b class='small red'>непрочитано</b>") if Message.unread_by(current_user).include? (message)%>
+	<%= raw truncate raw("#{ message.subject } &raquo; ") + message.content, :length => 88 %>
+</div>
+
+<%= link_to '', "/messages/#{parent_message.id}/get_partial?message_id=#{message.id}&mode=full", :remote => true, :class => "message_collapse", :onclick => 'attachLoader(this, -24, 5);' %>
+ <% end %>
+ <% if mode == 'full' %>
+<% message.id %>  
+<div class="message_date"><%= raw message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
+<div class="message_user"><%= message.from_name %></div>
+<div>&nbsp;<b><%= message.subject %></b></div>
+<div class="inner"><%= message.content %></div>
+<%= link_to '', "/messages/#{parent_message.id}/get_partial?message_id=#{message.id}&mode=short", :remote => true, :class => "message_collapse", :onclick => 'attachLoader(this, -24, 5);'  %>
+<% end %>
+
+
