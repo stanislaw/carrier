@@ -3,6 +3,7 @@
 <head>
   <title>MessagesMa</title>
   <%= yield :stylesheets %>
+  <%= stylesheet_link_tag "main" %>
   <%= stylesheet_link_tag "main_#{@ui}" %>
   <% javascript_include_tag "application" %>
   <script src="/assets/jquery.min.js" type="text/javascript"></script>
@@ -11,9 +12,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <b>
-    <%= @ui == :simple ? 'Простой вариант' : 'Rich-вариант' %>
-  </b>
   <%= yield %>
 </body>
 </html>

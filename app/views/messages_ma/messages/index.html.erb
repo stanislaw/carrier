@@ -1,41 +1,31 @@
-<div class="column-title">
-	<div class="ui-corner-all right">
-	</div>
-  <h1 class="ui-corner-right">Личная переписка</h1>
+
+<h1>Личная переписка</h1>
+
+<div>
+    <%= link_to 'Новое письмо', messages_ma.new_message_path %>
 </div>
-<div class="column-left-tiny">
-    <%= link_to 'Новое письмо', messages_ma.new_message_path, :class => "ui_btn ", :span_class => "ui-icon ui-icon-comment" %>
-</div>
-<div class="column-right-tiny last">
+<div>
   <%= render :partial => 'nav_messages' %>
-<% if @archive_index %>
-  <h6>Сообщения в архиве:</h6>
-<% end %>
-
-<% @chains.each do |chain| %>
-<% m = (@_messages - (@_messages - chain.messages)).size; 
- %>
-<%= link_to (@sent ? messages_ma.as_sent_message_path(chain.last_message) : chain.last_message), :class => "message_wrapper #{'has_new' if m>0 } ui-corner-all" do %>
-  <div class="message_date"><%= raw chain.last_message.created_at.strftime('%H:%M <b>%d.%m</b>') %>
-  </div>
-  <div class="message_users">
-    <% unless chain.last_message.to == chain.last_message.from %>
-      <%= truncate(chain.last_message.from_name + "+" + chain.last_message.recipients_names, :length => 20) 
-      %>
-    <% else %>
-    Я
+  <% @chains.each do |chain| %>
+    <% m = (@_messages - (@_messages - chain.messages)).size %>
+    <%= link_to (@sent ? messages_ma.as_sent_message_path(chain.last_message) : chain.last_message), :class => "message_wrapper #{'has_new' if m>0 }" do %>
+      <div class="message_date"><%= raw chain.last_message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
+      <div class="message_users">
+        <% unless chain.last_message.to == chain.last_message.from %>
+          <%= truncate(chain.last_message.from_name + "+" + chain.last_message.recipients_names, :length => 20) %>
+        <% else %>
+        Я
+        <% end %>
+        <span class="message_branch">
+          (<%= chain.messages_count %><% if m > 0 %>/<b class="red"><%= m %></b><% end %>)
+        </span>
+      </div>    
+      <div class="message_body">
+        <%= raw truncate raw( %| <span class="#{'has_new' if m > 0 }">#{chain.last_message.subject}</span> &raquo; #{chain.last_message.content} | ), :length => 200 %>
+      </div>
+      <div class="clear"></div>
     <% end %>
-    <span class="message_branch">
-      (<%= chain.messages_count %><% if m > 0 %>/<b class="red"><%= m %></b><% end %>)
-    </span>
-  </div>
-
-  <div class="message_body">
-    <%= raw truncate raw("<span class='has_new'>#{ chain.chain_type==:report ? 'переписка по поводу отчёта '+chain.report.id.to_s : chain.last_message.subject }</span> &raquo; ") + chain.last_message.content, :length => 90 %>
-  </div>
-  <div class="clear"></div>
-<% end %>
-<% end %>
+  <% end %>
 </div>
 <%= paginate @chains, :window => 4 %>
 

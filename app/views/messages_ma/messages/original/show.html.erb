@@ -1,0 +1,45 @@
+<div class="column-title">
+	<div class="ui-corner-all right">
+	</div>
+	<h1 class="ui-corner-right">Личная переписка</h1>
+  <div class="breadcrambs">
+    <%= link_to 'Вся почта', messages_path %>&rarr; <%= @message.subject %>
+  </div>
+</div>
+
+<div class="column-left-tiny">
+  <%= link_to 'Новое письмо', new_message_path, :class => "ui_btn ", :span_class => "ui-icon ui-icon-comment" %>
+</div>
+<div class="column-right-tiny last">
+	<%= render :partial => 'nav_messages' %>
+
+  <div class="message_box_info">
+    В переписке участвуют: 
+    <% unless @message.to == @message.from %>
+    <b>я</b> и <b><%= @message.recipients_names %></b>
+    <% else %>
+    <b>только я</b>
+    <% end %>
+    <div style="float:right;" id="archive_chain">
+      <%= render :partial => 'archive_chain', :locals => {:chain => @message.chain, :chain_archived => @chain_archived} %>
+    </div>
+  </div>
+<% m = @message.chain_collection_unread_by(current_user) %>
+<% @message_answers.each do |message| %>
+<div id="message-<%= message.id %>" class="message_wrapper <%= 'has_new' if m>0 %> ui-corner-all">
+<%= render :partial => 'message', :locals => {:parent_message => @message, :message => message, :mode => 'short'} %>
+</div>
+<% end %>
+<div class="message_wrapper ui-corner-all">
+	<% @message.id %>  
+	<div class="message_date"><%= raw @message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
+<div class="message_user"><%= @message.from_name %></div>
+<div><b><%= @message.subject %></b></div>
+<div class="inner"><%= @message.content %></div>
+</div>
+<%= link_to 'Ответить в ветку сообщений', reply_form_message_path(@message.id), :remote => true, :class => "ui_btn ", :span_class => "ui-icon ui-icon-circle-triangle-s" %>
+
+<div id="reply_form"></div>
+
+</div>
+<!-- %= loader_tag % -->

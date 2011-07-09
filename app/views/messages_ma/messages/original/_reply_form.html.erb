@@ -1,0 +1,29 @@
+<%= javascript_tag "$('#loader').css('top','-100px');" %><%= form_for(@message, :remote => true) do |f| %>
+<% if @message.errors.any? %>
+  <div id="error_explanation">
+    <h2>Проверьте правильность ввода:</h2>
+    <ul>
+    <% @message.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="new_message replay_message ui-corner-all">
+  <h4 class="inline-block"><span class=""><%= current_user.username %></span> &rArr; <span class="red"><%= @message.recipients_names %></span></h4>
+  <div class="field">
+    <%= f.label "Тема:" %><br />
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label "Сообщение:" %><br />
+    <%= f.text_area :content, :rows => 6 %>
+  </div>
+  <%= f.hidden_field :to, :value => @message.to %>
+  <%= f.hidden_field :set_answers_to, :value => @re_message.id %>
+  <%= f.hidden_field :from, :value => current_user.id %>
+  <div class="actions">
+    <%= f.submit 'Отправить', :class => "ui_btn", :onclick => "attachLoader(this, -22, 5, true);" %>
+  </div>
+ </div>
+<% end %>
