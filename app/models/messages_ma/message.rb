@@ -54,7 +54,7 @@ module MessagesMa
     end
 
     def recipients_names
-      recipients_ids.collect{|id| User.find(id, :select => "username").username}.join(',') #
+      recipients_ids.collect{|id| User.find(id, :select => "username").username}.join(', ') #
     end
 
     def recipients_ids=(recipients_array)
@@ -70,10 +70,9 @@ module MessagesMa
     end
 
     def from_name
-      begin
-        User.find(self.from, :select => 'username').username
-      rescue
-      end
+      User.find(self.from, :select => 'username').username
+    rescue
+      raise "Error when retrieving such user!"
     end
 
     def to=(_to)

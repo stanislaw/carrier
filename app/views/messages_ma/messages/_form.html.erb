@@ -15,8 +15,7 @@
     <%= f.label "Кому:" %><br />
     <% f.text_field :to %>
       <div id="receiver">
-        <%= render :partial => "messages_ma/messages/#{@ui}/one_receiver", :locals => {:to => @message.recipients_ids } unless @message.new_record? %>
-        <%= render :partial => "messages_ma/messages/#{@ui}/one_receiver", :locals => {:to => ( params[:to] || 1 + rand(User.all.count) ) } if @message.new_record? %>
+        <%= render :partial => "messages_ma/messages/#{@ui}/one_receiver", :locals => {:f => f } %>
       </div>
   </div>
   <div class="field">

@@ -1,7 +1,7 @@
 <%= render :partial => 'messages_ma/messages/simple/autocomplete_bootstrap' %>
 <%
   @users_to_string = 
-    User.all.without(current_user).collect {|user| "'#{user.username}'" }.join(',')
+    User.all.without(current_user).collect {|user| "'#{user.username}'" }.join(', ')
 %>
-<%= text_field_tag "message[recipients_ids]" %>
+<%= f.text_field :recipients_names %>
 <%= render :partial => 'messages_ma/messages/simple/autocomplete_js', :locals => {:users_string => @users_to_string} %>

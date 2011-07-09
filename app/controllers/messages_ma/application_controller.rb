@@ -5,7 +5,7 @@ module MessagesMa
     before_filter :define_ui 
     
     def define_ui
-      #@ui = :rich 
+      @ui = :rich 
       @ui = :simple
     end
 
