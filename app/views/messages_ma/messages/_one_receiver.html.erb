@@ -1,4 +1,0 @@
-<%= select( "message", "recipients_ids", User.all.without(current_user).collect {|user| [user.username, user.id] }, :selected => to, :prompt => 'Кому' ) %>
-<%= javascript_tag "$('#message_recipients_ids').selectmenu({style: 'dropdown'});" %>
-<br/>
-<%= link_to 'Переключить на много адресатов', {:action => 'change_to_many_receivers', :to => to }, :remote => true %>

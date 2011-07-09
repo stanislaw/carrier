@@ -19,7 +19,7 @@ class Chain < ActiveRecord::Base
   scope :with_messages_for, lambda{|user| reversed.with(user).not_archived_for(user).includes(:messages)}
   scope :archived_for, lambda{|user| where("\"archived_for\" ~ '\\D#{user.id.to_s}\\D'").reversed}
   scope :with_messages_sent_by, lambda{|user| where("\"participants\" ~ '^---\\s\\n-\\D#{user.id.to_s}\\D'").reversed }
-  
+  scope :archived_messages_for, lambda{|user| with(user).archived_for(user).includes(:messages) }  
   def last_message
     messages.last
   end

@@ -1,32 +1,7 @@
-<% content_for :stylesheets do %>
-<link type="text/css" href="/assets/jquery.ui.core.css" rel="stylesheet" />
-<link type="text/css" href="/assets/jquery.ui.theme.css" rel="stylesheet" />
-
-<link type="text/css" href="/assets/jquery.ui.selectmenu.css" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/multipleselectbox.css" type="text/css" />
-<style type="text/css">
-  /* demo styles */
-  /*body {font-size: 62.5%; font-family:"Verdana",sans-serif; }*/
-  fieldset { border:0; }	
-  label,select,.ui-select-menu { float: left; margin-right: 10px; }
-  select { width: 200px; }		
-  .wrap span.ui-selectmenu-item-header,
-  .wrap ul.ui-selectmenu-menu li a { text-decoration: underline !important; }
-</style>
-<% end %>
-<% content_for :javascripts do %>
- 	<script type="text/javascript" src="/assets/jquery.ui.core.js"></script>
-	<script type="text/javascript" src="/assets/jquery.ui.widget.js"></script>
-	<script type="text/javascript" src="/assets/jquery.ui.position.js"></script>
-	<script type="text/javascript" src="/assets/jquery.ui.selectmenu.js"></script>
-  <script type="text/javascript" src="/assets/jquery.multipleselectbox-min.js"></script>
-<% end %>
-
 <%= form_for([messages_ma, @message], :html => { :autocomplete => :off }) do |f| %>
 <% if @message.errors.any? %>
   <div id="error_explanation">
     <h2>Пожалуйста, проверьте правильность заполнения следующих полей:</h2>
-
     <ul>
     <% @message.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -36,13 +11,12 @@
 <% end %>
 
 <div class="new_message">
-	
-	  <div class="field">
+	<div class="field">
     <%= f.label "Кому:" %><br />
     <% f.text_field :to %>
       <div id="receiver">
-        <%= render :partial => 'one_receiver', :locals => {:to => @message.recipients_ids } unless @message.new_record? %>
-        <%= render :partial => 'one_receiver', :locals => {:to => ( params[:to] || 1 + rand(User.all.count) ) } if @message.new_record? %>
+        <%= render :partial => "messages_ma/messages/#{@ui}/one_receiver", :locals => {:to => @message.recipients_ids } unless @message.new_record? %>
+        <%= render :partial => "messages_ma/messages/#{@ui}/one_receiver", :locals => {:to => ( params[:to] || 1 + rand(User.all.count) ) } if @message.new_record? %>
       </div>
   </div>
   <div class="field">

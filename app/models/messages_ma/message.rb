@@ -36,13 +36,11 @@ module MessagesMa
 
     # Лучшая
     def self.actual_messages_for(user, limit = nil)
-      messages = Chain.with_messages_for(user).limit(limit).inject([]){|messages, chain| messages << chain.messages.last }
+      Chain.with_messages_for(user).limit(limit).inject([]){|messages, chain| messages << chain.messages.last }
     end
    
     def self.archived_messages_for(user, limit = nil)
-      messages = []
-      Chain.with(user).archived_for(user).includes(:messages).limit(limit).each{|chain| messages << chain.messages.last }
-      messages
+      Chain.archived_messages_for(user).limit(limit).inject([]){|messages, chain| messages << chain.messages.last}
     end
 
     # Instance methods
