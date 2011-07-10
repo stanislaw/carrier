@@ -16,6 +16,7 @@ module MessagesMa
 
     # Validations
     validates :from, :presence => true
+    validates :to, :presence => true
     validates :content, :presence => true
    
     before_save do
@@ -66,7 +67,14 @@ module MessagesMa
     end
 
     def recipients_names=(recipients_array)
-      self.to = recipients_array.scan(/\w+/).map{|name| User.find_by_username(name).id || nil}.compact.uniq
+      self.to = recipients_array
+               .scan(/\w+/)
+               .map{|name| User.find_by_username(name).id || nil}
+               .compact
+               .uniq
+      logger.info("---------- #{self.to}")
+    rescue 
+      errors.add(:to, "Check usernames you entered")
     end
 
     def from_name
@@ -98,6 +106,8 @@ module MessagesMa
     def set_answers_to=(answers_to_id)
       @answers_to = answers_to_id
     end
+
+    protected
 
   end
 end
