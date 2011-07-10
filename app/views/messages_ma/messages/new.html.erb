@@ -1,20 +1,13 @@
-<div class="column-title">
-	<div class="ui-corner-all right">
-		
-	</div>
-  <h1 class="ui-corner-right">Личная переписка </h1>
-	<div class="breadcrambs">
-        <%= link_to 'Вся почта', messages_ma.messages_path %>&rarr; Пишем письмо
-    </div>
-</div>
-
-<div class="column-left">
-    &nbsp;<% link_to 'Новое сообщение', messages_ma.new_message_path %>
-</div>
-<div class="column-right last">
-
-<h1>Пишем новое письмо</h1>
-
-<%= render 'form' %>
+<div class="messages_ma_wrapper">
+  <h1>Личная переписка</h1>
+  <div class="messages_ma_new active">
+      <%= link_to 'Новое письмо', messages_ma.new_message_path %>
+  </div>
+  
+    <%= render :partial => 'nav_messages' %>
+  
+  <h3>Пишем новое письмо</h3>
+  
+  <%= render 'form' %>  
 
 </div>

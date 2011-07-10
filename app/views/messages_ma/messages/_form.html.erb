@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<div class="new_message">
+<div class="message_ma_new_wrapper">
 	<div class="field">
     <%= f.label "Кому:" %><br />
     <% f.text_field :to %>
@@ -28,7 +28,7 @@
   </div>
   <%= f.hidden_field :from, :value => current_user.id %>
   <div class="actions">
-    <%= f.submit "Отправить", :class => "ui_btn" %>
+    <%= f.submit "Отправить" %>
   </div>
   
 </div>

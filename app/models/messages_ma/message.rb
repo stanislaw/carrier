@@ -87,17 +87,12 @@ module MessagesMa
       return ([from]+to).uniq
     end
     
-    def chain_collection
-      collection = chain.messages
+    def chain_messages
+      chain.messages
     end
 
     def chain_collection_unread_by(user)
-      count = 0
-      messages_unread = Message.unread_by(user)
-      chain_collection.each do |answer|
-        count = count + 1 if messages_unread.include?(answer)
-      end
-      count
+      (chain_messages & Message.unread_by(user)).size
     end
 
     def set_answers_to=(answers_to_id)

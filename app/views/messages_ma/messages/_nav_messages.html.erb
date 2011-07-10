@@ -1,4 +1,4 @@
-<div class="message_nav ui-tabs-nav ui-corner-all">
+<div class="messages_ma_nav">
   <ul>
     <li class="<%= 'active' if request.fullpath =~ /messages(\/\d+)?\z/ && !@chain_archived %>"><%= link_to 'Входящие', messages_ma.messages_path %></li>
     <li class="<%= 'active' if request.fullpath =~ /messages\/(\d+\/.*)?sent/ %>"><%= link_to 'Отправленные', messages_ma.sent_messages_path %></li>

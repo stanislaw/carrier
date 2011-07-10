@@ -1,31 +1,37 @@
-
-<h1>Личная переписка</h1>
-
-<div>
-    <%= link_to 'Новое письмо', messages_ma.new_message_path %>
-</div>
-<div>
-  <%= render :partial => 'nav_messages' %>
-  <% @chains.each do |chain| %>
-    <% m = (@_messages - (@_messages - chain.messages)).size %>
-    <%= link_to (@sent ? messages_ma.as_sent_message_path(chain.last_message) : chain.last_message), :class => "message_wrapper #{'has_new' if m>0 }" do %>
-      <div class="message_date"><%= raw chain.last_message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
-      <div class="message_users">
-        <% unless chain.last_message.to == chain.last_message.from %>
-          <%= truncate(chain.last_message.from_name + "+" + chain.last_message.recipients_names, :length => 20) %>
-        <% else %>
-        Я
-        <% end %>
-        <span class="message_branch">
-          (<%= chain.messages_count %><% if m > 0 %>/<b class="red"><%= m %></b><% end %>)
-        </span>
-      </div>    
-      <div class="message_body">
-        <%= raw truncate raw( %| <span class="#{'has_new' if m > 0 }">#{chain.last_message.subject}</span> &raquo; #{chain.last_message.content} | ), :length => 200 %>
-      </div>
-      <div class="clear"></div>
+<div class="messages_ma_wrapper">
+  
+  <h1>Личная переписка</h1>
+  
+  <div class="messages_ma_new">
+      <%= link_to 'Новое письмо', messages_ma.new_message_path %>
+  </div>
+  
+    <%= render :partial => 'nav_messages' %>
+    
+  <div class="messages_ma_messagelist">  
+    <% @chains.each do |chain| %>
+      <% m = (@_messages - (@_messages - chain.messages)).size %>
+  
+      <%= link_to (@sent ? messages_ma.as_sent_message_path(chain.last_message) : chain.last_message), :class => "message_ma_wrapper #{'ma_has_new' if m>0 }" do %>
+        <div class="message_ma_date"><%= raw chain.last_message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
+        <div class="message_ma_users">
+          <% unless chain.last_message.to == chain.last_message.from %>
+            <%= truncate(chain.last_message.from_name + "+" + chain.last_message.recipients_names, :length => 20) %>
+          <% else %>
+          Я
+          <% end %>
+          <span class="message_ma_branch">
+            (<%= chain.messages_count %><% if m > 0 %>/<b class="red"><%= m %></b><% end %>)
+          </span>
+        </div>    
+        <div class="message_ma_body">
+          <%= raw truncate raw( %| <span class="#{'ma_has_new' if m > 0 }">#{chain.last_message.subject}</span> &raquo; #{chain.last_message.content} | ), :length => 140 %>
+        </div>
+      <% end %>
+  
     <% end %>
-  <% end %>
-</div>
-<%= paginate @chains, :window => 4 %>
+    
+    <%= paginate @chains, :window => 4 %>
+  </div>  
 
+</div>

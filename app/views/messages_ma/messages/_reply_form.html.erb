@@ -9,8 +9,8 @@
     </ul>
   </div>
 <% end %>
-<div class="new_message replay_message ui-corner-all">
-  <h4 class="inline-block"><span class=""><%= current_user.username %></span> &rArr; <span class="red"><%= @message.recipients_names %></span></h4>
+<div class="message_ma_new_wrapper replay_message_ma">
+  <h4><span class=""><%= current_user.username %></span> &rArr; <span class="red"><%= @message.recipients_names %></span></h4>
   <div class="field">
     <%= f.label "Тема:" %><br />
     <%= f.text_field :subject %>
@@ -23,7 +23,7 @@
   <%= f.hidden_field :set_answers_to, :value => @re_message.id %>
   <%= f.hidden_field :from, :value => current_user.id %>
   <div class="actions">
-    <%= f.submit 'Отправить', :class => "ui_btn", :onclick => "attachLoader(this, -22, 5, true);" %>
+    <%= f.submit 'Отправить', :onclick => "attachLoader(this, -22, 5, true);" %>
   </div>
  </div>
 <% end %>

@@ -3,11 +3,12 @@ module MessagesMa
 class MessagesController < ApplicationController
   
   def get_partial
+    logger.info(params.inspect)
     @render_message = Message.find(params[:message_id])
     @parent_message = Message.find(params[:id])
     @render_message.mark_as_read! :for => current_user if params[:mode]=='full'
-    render :update do |page|
-      page << "$('#message-#{@render_message.id}').html('#{escape_javascript(render :partial => 'message.html.erb', :locals => {:parent_message => @parent_message, :mode => params[:mode], :message => @render_message })}')"
+    respond_to do |format|
+      format.js  
     end
   end
   
