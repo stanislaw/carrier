@@ -1,13 +1,14 @@
 <div class="messages_ma_wrapper">
   
-  <h1>Личная переписка</h1>
-  
-  <div class="messages_ma_new">
-      <%= link_to 'Новое письмо', messages_ma.new_message_path %>
-  </div>
-  
-    <%= render :partial => 'nav_messages' %>
-    
+  <div class="messages_ma_nav_line">
+    <h1>Личная переписка</h1>
+    <div class="messages_ma_nav_line_inner">  
+      <div class="messages_ma_new">
+          <%= link_to 'Новое письмо', messages_ma.new_message_path %>
+      </div>  
+      <%= render :partial => 'nav_messages' %>
+    </div> 
+  </div> 
   <div class="messages_ma_messagelist">  
     <% @chains.each do |chain| %>
       <% m = (@_messages - (@_messages - chain.messages)).size %>
@@ -25,11 +26,11 @@
           </span>
         </div>    
         <div class="message_ma_body">
-          <%= raw truncate raw( %| <span class="#{'ma_has_new' if m > 0 }">#{chain.last_message.subject}</span> &raquo; #{chain.last_message.content} | ), :length => 140 %>
+          <%= raw truncate raw( %| <span class="message_ma_subj #{'ma_has_new' if m > 0 }">#{chain.last_message.subject}</span> &raquo; #{chain.last_message.content} | ), :length => 140 %>
         </div>
       <% end %>
   
-    <% end %>
+    <% end if @chains.size > 0 %>
     
     <%= paginate @chains, :window => 4 %>
   </div>  

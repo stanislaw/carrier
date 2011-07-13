@@ -1,31 +1,38 @@
 <div class="messages_ma_wrapper">
   
-  <h1>Личная переписка</h1>
+  <div class="messages_ma_nav_line">
+    <h1>Личная переписка</h1>
+    <div class="messages_ma_nav_line_inner">  
+      <div class="messages_ma_new">
+          <%= link_to 'Новое письмо', messages_ma.new_message_path %>
+      </div>  
+      <%= render :partial => 'nav_messages' %>
+    </div> 
+  </div> 
   
-  <div class="messages_ma_new">
-      <%= link_to 'Новое письмо', messages_ma.new_message_path %>
+  <div class="ma_wrapper">
+    &larr; <%= link_to 'Вернуться в "Отправленные"', messages_ma.sent_messages_path %>
   </div>
-  
-    <%= render :partial => 'nav_messages' %>
-
   <div class="message_ma_box_info">
+    <h2><%= @message.no_re_subject %></h2>
   	В переписке участвуют: <b>я</b> и <b><%= @message.recipients_names %></b>
   </div>
 <% m = @message.chain_collection_unread_by(current_user) %>
 <% @message_answers.each do |message| %>
   <%= render :partial => 'message', :locals => {:parent_message => @message, :message => message, :mode => ( message.from == current_user.id ? 'full' : 'short'), :m => (m > 0 ? true : false)} %>
 <% end %>
-<div class="message_ma_wrapper">
+<div class="message_ma_wrapper ma_open">
 	<% @message.id %>  
 	<div class="message_ma_date"><%= raw @message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
 <div class="message_ma_user"><%= @message.from_name %></div>
 <div><b><%= @message.subject %></b></div>
 <div><%= @message.content %></div>
 </div>
-  <div class="message_ma_reply_link">
-<%= link_to 'Ответить в ветку сообщений', reply_form_message_path(@message.id), :remote => true %>
+
+<div class="ma_wrapper">
+    <%= link_to 'Ответить в ветку сообщений', reply_form_message_path(@message.id), :remote => true %>
+  <div id="reply_form"></div>   
 </div>
-<div id="reply_form"></div>
 
 
 </div>

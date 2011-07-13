@@ -1,13 +1,17 @@
 <div class="messages_ma_wrapper">
-  <h1>Личная переписка</h1>
-  <div class="messages_ma_new active">
-      <%= link_to 'Новое письмо', messages_ma.new_message_path %>
-  </div>
   
-    <%= render :partial => 'nav_messages' %>
+  <div class="messages_ma_nav_line">
+    <h1>Личная переписка</h1>
+    <div class="messages_ma_nav_line_inner">  
+      <div class="messages_ma_new active">
+          <%= link_to 'Новое письмо', messages_ma.new_message_path %>
+      </div>  
+      <%= render :partial => 'nav_messages' %>
+    </div> 
+  </div> 
   
-  <h3>Пишем новое письмо</h3>
+  <h2>Пишем новое письмо</h2>
   
-  <%= render 'form' %>  
+  <div class="ma_wrapper"><%= render 'form' %>  </div>
 
 </div>

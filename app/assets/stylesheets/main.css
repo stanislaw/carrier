@@ -6,7 +6,7 @@ body {
 
 .messages_ma_wrapper {
   font-family:Tahoma, Arial, Helvetica, sans-serif;
-  font-size:0.8em;
+  font-size:0.85em;
   line-height:140%;
 }
 .messages_ma_credits {
@@ -25,20 +25,40 @@ a, a:link, a:visited {text-decoration:none;}
   min-height:400px;
 }
 
-.messages_ma_wrapper h1 {
-  font-size:2.8em;
+.messages_ma_wrapper h1,
+.messages_ma_wrapper h2,
+.messages_ma_wrapper h3 {
+  font-family:Georgia;
   font-weight:normal;
   color:#000;
+}
+.messages_ma_wrapper h1 {
+  font-size:3em;
+  line-height:100%;
+  font-style:italic;
+}
+.messages_ma_wrapper h2 {
+  font-size:2em;
+  line-height:100%;
+  font-style:italic;
+}
+.messages_ma_wrapper h3 {
+  font-size:1.6em;
+  line-height:100%;
+  font-style:italic;
+}
+
+.messages_ma_nav_line {
   background-color:#ddd;
-  padding:30px;
+  padding:10px 30px;
   border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   margin-bottom:10px;
-  padding-bottom:80px;
-  margin-bottom:-45px;
 }
-
+.messages_ma_nav_line_inner {
+  margin-bottom:-18px;
+}
 .messages_ma_new,
 .messages_ma_nav  {
   display:inline-block;
@@ -52,7 +72,6 @@ a, a:link, a:visited {text-decoration:none;}
   color:#fff;
   background-color:#333;
   font-weight:bold;
-    margin-left:28px;
 }
 .messages_ma_new a:hover {
   color:#000;
@@ -94,16 +113,42 @@ a, a:link, a:visited {text-decoration:none;}
   -webkit-border-radius: 6px;
   background-color:#ddd;
   margin-bottom:4px;
+  color:#000;
 }
 .message_ma_wrapper:link, .message_ma_wrapper:visited {
   background-color:#ddd;  
   color:#000;
 }
 .message_ma_wrapper.ma_has_new {background-color:#eee; border:1px solid #ddd;}
-.message_ma_wrapper:hover {
-  background-color:#999;
-  color:#fff;
+.message_ma_wrapper:hover,
+.message_ma_wrapper.ma_open {
+  background-color:#fff;
+  border:1px solid #ddd;
+  color:#000;
 }
+
+.ma_wrapper {
+  padding:4px 26px;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  background-color:#eee;
+  color:#000;}
+.ma_wrapper a {
+  display:inline-block;
+  padding:2px 6px;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;}
+.ma_wrapper a:link, .ma_wrapper a:visited {
+  background-color:#ddd;  
+  color:#000;
+}
+.ma_wrapper a:hover {
+  background-color:#fff;
+  color:#000;
+}
+
 
 .message_ma_users ,
 .message_ma_branch ,
@@ -115,6 +160,8 @@ a, a:link, a:visited {text-decoration:none;}
 .message_ma_branch {}
 .message_ma_body {}
 
+.message_ma_subj {}
+
 span.ma_has_new { font-weight:bold;}
 
 .message_ma_box_info {
@@ -123,22 +170,19 @@ span.ma_has_new { font-weight:bold;}
 .message_ma_archive_chain {
   float:right;
 }
-.message_ma_archive_chain a,
-.message_ma_reply_link a {
+.message_ma_archive_chain a {
   display:inline-block;
-  padding:4px 6px;
+  padding:2px 6px;
   border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
 }
-.message_ma_archive_chain a:link, .message_ma_archive_chain a:visited,
-.message_ma_reply_link a:link, .message_ma_reply_link a:visited {
-    color:#fff;
+.message_ma_archive_chain a:link, .message_ma_archive_chain a:visited{
+  color:#fff;
   background-color:#333;
 }
-.message_ma_archive_chain a:hover,
-.message_ma_reply_link a:hover {
-    color:#000;
+.message_ma_archive_chain a:hover {
+  color:#000;
   background-color:#ccc;
 }
 
@@ -155,10 +199,11 @@ span.ma_has_new { font-weight:bold;}
   width:80%;
   margin:40px auto;
   padding:12px;
-  background-color:#ccc;
+  //background-color:#ccc;
   border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
+  border-top:1px solid #ccc;
 }
 
 

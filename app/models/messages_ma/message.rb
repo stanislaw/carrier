@@ -20,7 +20,7 @@ module MessagesMa
     validates :content, :presence => true
    
     before_save do
-      self.subject = "(Без темы)" if self.subject.empty?
+      self.subject = "(Без темы)" if !subject || subject.empty?
       if @answers_to 
         re_chain = self.class.find(@answers_to).chain
         self.chain = re_chain
@@ -105,6 +105,10 @@ module MessagesMa
 
     def set_answers_to=(answers_to_id)
       @answers_to = answers_to_id
+    end
+
+    def no_re_subject
+      subject.gsub(/re\[\d+\]: /,'')
     end
 
     protected

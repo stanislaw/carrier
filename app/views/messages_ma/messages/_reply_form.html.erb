@@ -11,10 +11,10 @@
 <% end %>
 <div class="message_ma_new_wrapper replay_message_ma">
   <h4><span class=""><%= current_user.username %></span> &rArr; <span class="red"><%= @message.recipients_names %></span></h4>
-  <div class="field">
-    <%= f.label "Тема:" %><br />
-    <%= f.text_field :subject %>
-  </div>
+  <!--div class="field">
+    < f.label "Тема:" %><br />
+    < f.text_field :subject %>
+  </div-->
   <div class="field">
     <%= f.label "Сообщение:" %><br />
     <%= f.text_area :content, :rows => 6 %>

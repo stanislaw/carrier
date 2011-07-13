@@ -1,21 +1,24 @@
 <%= link_to "/messages_ma/messages/#{parent_message.id}/get_partial?message_id=#{message.id}&mode=#{mode == 'short' ? 'full' : 'short'}&m=#{m}", :remote => true, :class => "message_collapse", :id => "message-#{message.id}" do %>   
-<div id="message-<%= message.id %>__" class="message_ma_wrapper <%= 'has_new' if m == true %>">
+
 <%= javascript_tag("$('#loader').css('top','-100px');") %>
 <% if mode == 'short' %>
-
+<div id="message-<%= message.id %>__" class="message_ma_wrapper <%= 'has_new' if m == true %>">
 <div class="message_ma_date"><%= raw message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
 <div class="message_ma_user"><%= message.from_name %></div>
 <div>
 	<%= raw(" <b class='red'>непрочитано</b>") if @_messages.include? (message)%>
 	<%= raw truncate raw("#{ message.subject } &raquo; ") + message.content, :length => 88 %>
 </div>
+</div>
  <% end %>
  <% if mode == 'full' %>
+ <div id="message-<%= message.id %>__" class="message_ma_wrapper <%= 'has_new' if m == true %> ma_open">
 <% message.id %>  
 <div class="message_ma_date"><%= raw message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
 <div class="message_ma_user"><%= message.from_name %></div>
-<div>&nbsp;<b><%= message.subject %></b></div>
+<div class="message_ma_subj"><b><%= message.subject %></b></div>
 <div><%= message.content %></div>
-<% end %>
 </div>
+<% end %>
+
 <% end %>

@@ -16,7 +16,7 @@ module MessagesMa
     def current_user
       #logger.info("123\n\n\n\n")
       #current_user = 
-      User.find(2)
+      User.find(1)
       #super
     end
    
