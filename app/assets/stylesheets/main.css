@@ -1,5 +1,5 @@
 body {
-	
+  
 }
 
 /* base typography */
@@ -128,7 +128,7 @@ a, a:link, a:visited {text-decoration:none;}
 }
 
 .ma_wrapper {
-  padding:4px 26px;
+  padding:10px 40px;
   border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -187,13 +187,22 @@ span.ma_has_new { font-weight:bold;}
 }
 
 .message_ma_new_wrapper {}
-.message_ma_new_wrapper input[type="text"], .message_ma_new_wrapper textarea {width:80%;}
+.message_ma_new_wrapper .message_ma_new_wrapper_2 input[type="text"], 
+.message_ma_new_wrapper .message_ma_new_wrapper_2 textarea {width:95%;}
 
+.message_ma_new_wrapper .message_ma_new_wrapper_2 .actions {
+  margin:12px 0;
+}
 
+label {
+  font-family: Georgia;
+  font-size: 14px;
+  font-style: italic;
+  font-weight:bold;
+  display:inline-block; 
+  margin:16px 0 8px 0;}
 
-
-
-
+/* footer */
 
 .messages_ma_credits {
   width:80%;
@@ -212,8 +221,3 @@ span.ma_has_new { font-weight:bold;}
 
 .red {color:Red;}
 .messages_ma_wrapper * a:link, .messages_ma_wrapper * a:visited {}
-
-
-
-
-

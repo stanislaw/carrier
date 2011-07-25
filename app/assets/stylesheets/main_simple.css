@@ -1,0 +1,15 @@
+.message_ma_new_wrapper_1 {width:90%;}
+.message_ma_new_wrapper_2 {width:90%;}
+
+
+.message_ma_new_wrapper  input[type="text"], 
+.message_ma_new_wrapper  textarea {width:95%;}
+
+.message_ma_new_wrapper  input[type="text"], 
+.message_ma_new_wrapper  textarea {
+  border:1px solid #ccc;
+    border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  padding:6px;
+}

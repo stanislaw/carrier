@@ -6,7 +6,7 @@ module MessagesMa
     
     def define_ui
       @ui = :rich 
-      @ui = :simple
+      #@ui = :simple
     end
 
     def user_signed_in?
