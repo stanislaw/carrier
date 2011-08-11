@@ -10,13 +10,12 @@ module MessagesMa
     end
 
     def user_signed_in?
-      current_user #&& !current_user.has_role?(:guest)
+      current_user 
     end
 
     def current_user
-      #logger.info("123\n\n\n\n")
       #current_user = 
-      User.find(1)
+      User.first || User.create(:username => "stanislaw")
       #super
     end
    

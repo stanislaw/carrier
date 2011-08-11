@@ -10,6 +10,34 @@ gem 'kaminari'
 gem 'unicorn'
 gem 'unread'
 
-if RUBY_VERSION < '1.9'
-  gem "ruby-debug", ">= 0.10.3"
+group :test do
+  gem 'require_all', '~> 1.2.0'
+  # Data
+  gem 'database_cleaner', :git => "git://github.com/kristianmandrup/database_cleaner.git"
+  gem 'factory_girl'
+  # Specs
+  gem 'spork'
+  gem "rspec-rails", '>= 2.5'
+  gem 'capybara'
+  gem 'rails-app-spec'
+  gem 'mocha'
+  gem "launchy"
+
+  gem 'cutter'
+
+  # Rails
+  # integration
+  gem "devise"
 end
+group :development do
+  gem 'devise'
+  gem "rspec",    ">= 2.5.0"
+  gem "jeweler",  ">= 1.6.4"
+  gem "bundler",  "~> 1.0.10"
+  gem "rdoc"
+
+  # gem 'logging_assist'
+  # gem 'meta_where'
+  # gem 'mongoid'
+end
+
