@@ -9,6 +9,7 @@ gem 'pg'
 gem 'kaminari'
 gem 'unicorn'
 gem 'unread'
+gem 'sugar-high'
 
 group :test do
   gem 'require_all'

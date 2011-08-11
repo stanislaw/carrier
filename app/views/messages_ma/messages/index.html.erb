@@ -14,13 +14,9 @@
       <% m = (@_messages - (@_messages - chain.messages)).size %>
   
       <%= link_to (@sent ? messages_ma.as_sent_message_path(chain.last_message) : chain.last_message), :class => "message_ma_wrapper #{'ma_has_new' if m>0 }" do %>
-        <div class="message_ma_date"><%= raw chain.last_message.created_at.strftime('%H:%M <b>%d.%m</b>') %></div>
+        <div class="message_ma_date"><%= chain.last_message.date_formatted %></div>
         <div class="message_ma_users">
-          <% unless chain.last_message.to == chain.last_message.from %>
-            <%= truncate(chain.last_message.from_name + "+" + chain.last_message.recipients_names, :length => 20) %>
-          <% else %>
-          Я
-          <% end %>
+          <%= truncate(chain.last_message.sender_name + " + " + chain.last_message.recipients_names, :length => 20) %>
           <span class="message_ma_branch">
             (<%= chain.messages_count %><% if m > 0 %>/<b class="red"><%= m %></b><% end %>)
           </span>

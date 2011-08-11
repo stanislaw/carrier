@@ -18,13 +18,9 @@
   </div>
   
   <div class="message_ma_box_info">
-   <h2><%= @message.no_re_subject %></h2>
+   <h2><%= @message.subject_without_re %></h2>
     В переписке участвуют: 
-    <% unless @message.to == @message.from %>
     <b>я</b> и <b><%= @message.recipients_names %></b>
-    <% else %>
-    <b>только я</b>
-    <% end %>
 
   </div>
   
@@ -35,9 +31,9 @@
   <div class="message_ma_wrapper ma_open">
   	<% @message.id %>  
     <div class="message_ma_date">
-      <%= raw @message.created_at.strftime('%H:%M <b>%d.%m</b>') %>
+      <%= raw @message.date_formatted %>
     </div>
-    <div class="message_ma_user"><%= @message.from_name %></div>
+    <div class="message_ma_user"><%= @message.sender_name %></div>
     <div class="message_ma_subj"><b><%= @message.subject %></b></div>
     <div><%= @message.content %></div>
   </div>

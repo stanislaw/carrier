@@ -1,0 +1,9 @@
+<div class="errorExplanation" id="errorExplanation">
+  <h2>Заполните поля верно</h2>
+  <p>Проверьте правильность заполнения следующих полей:</p>
+  <ul>
+  <% resource.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>   
+  <% end %>
+  </ul>
+</div>

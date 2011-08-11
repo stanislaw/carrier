@@ -15,7 +15,6 @@ MessagesMa::Engine.routes.draw do
     collection do
       get :sent
       get :archive
-      get :w_instructors
     end
   end
 

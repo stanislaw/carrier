@@ -1,14 +1,6 @@
 <%= form_for([messages_ma, @message], :html => { :autocomplete => :off }) do |f| %>
-<% if @message.errors.any? %>
-  <div id="error_explanation">
-    <h2>Пожалуйста, проверьте правильность заполнения следующих полей:</h2>
-    <ul>
-    <% @message.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+  
+<%= error_messages_for @message %>
 
 <div class="message_ma_new_wrapper">
   <div class="message_ma_new_wrapper_1">
@@ -28,7 +20,7 @@
       <%= f.label "Сообщение:" %><br />
       <%= f.text_area :content, :rows => 6 %>
     </div>
-    <%= f.hidden_field :from, :value => current_user.id %>
+    <%= f.hidden_field :sender, :value => current_user.id %>
     <div class="actions">
       <%= f.submit "Отправить" %>
     </div>    

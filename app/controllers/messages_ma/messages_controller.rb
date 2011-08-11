@@ -55,14 +55,6 @@ class MessagesController < ApplicationController
     return ([message.from]+message.to).without(user.id)
   end
 
-  def change_to_many_receivers
-    respond_to{|format| format.js}
-  end
-
-  def change_to_one_receiver
-    respond_to{|format| format.js}
-  end
-
   def archive
     @chains = Chain.archived_for(current_user).page params[:page]
     respond_to do |format|

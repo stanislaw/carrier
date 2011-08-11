@@ -5,5 +5,5 @@
 .bundle/
 Gemfile.lock
 pkg/
-test/dummy/db/*.sqlite3
-test/dummy/tmp/
+spec/dummy/db/*.sqlite3
+spec/dummy/tmp/

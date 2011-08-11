@@ -5,8 +5,8 @@ module MessagesMa
     before_filter :define_ui 
     
     def define_ui
-      @ui = :rich 
-      #@ui = :simple
+      #@ui = :rich 
+      @ui = :simple
     end
 
     def user_signed_in?
@@ -14,16 +14,13 @@ module MessagesMa
     end
 
     def current_user
-      User.first || User.create(:username => "stanislaw")
+      User.last || User.create(:username => "stanislaw")
     end
    
     private 
 
     def prepare_unread
       @_messages = Message.with_messages_for(current_user).unread_by(current_user)
-      @messages_unread = @_messages.size
-      return nil if @messages_unread==0
-      @messages_unread
     end
 
   end

@@ -28,16 +28,6 @@ class Chain < ActiveRecord::Base
     having_chain.present?
   end
 
-  def about_name
-    case having_chain_type
-      when "Consultation" 
-        then return "Консультация"
-      when "Report" 
-        then return "Отчёт"
-    end
-    nil
-  end
-
   def unarchive!
     unarchive
     self.save!
@@ -63,10 +53,6 @@ class Chain < ActiveRecord::Base
 
   def archived_for_any_user?
     archived_for.any? ? true : false 
-  end
-
-  def participants_ids
-    participants
   end
 
   def participants_names

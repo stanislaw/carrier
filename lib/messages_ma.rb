@@ -1,5 +1,4 @@
 require "messages_ma/engine"
-require 'array'
+require 'sugar-high/array'
 module MessagesMa
-
 end
