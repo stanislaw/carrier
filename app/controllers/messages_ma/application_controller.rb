@@ -5,8 +5,8 @@ module MessagesMa
     before_filter :define_ui 
     
     def define_ui
-      #@ui = :rich 
-      @ui = :simple
+      @ui = :rich 
+      #@ui = :simple
     end
 
     def user_signed_in?

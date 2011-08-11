@@ -21,7 +21,6 @@
    <h2><%= @message.subject_without_re %></h2>
     В переписке участвуют: 
     <b>я</b> и <b><%= @message.recipients_names %></b>
-
   </div>
   
   <% m = @message.chain_collection_unread_by(current_user) %>
@@ -41,9 +40,4 @@
       <%= link_to 'Ответить в ветку сообщений', reply_form_message_path(@message.id), :remote => true %>    
     <div id="reply_form"></div>   
   </div>
-
-
-
-
 </div>
-<!-- %= loader_tag % -->

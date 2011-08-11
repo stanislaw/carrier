@@ -1,29 +1,19 @@
-<%= javascript_tag "$('#loader').css('top','-100px');" %><%= form_for(@message, :remote => true) do |f| %>
-<% if @message.errors.any? %>
-  <div id="error_explanation">
-    <h2>Проверьте правильность ввода:</h2>
-    <ul>
-    <% @message.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= form_for(@message, :remote => true) do |f| %>
+  
+<%= error_messages_for @message %>  
+
 <div class="message_ma_new_wrapper replay_message_ma">
   <h4><span class=""><%= current_user.username %></span> &rArr; <span class="red"><%= @message.recipients_names %></span></h4>
-  <!--div class="field">
-    < f.label "Тема:" %><br />
-    < f.text_field :subject %>
-  </div-->
   <div class="field">
     <%= f.label "Сообщение:" %><br />
     <%= f.text_area :content, :rows => 6 %>
   </div>
-  <%= f.hidden_field :to, :value => @message.to %>
+  <%= f.hidden_field :recipients_ids, :value => @message.recipients %>
   <%= f.hidden_field :set_answers_to, :value => @re_message.id %>
-  <%= f.hidden_field :from, :value => current_user.id %>
+  <%= f.hidden_field :chain_id, :value => @message.chain_id %>
+  <%= f.hidden_field :sender, :value => current_user.id %>
   <div class="actions">
-    <%= f.submit 'Отправить', :onclick => "attachLoader(this, -22, 5, true);" %>
+    <%= f.submit 'Отправить' %>
   </div>
  </div>
 <% end %>

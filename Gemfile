@@ -10,6 +10,7 @@ gem 'kaminari'
 gem 'unicorn'
 gem 'unread'
 gem 'sugar-high'
+gem 'cutter'
 
 group :test do
   gem 'require_all'
@@ -24,10 +25,6 @@ group :test do
   gem 'mocha'
   gem "launchy"
 
-  gem 'cutter'
-
-  # Rails
-  # integration
   gem "devise"
 end
 group :development do

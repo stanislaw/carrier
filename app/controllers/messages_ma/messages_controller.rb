@@ -3,7 +3,6 @@ module MessagesMa
 class MessagesController < ApplicationController
   
   def get_partial
-    logger.info(params.inspect)
     @render_message = Message.find(params[:message_id])
     @parent_message = Message.find(params[:id])
     @render_message.mark_as_read! :for => current_user if params[:mode]=='full'
@@ -36,7 +35,8 @@ class MessagesController < ApplicationController
     @re_message = Message.find(params.to_i)
     @message = Message.new
     @message.subject = get_re(@re_message.subject)
-    @message.to = find_to(@re_message, current_user)
+    @message.recipients = find_recipients(@re_message, current_user)
+    @message.chain_id = @re_message.chain_id
   end
 
   def reply
@@ -44,15 +44,8 @@ class MessagesController < ApplicationController
     render '_reply_form.html.erb' 
   end
 
-  def comment_form
-    @report = Report.find(params[:report]) 
-    render :update do |page|
-      page << "$('#comment_form').html('#{escape_javascript(render :partial => 'reports/reply_form.html.erb')}');"
-    end
-  end
-
-  def find_to(message, user)
-    return ([message.from]+message.to).without(user.id)
+  def find_recipients(message, user)
+    return ([message.sender] + message.recipients).without(user.id)
   end
 
   def archive
