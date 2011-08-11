@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'rails', '3.1.0.rc4'
+gem 'rails', '3.1.0.rc5'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -11,8 +11,8 @@ gem 'unicorn'
 gem 'unread'
 
 group :test do
-  gem 'require_all', '~> 1.2.0'
-  # Data
+  gem 'require_all'
+  
   gem 'database_cleaner', :git => "git://github.com/kristianmandrup/database_cleaner.git"
   gem 'factory_girl'
   # Specs
@@ -33,8 +33,7 @@ group :development do
   gem 'devise'
   gem "rspec",    ">= 2.5.0"
   gem "jeweler",  ">= 1.6.4"
-  gem "bundler",  "~> 1.0.10"
-  gem "rdoc"
+  gem "bundler"
 
   # gem 'logging_assist'
   # gem 'meta_where'

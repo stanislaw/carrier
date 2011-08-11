@@ -14,9 +14,7 @@ module MessagesMa
     end
 
     def current_user
-      #current_user = 
       User.first || User.create(:username => "stanislaw")
-      #super
     end
    
     private 
