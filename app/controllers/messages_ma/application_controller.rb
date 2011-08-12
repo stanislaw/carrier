@@ -21,7 +21,7 @@ module MessagesMa
     private 
 
     def prepare_unread
-      @_messages = Message.with_messages_for(current_user).unread_by(current_user)
+      @_messages = Message.unread(current_user)
     end
 
   end
