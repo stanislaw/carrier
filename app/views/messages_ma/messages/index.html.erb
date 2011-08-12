@@ -11,7 +11,7 @@
   </div> 
   <div class="messages_ma_messagelist">  
     <% @chains.each do |chain| %>
-      <% m = (@_messages - (@_messages - chain.messages)).size %>
+      <% m = (@_messages & chain.messages).size %>
   
       <%= link_to (@sent ? messages_ma.as_sent_message_path(chain.last_message) : chain.last_message), :class => "message_ma_wrapper #{'ma_has_new' if m>0 }" do %>
         <div class="message_ma_date"><%= chain.last_message.date_formatted %></div>

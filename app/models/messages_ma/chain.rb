@@ -54,5 +54,9 @@ module MessagesMa
       self.participants = participants_arr | participants
       self.save!
     end
+
+    def unread_messages_count
+
+    end
   end
 end
