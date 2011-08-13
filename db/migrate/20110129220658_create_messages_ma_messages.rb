@@ -5,6 +5,9 @@ class CreateMessagesMaMessages < ActiveRecord::Migration
       t.string :recipients, :default => [].to_yaml
       t.string :subject
       t.text :content
+      
+      t.string :last, :default => 'false', :null => :false
+
       t.integer :chain_id
  
       t.timestamps

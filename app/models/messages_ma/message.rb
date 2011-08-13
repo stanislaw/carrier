@@ -7,7 +7,7 @@ module MessagesMa
     paginates_per 25
 
     serialize :recipients
-    
+   
     # Associations
     belongs_to :chain, :counter_cache => true
    
@@ -17,19 +17,29 @@ module MessagesMa
     validates :sender, :presence => true
     validates :recipients, :presence => true
     validates :content, :presence => true
-   
-    before_save do
+
+    before_create do
       self.subject = "(Без темы)" if !subject || subject.empty?
       chain.unarchive! if chain && chain.archived_for_any_user?
-      self.chain = Chain.create unless chain
+      self.last = true
+      self.chain = Chain.create if !chain 
     end
 
-    after_save do
+    after_create do
+      Message.find(@answers_to).clear_last! if @answers_to
       mark_as_read! :for => sender_user
       chain.participants! participants
     end
-
     # Instance methods
+
+    def answers_to= message
+      @answers_to = message
+    end
+    
+    def clear_last!
+      self.last = false
+      save!
+    end
 
     def sender_user
       User.find(sender, :select => 'id, username')
@@ -48,7 +58,7 @@ module MessagesMa
     end
 
     def recipients_ids= ra
-      self.recipients = ra.scan(/\w+/)
+      self.recipients = ra.scan(/\w+/).map(&:to_i)
     end
 
     def recipients_names= recipients_array
@@ -69,7 +79,7 @@ module MessagesMa
       chain.messages
     end
 
-    def chain_collection_unread_by(user)
+    def chain_ub user
       (chain_messages & Message.unread_by(user)).size
     end
 

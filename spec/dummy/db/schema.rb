@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110811015141) do
+ActiveRecord::Schema.define(:version => 20110130210000) do
 
   create_table "messages_ma_chains", :force => true do |t|
     t.string   "participants",      :default => "--- []\n\n"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20110811015141) do
     t.string   "subject"
     t.text     "content"
     t.integer  "chain_id"
+    t.boolean  "last",       :default => false,        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -49,19 +49,19 @@ class MessagesController < ApplicationController
   end
 
   def archive
-    @chains = Chain.archived_for(current_user).page params[:page]
+    @messages = Message.with_archived_for(current_user).page params[:page]
     respond_to do |format|
       format.html { render 'index' }
     end
   end
 
   def index
-    @chains = Chain.with_messages_for(current_user).page params[:page]
+    @messages = Message.with_messages_for(current_user).page params[:page]
   end
 
   def sent
     @sent = true
-    @chains = Chain.with_messages_sent_by(current_user).page params[:page]
+    @messages = Message.sent_by(current_user).page params[:page]
     respond_to do |format|
       format.html { render 'index' } 
     end
@@ -136,31 +136,5 @@ class MessagesController < ApplicationController
     end
   end
 
-  # PUT /messages/1
-  # PUT /messages/1.xml
-  def update
-    @message = Message.find(params[:id])
-
-    respond_to do |format|
-      if @message.update_attributes(params[:message])
-        format.html { redirect_to(@message, :notice => 'Message was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-      end
-    end
-  end
-
-  # DELETE /messages/1
-  # DELETE /messages/1.xml
-  def destroy
-    @message = Message.find(params[:id])
-    @message.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(messages_url) }
-      format.xml  { head :ok }
-    end
-  end
 end
 end

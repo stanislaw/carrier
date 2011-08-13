@@ -2,11 +2,34 @@ module MessagesMa
   class Message
     module Scopes
       def self.extended(base)
+        base.scope :with, lambda{|user| base.where("\"sender\" = #{user.id} OR \"recipients\" ~ '\\D#{user.id}\\D'").joins(:chain) }
+        base.scope :by, lambda{|user| base.where("\"sender\" = #{user.id}") }
+
+        base.scope :not_archived_for, lambda{|user| base.where("\"messages_ma_chains\".\"archived_for\" !~ '\\D#{user.id.to_s}\\D'") }
+        base.scope :archived_for, lambda{|user| base.where("\"messages_ma_chains\".\"archived_for\" ~ '\\D#{user.id.to_s}\\D'") }
+
+        base.scope :top, lambda{ base.where(:last => true) }
         
-        base.scope :with_messages_for, lambda {|user| base.where("\"recipients\" ~ '\\D#{user.id}\\D'").select('messages_ma_messages.id') }
-        
-        base.scope :unread, lambda {|user| base.with_messages_for(user).unread_by(user)}
-        #base.scope :with, lambda {|user| base.where("\"from\" = :from OR (\"recipients\" ~ '\\D#{user.id}\\D')", {:from => user.id }) }
+        base.scope :with_messages_for, 
+          lambda {|user| base
+                        .top
+                        .with(user)
+                        .not_archived_for(user)
+                 }
+        base.scope :with_archived_for,
+          lambda {|user| base
+                        .top
+                        .with(user)
+                        .archived_for(user)
+                 }
+        base.scope :unread, lambda {|user| base.with_messages_for(user).unread_by(user) } 
+      
+        base.class_eval %{
+          def self.sent_by user
+            ids = by(user).map{|m| m.chain_id}
+            with_messages_for(user).where(:chain_id => ids.uniq)
+          end
+        }
       end
     end
   end

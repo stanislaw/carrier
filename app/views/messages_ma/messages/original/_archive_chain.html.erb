@@ -1,6 +1,0 @@
-<% if chain_archived %>
-<b>Цепочка в архиве</b>
-<%= link_to 'Разархивировать?', unarchive_chain_path(:chain_id => chain, :user_id => current_user), :remote => true, :method => :post %>
-<% else %>
-<%= link_to 'Поместить цепочку в архив', archive_chain_path(:chain_id => chain, :user_id => current_user), :remote => true, :method => :post %>
-<% end %>
