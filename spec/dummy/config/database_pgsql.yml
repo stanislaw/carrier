@@ -1,21 +1,27 @@
 development:
-  adapter: mysql2
+  adapter: postgresql
   host: localhost
+  port: 5432
   database: messages_ma
-  username: root 
-  password: root
+  username: postgres
+  password: postgres
+  schema_search_path: public
   encoding: utf8
+  template: template0
 
 test: &test
-  adapter: mysql2
+  adapter: postgresql
   host: localhost
-  database: messages_ma_test
-  username: root
-  password: root
+  port: 5432
+  database: distant_test
+  username: postgres
+  password: postgres
+  schema_search_path: public
   encoding: utf8
+  template: template0
 
 production:
-  adapter: mysql2
+  adapter: postgresql
   host: localhost
   port: 5432
   database: eidogram_distant

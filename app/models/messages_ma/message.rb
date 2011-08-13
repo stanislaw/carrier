@@ -22,7 +22,7 @@ module MessagesMa
     validates :content, :presence => true
 
     before_create do
-      self.subject = "(Без темы)" if !subject || subject.empty?
+      self.subject = "(no subject)" if !subject || subject.empty?
       chain.unarchive! if chain && chain.archived_for_any_user?
       self.last = true
       self.chain = Chain.create if !chain 

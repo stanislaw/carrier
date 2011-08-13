@@ -6,10 +6,17 @@ gem 'rails', '3.1.0.rc5'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 gem 'rake'#, '0.8.7'
 gem 'pg'
+gem 'mysql2'
 gem 'kaminari'
+
 gem 'unicorn'
+
 gem 'unread'
+
 gem 'sugar-high'
+
+gem 'rake-kit'
+
 gem 'cutter'
 
 group :test do

@@ -5,7 +5,7 @@
 <div class="message_ma_new_wrapper">
   <div class="message_ma_new_wrapper_1">
   	<div class="field">
-      <%= f.label "Кому:" %><br />
+      <%= f.label "Recipients:" %><br />
         <div id="receiver">
           <%= render :partial => "messages_ma/messages/#{@ui}/one_receiver", :locals => {:f => f } %>
         </div>
@@ -13,16 +13,16 @@
   </div>
   <div class="message_ma_new_wrapper_2">
     <div class="field">
-      <%= f.label "Тема:" %><br />
+      <%= f.label "Subject:" %><br />
       <%= f.text_field :subject %>
     </div>
     <div class="field">
-      <%= f.label "Сообщение:" %><br />
+      <%= f.label "Message:" %><br />
       <%= f.text_area :content, :rows => 6 %>
     </div>
     <%= f.hidden_field :sender, :value => current_user.id %>
     <div class="actions">
-      <%= f.submit "Отправить" %>
+      <%= f.submit "Send" %>
     </div>    
   </div> 
 </div>

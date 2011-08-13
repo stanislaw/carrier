@@ -9,9 +9,9 @@ module MessagesMa
           elsif !name.match(/re:/).nil?
             return name.sub(/re:/,'re[2]:')
           elsif name.match(/re\[\d+\]/)
-            @re_count = name.match(/re\[\d+\]:/)[0].match(/\d+/)[0]
-            @re_count = @re_count.to_i + 1
-            return name.sub(/re\[\d+\]/, 're['+@re_count.to_s+']')
+            re_count = name.match(/re\[\d+\]:/)[0].match(/\d+/)[0]
+            re_count = re_count.to_i + 1
+            return name.sub(/re\[\d+\]/, 're['+re_count.to_s+']')
           end
           name
         end
