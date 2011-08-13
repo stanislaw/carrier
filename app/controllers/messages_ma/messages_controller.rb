@@ -11,13 +11,8 @@ class MessagesController < ApplicationController
     end
   end
   
-  def reply_form
-    re_message = Message.find(params[:id])
-    @message = Message.new_answer re_message, current_user
-    
-    respond_to do |format|
-      format.js
-    end
+  def reply
+    @message = Message.new_answer params[:id], current_user
   end
 
   def archive
@@ -45,15 +40,10 @@ class MessagesController < ApplicationController
   def as_sent
     @message = Message.find(params[:id], :include => :chain)
     @last_message = @message.chain.messages.last
-    unless @last_message==@message
-      redirect_to message_path(@last_message)
-      return
-    end
     @message.mark_as_read! :for => current_user
     @message_answers = @message.chain.messages.without(@message) 
     respond_to do |format|
       format.html { render :show_as_sent }
-      format.xml  { render :xml => @message }
     end
   end
 
@@ -61,16 +51,8 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @chain_archived = @message.chain.archived_for?(current_user)
     @last_message = @message.chain.messages.last
-    unless @last_message==@message
-      redirect_to message_path(@last_message)
-      return
-    end
     @message.mark_as_read! :for => current_user
     @message_answers = @message.chain.messages.without(@message) 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @message }
-    end
   end
 
   # GET /messages/new
@@ -83,13 +65,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  # GET /messages/1/edit
-  def edit
-    @message = Message.find(params[:id])
-  end
-
-  # POST /messages
-  # POST /messages.xml
   def create
     @message = Message.new(params[:message])
     respond_to do |format|

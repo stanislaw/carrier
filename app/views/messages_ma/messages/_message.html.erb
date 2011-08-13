@@ -1,13 +1,14 @@
 <%= link_to "/messages_ma/messages/#{parent_message.id}/get_partial?message_id=#{message.id}&mode=#{mode == 'short' ? 'full' : 'short'}&m=#{m}", :remote => true, :class => "message_collapse", :id => "message-#{message.id}" do %>   
 
-<%= javascript_tag("$('#loader').css('top','-100px');") %>
 <% if mode == 'short' %>
 <div id="message-<%= message.id %>__" class="message_ma_wrapper <%= 'has_new' if m == true %>">
 <div class="message_ma_date"><%= raw message.date_formatted %></div>
 <div class="message_ma_user"><%= message.sender_name %></div>
 <div>
-	<%= raw(" <b class='red'>непрочитано</b>") if @_messages.include? (message)%>
-	<%= raw truncate raw("#{ message.subject } &raquo; ") + message.content, :length => 88 %>
+  <% if @_messages.include? (message) %>
+  	<b class='red'>непрочитано</b>
+  <% end %>
+	<%= raw truncate("%s &raquo; %s" % [message.subject, message.content], :length => 88) %>
 </div>
 </div>
  <% end %>

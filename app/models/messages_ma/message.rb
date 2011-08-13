@@ -34,14 +34,15 @@ module MessagesMa
       chain.participants! participants
     end
     
-    def self.new_answer message, user 
+    def self.new_answer id, user 
+      in_answer_to = find(id)
       new_message = self.new
 
       new_message.sender = user.id
-      new_message.recipients = find_recipients message, user
-      new_message.subject = re message.subject
-      new_message.chain_id = message.chain_id
-      new_message.answers_to = message.id
+      new_message.recipients = find_recipients in_answer_to, user
+      new_message.subject = re in_answer_to.subject
+      new_message.chain_id = in_answer_to.chain_id
+      new_message.answers_to = in_answer_to.id
       new_message
     end
  

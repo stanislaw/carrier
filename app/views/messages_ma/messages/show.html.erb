@@ -37,7 +37,7 @@
     <div><%= @message.content %></div>
   </div>
   <div class="ma_wrapper">    
-      <%= link_to 'Ответить в ветку сообщений', reply_form_message_path(@message.id), :remote => true %>    
+      <%= link_to 'Ответить в ветку сообщений', reply_message_path(@message), :remote => true %>    
     <div id="reply_form"></div>   
   </div>
 </div>
