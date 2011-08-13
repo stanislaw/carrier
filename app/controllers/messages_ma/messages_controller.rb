@@ -39,7 +39,6 @@ class MessagesController < ApplicationController
   
   def as_sent
     @message = Message.find(params[:id], :include => :chain)
-    @last_message = @message.chain.messages.last
     @message.mark_as_read! :for => current_user
     @message_answers = @message.chain.messages.without(@message) 
     respond_to do |format|
@@ -50,7 +49,6 @@ class MessagesController < ApplicationController
   def show
     @message = Message.find(params[:id])
     @chain_archived = @message.chain.archived_for?(current_user)
-    @last_message = @message.chain.messages.last
     @message.mark_as_read! :for => current_user
     @message_answers = @message.chain.messages.without(@message) 
   end

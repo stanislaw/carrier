@@ -25,12 +25,11 @@
   
   <% m = @message.chain_messages_ub(current_user) %>
   <% @message_answers.each do |message| %>
-    <%= render :partial => 'message', :locals => {:parent_message => @message, :message => message, :mode => 'short', :m => (m>0 ? true : false)} %>
+    <%= render :partial => 'message', :locals => {:parent_message => @message, :message => message, :mode => 'short', :m => (m > 0 ? true : false)} %>
   <% end %>
   <div class="message_ma_wrapper ma_open">
-  	<% @message.id %>  
     <div class="message_ma_date">
-      <%= raw @message.date_formatted %>
+      <%= @message.date_formatted %>
     </div>
     <div class="message_ma_user"><%= @message.sender_name %></div>
     <div class="message_ma_subj"><b><%= @message.subject %></b></div>
