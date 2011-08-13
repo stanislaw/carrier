@@ -2,12 +2,15 @@
 module MessagesMa
   class Message < ActiveRecord::Base
     extend Scopes
+    include Subject
 
     set_table_name "messages_ma_messages"
     paginates_per 25
 
     serialize :recipients
    
+    attr_accessor :answers_to
+
     # Associations
     belongs_to :chain, :counter_cache => true
    
@@ -30,12 +33,22 @@ module MessagesMa
       mark_as_read! :for => sender_user
       chain.participants! participants
     end
-    # Instance methods
-
-    def answers_to= message
-      @answers_to = message
-    end
     
+    def self.new_answer message, user 
+      new_message = self.new
+
+      new_message.sender = user.id
+      new_message.recipients = find_recipients message, user
+      new_message.subject = re message.subject
+      new_message.chain_id = message.chain_id
+      new_message.answers_to = message.id
+      new_message
+    end
+ 
+    def self.find_recipients message, user
+      ([message.sender] + message.recipients).without(user.id)
+    end
+
     def clear_last!
       self.last = false
       save!
@@ -79,12 +92,8 @@ module MessagesMa
       chain.messages
     end
 
-    def chain_ub user
-      (chain_messages & Message.unread_by(user)).size
-    end
-
-    def subject_without_re
-      subject.gsub(/re\[\d+\]: /,'')
+    def chain_messages_ub user
+      (chain_messages & Message.unread(user)).size
     end
 
     def date_formatted

@@ -12,40 +12,12 @@ class MessagesController < ApplicationController
   end
   
   def reply_form
-    prepare_message_for_reply(params[:id])
+    re_message = Message.find(params[:id])
+    @message = Message.new_answer re_message, current_user
+    
     respond_to do |format|
       format.js
     end
-  end
-  
-  def get_re(name)
-    if name.match(/re/).nil?
-      return "re: "+name
-    elsif !name.match(/re:/).nil?
-      return name.sub(/re:/,'re[2]:')
-    elsif name.match(/re\[\d+\]/)
-      @re_count = name.match(/re\[\d+\]:/)[0].match(/\d+/)[0]
-      @re_count = @re_count.to_i + 1
-      return name.sub(/re\[\d+\]/, 're['+@re_count.to_s+']')
-    end
-    return name
-  end
-
-  def prepare_message_for_reply(params)
-    @re_message = Message.find(params.to_i)
-    @message = Message.new
-    @message.subject = get_re(@re_message.subject)
-    @message.recipients = find_recipients(@re_message, current_user)
-    @message.chain_id = @re_message.chain_id
-  end
-
-  def reply
-    prepare_message_for_reply(params[:id])
-    render '_reply_form.html.erb' 
-  end
-
-  def find_recipients(message, user)
-    return ([message.sender] + message.recipients).without(user.id)
   end
 
   def archive

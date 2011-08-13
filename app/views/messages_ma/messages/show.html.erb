@@ -23,7 +23,7 @@
     <b>я</b> и <b><%= @message.recipients_names %></b>
   </div>
   
-  <% m = @message.chain_collection_unread_by(current_user) %>
+  <% m = @message.chain_messages_ub(current_user) %>
   <% @message_answers.each do |message| %>
     <%= render :partial => 'message', :locals => {:parent_message => @message, :message => message, :mode => 'short', :m => (m>0 ? true : false)} %>
   <% end %>

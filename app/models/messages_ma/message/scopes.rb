@@ -2,7 +2,7 @@ module MessagesMa
   class Message
     module Scopes
       def self.extended(base)
-        base.scope :with, lambda{|user| base.where("\"sender\" = #{user.id} OR \"recipients\" ~ '\\D#{user.id}\\D'").joins(:chain) }
+        base.scope :with, lambda{|user| base.where("\"sender\" = #{user.id} OR \"recipients\" ~ '\\D#{user.id}\\D'") }
         base.scope :by, lambda{|user| base.where("\"sender\" = #{user.id}") }
 
         base.scope :not_archived_for, lambda{|user| base.where("\"messages_ma_chains\".\"archived_for\" !~ '\\D#{user.id.to_s}\\D'") }
@@ -15,14 +15,16 @@ module MessagesMa
                         .top
                         .with(user)
                         .not_archived_for(user)
+                        .joins(:chain)
                  }
         base.scope :with_archived_for,
           lambda {|user| base
                         .top
                         .with(user)
                         .archived_for(user)
+                        .joins(:chain)
                  }
-        base.scope :unread, lambda {|user| base.with_messages_for(user).unread_by(user) } 
+        base.scope :unread, lambda {|user| base.with(user).unread_by(user) } 
       
         base.class_eval %{
           def self.sent_by user
