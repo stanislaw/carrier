@@ -1,5 +1,5 @@
 module MessagesMa
   module Rails
-    autoload_modules :ControllerHelpers
+    autoload_modules :Helpers
   end
 end

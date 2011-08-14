@@ -1,8 +1,7 @@
 module MessagesMa
   def self.include_helpers
     ActiveSupport.on_load(:action_controller) do
-
-      include MessagesMa::Rails::ControllerHelpers
+      include MessagesMa::Rails::Helpers
     end
 
     ActiveSupport.on_load(:action_view) do

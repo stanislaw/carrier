@@ -6,7 +6,6 @@ module MessagesMa
 
     extend Scopes
 
-
     serialize :participants, Array
     serialize :archived_for, Array
 

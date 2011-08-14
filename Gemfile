@@ -7,6 +7,9 @@ gem 'rails', '3.1.0.rc5'
 gem 'rake'#, '0.8.7'
 gem 'pg'
 gem 'mysql2'
+
+gem 'devise'
+
 gem 'kaminari'
 
 gem 'unicorn'
@@ -35,7 +38,6 @@ group :test do
   gem "devise"
 end
 group :development do
-  gem 'devise'
   gem "rspec",    ">= 2.5.0"
   gem "jeweler",  ">= 1.6.4"
   gem "bundler"

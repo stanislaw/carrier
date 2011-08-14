@@ -1,5 +1,6 @@
 MessagesMa::Engine.routes.draw do
 
+
   resources :messages do
     member do
       get :as_sent 
@@ -20,4 +21,5 @@ MessagesMa::Engine.routes.draw do
     end
   end
 
+  root :to => "messages#index"
 end
