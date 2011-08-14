@@ -26,19 +26,16 @@ class MessagesController < ApplicationController
   end
 
   def sent
-    @sent = true
     @messages = Message.sent_by(current_user).page params[:page]
     render 'index'
   end
 
   def as_sent
     @message = Message.find(params[:id], :include => :chain)
-    @message_answers = @message.chain.messages.without(@message) 
   end
 
   def show
     @message = Message.find(params[:id], :include => :chain)
-    @message_answers = @message.chain.messages.without(@message) 
   end
 
   def new
@@ -49,7 +46,7 @@ class MessagesController < ApplicationController
     @message = Message.new(params[:message])
     respond_to do |format|
       if @message.save
-        format.html { redirect_to(@message, :notice => 'Сообщение создано') }
+        format.html { redirect_to(@message, :notice => 'Message successfully created!') }
         format.js
       else
         format.js { render :action => "new" }
