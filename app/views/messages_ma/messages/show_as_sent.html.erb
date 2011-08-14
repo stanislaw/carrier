@@ -8,7 +8,8 @@
 
 <% m = @message.chain_messages_ub(current_user) %>
 <% @message_answers.each do |message| %>
-  <%= render :partial => 'message', :locals => {:parent_message => @message, :message => message, :mode => ( message.sender == current_user.id ? 'full' : 'short'), :m => (m > 0 ? true : false)} %>
+  <%= render :partial => 'message_expanded', :locals => {:message => @message } if message.sender == current_user.id %>
+  <%= render :partial => 'message_collapsed', :locals => {:message => @message } if message.sender != current_user.id %>
 <% end %>
 <div class="message_ma_wrapper ma_open">
 	<div class="message_ma_date"><%= raw @message.date_formatted %></div>

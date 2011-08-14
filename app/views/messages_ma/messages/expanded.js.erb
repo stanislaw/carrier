@@ -1,1 +1,1 @@
-$('#message-<%= @render_message.id %>').replaceWith('<%= escape_javascript(render :partial => 'message_expanded.html.erb', :locals => {:parent_message => @parent_message, :message => @render_message }) %>')
+$('#message-<%= @message.id %>').replaceWith('<%= escape_javascript(render :partial => 'message_expanded.html.erb', :locals => {:message => @message }) %>')

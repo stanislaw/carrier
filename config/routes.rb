@@ -2,8 +2,10 @@ MessagesMa::Engine.routes.draw do
 
   resources :messages do
     member do
-      get :as_sent, :reply
-      get :expanded, :collapsed
+      get :as_sent 
+      get :reply
+      get :expanded
+      get :collapsed
     end
     collection do
       get :sent

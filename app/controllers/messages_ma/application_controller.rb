@@ -15,7 +15,7 @@ module MessagesMa
     end
 
     def current_user
-      User.find(2) || User.create(:username => "stanislaw")
+      User.find(3) || User.create(:username => "stanislaw")
     end
    
     private 
