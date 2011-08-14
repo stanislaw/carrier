@@ -1,7 +1,6 @@
 <%= link_to messages_ma.collapsed_message_path(message), :remote => true, :class => "message_collapse", :id => "message-#{message.id}" do %>   
 
-  <div id="message-<%= message.id %>__" class="message_ma_wrapper ma_open">
-    <% message.id %>  
+  <div class="message_ma_wrapper ma_open">
     <div class="message_ma_date"><%= raw message.date_formatted %></div>
     <div class="message_ma_user"><%= message.sender_name %></div>
     <div class="message_ma_subj"><b><%= message.subject %></b></div>
