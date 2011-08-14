@@ -1,0 +1,27 @@
+ru:
+  models:
+    simple_messages:
+      no_subject: "(Без темы)"
+
+  views:
+    simple_messages:
+      title: "Личные соощения"
+      description: "Описание плагина..."
+      new_link: "Новое"
+      inbox_link: "Входящие"
+      inbox_back_link: "Назад к входящие"
+      reply_link: "Ответить в ветку"
+      sent_link: "Отправленные"
+      archived_link: "Архив"
+      
+      participants: "Участники:"
+      me: "Я"
+
+      archive_link: "Архивировать!"
+      unarchive_link: "Переместить во входящие!"
+      thread_archived: "Цепочка в архиве"
+
+      #last: "Last &raquo;"
+      #previous: "&lsaquo; Prev"
+      #next: "Next &rsaquo;"
+      #truncate: "..."

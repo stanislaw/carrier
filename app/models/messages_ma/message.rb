@@ -12,7 +12,8 @@ module MessagesMa
 
     # Associations
     belongs_to :chain, :counter_cache => true
-   
+    delegate :archived_for?, :to => :chain
+    
     acts_as_readable :on => :created_at
 
     # Validations
@@ -63,7 +64,7 @@ module MessagesMa
     end
 
     def default_subject!
-      self.subject = "(no subject)" if !subject || subject.empty?
+      self.subject = I18n.t 'models.simple_messages.no_subject' if !subject || subject.empty?
     end
 
     def sender_user

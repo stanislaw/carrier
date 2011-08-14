@@ -1,0 +1,27 @@
+en:
+  models:
+    simple_messages:
+      no_subject: "(No subject)"
+
+  views:
+    simple_messages:
+      title: "Simple Messages"
+      description: "Description goes here..."
+      new_link: "New"
+      inbox_link: "Inbox"
+      inbox_back_link: "Back to Inbox"
+      reply_link: "Reply into thread"
+      sent_link: "Sent"
+      archived_link: "Archived"
+      
+      participants: "Participants: "
+      me: "Me"
+
+      archive_link: "Archive!"
+      unarchive_link: "Unarchive?"
+      thread_archived: "Thread archived"
+
+      #last: "Last &raquo;"
+      #previous: "&lsaquo; Prev"
+      #next: "Next &rsaquo;"
+      #truncate: "..."
