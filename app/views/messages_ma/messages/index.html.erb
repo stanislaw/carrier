@@ -1,33 +1,7 @@
-<div class="messages_ma_wrapper">
-  
-  <div class="messages_ma_nav_line">
-    <h1>Simple Messages</h1>
-    <div class="messages_ma_nav_line_inner">  
-      <div class="messages_ma_new">
-          <%= link_to 'New', messages_ma.new_message_path %>
-      </div>  
-      <%= render :partial => 'nav_messages' %>
-    </div> 
-  </div> 
-  <div class="messages_ma_messagelist"> 
-    <% @messages.each do |message| %>
-      <% m = (@_messages & message.chain.messages).size %>
-  
-      <%= link_to (@sent ? messages_ma.as_sent_message_path(message) : message), :class => "message_ma_wrapper #{'ma_has_new' if m > 0 }" do %>
-        <div class="message_ma_date"><%= message.date_formatted %></div>
-        <div class="message_ma_users">
-          <%= truncate(message.sender_name + " + " + message.recipients_names, :length => 20) %>
-          <span class="message_ma_branch">
-            (<%= message.chain.messages_count %><% if m > 0 %>/<b class="red"><%= m %></b><% end %>)
-          </span>
-        </div>    
-        <div class="message_ma_body">
-          <%= raw truncate( %|<span class="message_ma_subj %s">%s</span> &raquo; %s| % [('ma_has_new' if m > 0), message.subject, message.content], :length => 140) %>
-        </div>
-      <% end %>
-  
-    <% end if @messages.size > 0 %>
-    <%= paginate @messages, :window => 4 %>
-  </div>  
+<div class="messages_ma_messagelist"> 
+  <% @messages.each do |message| %>
+    <%= render :partial => 'top_message', :locals => {:message => message} %>
+  <% end if @messages.size > 0 %>
+  <%= paginate @messages, :window => 4 %>
+</div>  
 
-</div>

@@ -1,13 +1,9 @@
 MessagesMa::Engine.routes.draw do
-  get "post/say"
-
-  match "/messages/:id/get_partial" => 'messages#get_partial'
-  match "/messages/change_to_many_receivers" => 'messages#change_to_many_receivers'
-  match "/messages/change_to_one_receiver" => 'messages#change_to_one_receiver'
 
   resources :messages do
     member do
       get :as_sent, :reply
+      get :expanded, :collapsed
     end
     collection do
       get :sent

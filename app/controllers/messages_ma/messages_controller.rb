@@ -1,16 +1,20 @@
 # encoding: UTF-8
+
+$:.unshift File.dirname(__FILE__)
+require 'messages/toggle'
+
 module MessagesMa
 class MessagesController < ApplicationController
-  
-  def get_partial
-    @render_message = Message.find(params[:message_id])
-    @parent_message = Message.find(params[:id])
-    @render_message.mark_as_read! :for => current_user if params[:mode]=='full'
-    respond_to do |format|
-      format.js  
+ 
+  #include MessagesMa::MessagesController::Toggle
+
+  [:collapsed, :expanded].each do |mode|
+    define_method(mode) do 
+      @message = Message.find(params[:id])
+      @message.mark_as_read! :for => current_user if mode == :expanded
     end
   end
-  
+
   def reply
     @message = Message.new_answer params[:id], current_user
   end
@@ -34,9 +38,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  # GET /messages/1
-  # GET /messages/1.xml
-  
   def as_sent
     @message = Message.find(params[:id], :include => :chain)
     @message.mark_as_read! :for => current_user
@@ -53,8 +54,6 @@ class MessagesController < ApplicationController
     @message_answers = @message.chain.messages.without(@message) 
   end
 
-  # GET /messages/new
-  # GET /messages/new.xml
   def new
     @message = MessagesMa::Message.new
     respond_to do |format|

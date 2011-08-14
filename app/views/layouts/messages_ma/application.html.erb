@@ -12,7 +12,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= yield %>
+  <div class="messages_ma_wrapper">
+    <div class="messages_ma_nav_line">
+      <h1>Simple Messages</h1>
+      <div class="messages_ma_nav_line_inner">  
+        <div class="messages_ma_new">
+            <%= link_to 'New', messages_ma.new_message_path %>
+        </div>  
+        <%= render :partial => 'nav_messages' %>
+      </div> 
+    </div> 
+    
+    <%= yield %>
+  
+  </div>
   <div class="messages_ma_credits">
     <%= current_user.username %> some desc.
   </div>
