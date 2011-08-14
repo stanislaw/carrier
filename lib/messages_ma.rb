@@ -12,5 +12,7 @@ module MessagesMa
       yield conf if block
       conf
     end
+
+    alias_method :configure, :config
   end
 end

@@ -2,7 +2,10 @@
 module MessagesMa
   class Chain < ActiveRecord::Base
 
+    set_table_name MessagesMa.config.models.table_for :chain
+
     extend Scopes
+
 
     serialize :participants, Array
     serialize :archived_for, Array

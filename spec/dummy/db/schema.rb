@@ -10,9 +10,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110814064637) do
+ActiveRecord::Schema.define(:version => 20110814164229) do
 
-  create_table "messages_ma_chains", :force => true do |t|
+  create_table "chains", :force => true do |t|
     t.string   "participants",      :default => "--- []\n\n"
     t.string   "archived_for",      :default => "--- []\n\n"
     t.integer  "having_chain_id"
@@ -23,23 +23,23 @@ ActiveRecord::Schema.define(:version => 20110814064637) do
     t.datetime "updated_at"
   end
 
-  add_index "messages_ma_chains", ["archived_for", "participants"], :name => "participants_and_archived_index"
-  add_index "messages_ma_chains", ["created_at"], :name => "index_messages_ma_chains_on_created_at"
-  add_index "messages_ma_chains", ["having_chain_id", "having_chain_type"], :name => "having_index"
+  add_index "chains", ["archived_for", "participants"], :name => "participants_and_archived_index"
+  add_index "chains", ["created_at"], :name => "index_chains_on_created_at"
+  add_index "chains", ["having_chain_id", "having_chain_type"], :name => "having_index"
 
-  create_table "messages_ma_messages", :force => true do |t|
+  create_table "messages", :force => true do |t|
     t.integer  "sender"
     t.string   "recipients", :default => "--- []\n\n"
     t.string   "subject"
     t.text     "content"
+    t.string   "last",       :default => "false"
     t.integer  "chain_id"
-    t.boolean  "last",       :default => false,        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "messages_ma_messages", ["chain_id"], :name => "index_messages_ma_messages_on_chain_id"
-  add_index "messages_ma_messages", ["created_at"], :name => "index_messages_ma_messages_on_created_at"
+  add_index "messages", ["chain_id"], :name => "index_messages_on_chain_id"
+  add_index "messages", ["created_at"], :name => "index_messages_on_created_at"
 
   create_table "posts", :force => true do |t|
     t.datetime "created_at"
