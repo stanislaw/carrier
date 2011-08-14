@@ -1,4 +1,4 @@
-<% if chain_archived %>
+<% if chain.archived_for?(current_user) %>
 <b>Thread archived</b>
 <%= link_to 'Unarchive?', unarchive_chain_path(:chain_id => chain, :user_id => current_user), :remote => true, :method => :post %>
 <% else %>

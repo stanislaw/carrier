@@ -5,10 +5,9 @@ module MessagesMa
     include Subject
 
     set_table_name "messages_ma_messages"
-    paginates_per 25
-
     serialize :recipients
-   
+    paginates_per 25
+  
     attr_accessor :answers_to
 
     # Associations
@@ -22,7 +21,7 @@ module MessagesMa
     validates :content, :presence => true
 
     before_create do
-      self.subject = "(no subject)" if !subject || subject.empty?
+      default_subject!
       chain.unarchive! if chain && chain.archived_for_any_user?
       self.last = true
       self.chain = Chain.create if !chain 
@@ -53,6 +52,10 @@ module MessagesMa
     def clear_last!
       self.last = false
       save!
+    end
+
+    def default_subject!
+      self.subject = "(no subject)" if !subject || subject.empty?
     end
 
     def sender_user

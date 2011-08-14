@@ -3,6 +3,8 @@
 module MessagesMa
 class MessagesController < ApplicationController
 
+  after_filter :only => [:as_sent, :show] { @message.mark_as_read! :for => current_user }
+  
   [:collapsed, :expanded].each do |mode|
     define_method(mode) do 
       @message = Message.find(params[:id])
@@ -31,19 +33,16 @@ class MessagesController < ApplicationController
 
   def as_sent
     @message = Message.find(params[:id], :include => :chain)
-    @message.mark_as_read! :for => current_user
     @message_answers = @message.chain.messages.without(@message) 
   end
 
   def show
     @message = Message.find(params[:id], :include => :chain)
-    @chain_archived = @message.chain.archived_for?(current_user)
-    @message.mark_as_read! :for => current_user
     @message_answers = @message.chain.messages.without(@message) 
   end
 
   def new
-    @message = MessagesMa::Message.new
+    @message = Message.new
   end
 
   def create
@@ -53,12 +52,7 @@ class MessagesController < ApplicationController
         format.html { redirect_to(@message, :notice => 'Сообщение создано') }
         format.js
       else
-        format.js {
-          if re_m = params[:message][:set_answers_to]
-            @re_message = Message.find(re_m.to_i)
-          end
-          render :action => "new"
-        }
+        format.js { render :action => "new" }
         format.html { render :action => "new" }
       end
     end

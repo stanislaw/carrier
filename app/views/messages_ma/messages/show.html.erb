@@ -1,7 +1,7 @@
 <div class="ma_wrapper">
   &larr; <%= link_to 'Back to "Inbox"', messages_ma.messages_path %>    
   <div class="message_ma_archive_chain" id="archive_chain">
-    <%= render :partial => 'archive_chain', :locals => {:chain => @message.chain, :chain_archived => @chain_archived} %>
+    <%= render :partial => 'archive_chain', :locals => {:chain => @message.chain} %>
   </div>    
 </div>
 
@@ -11,19 +11,26 @@
   <b>me</b> and <b><%= @message.recipients_names %></b>
 </div>
 
-<% m = @message.chain_messages_ub(current_user) %>
 <% @message_answers.each do |message| %>
   <%= render :partial => 'message_collapsed', :locals => {:parent_message => @message, :message => message} %>
 <% end %>
+
 <div class="message_ma_wrapper ma_open">
   <div class="message_ma_date">
     <%= @message.date_formatted %>
   </div>
-  <div class="message_ma_user"><%= @message.sender_name %></div>
-  <div class="message_ma_subj"><b><%= @message.subject %></b></div>
-  <div><%= @message.content %></div>
+  <div class="message_ma_user">
+    <%= @message.sender_name %>
+  </div>
+  <div class="message_ma_subj">
+    <b><%= @message.subject %></b>
+  </div>
+  <div>
+    <%= @message.content %>
+  </div>
 </div>
+
 <div class="ma_wrapper">    
-    <%= link_to 'Reply into thread', reply_message_path(@message), :remote => true %>    
+  <%= link_to 'Reply into thread', reply_message_path(@message), :remote => true %>    
   <div id="reply_form"></div>   
 </div>
