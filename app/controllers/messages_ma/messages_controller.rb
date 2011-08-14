@@ -1,12 +1,7 @@
 # encoding: UTF-8
 
-$:.unshift File.dirname(__FILE__)
-require 'messages/toggle'
-
 module MessagesMa
 class MessagesController < ApplicationController
- 
-  #include MessagesMa::MessagesController::Toggle
 
   [:collapsed, :expanded].each do |mode|
     define_method(mode) do 
@@ -21,9 +16,7 @@ class MessagesController < ApplicationController
 
   def archive
     @messages = Message.with_archived_for(current_user).page params[:page]
-    respond_to do |format|
-      format.html { render 'index' }
-    end
+    render 'index'
   end
 
   def index
@@ -33,22 +26,17 @@ class MessagesController < ApplicationController
   def sent
     @sent = true
     @messages = Message.sent_by(current_user).page params[:page]
-    respond_to do |format|
-      format.html { render 'index' } 
-    end
+    render 'index'
   end
 
   def as_sent
     @message = Message.find(params[:id], :include => :chain)
     @message.mark_as_read! :for => current_user
     @message_answers = @message.chain.messages.without(@message) 
-    respond_to do |format|
-      format.html { render :show_as_sent }
-    end
   end
 
   def show
-    @message = Message.find(params[:id])
+    @message = Message.find(params[:id], :include => :chain)
     @chain_archived = @message.chain.archived_for?(current_user)
     @message.mark_as_read! :for => current_user
     @message_answers = @message.chain.messages.without(@message) 
@@ -56,10 +44,6 @@ class MessagesController < ApplicationController
 
   def new
     @message = MessagesMa::Message.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @message }
-    end
   end
 
   def create

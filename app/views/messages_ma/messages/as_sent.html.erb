@@ -1,12 +1,14 @@
 <div class="ma_wrapper">
-  &larr; <%= link_to 'Вернуться в "Отправленные"', messages_ma.sent_messages_path %>
+  &larr; <%= link_to 'Back to "Inbox"', messages_ma.sent_messages_path %>
+  <div class="message_ma_archive_chain" id="archive_chain">
+    <%= render :partial => 'archive_chain', :locals => {:chain => @message.chain, :chain_archived => @chain_archived} %>
+  </div>    
 </div>
 <div class="message_ma_box_info">
   <h2><%= @message.subject_without_re %></h2>
-  В переписке участвуют: <b>я</b> и <b><%= @message.recipients_names %></b>
+  Participants: <b>я</b> и <b><%= @message.recipients_names %></b>
 </div>
 
-<% m = @message.chain_messages_ub(current_user) %>
 <% @message_answers.each do |message| %>
   <%= render :partial => 'message_expanded', :locals => {:message => @message } if message.sender == current_user.id %>
   <%= render :partial => 'message_collapsed', :locals => {:message => @message } if message.sender != current_user.id %>
@@ -19,6 +21,6 @@
 </div>
 
 <div class="ma_wrapper">
-  <%= link_to 'Ответить в ветку сообщений', reply_message_path(@message), :remote => true %>
+  <%= link_to 'Reply into thread', reply_message_path(@message), :remote => true %>
   <div id="reply_form"></div>   
 </div>
