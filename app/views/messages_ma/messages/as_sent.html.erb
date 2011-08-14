@@ -10,7 +10,7 @@
   Participants: <b>me</b> and <b><%= @message.recipients_names %></b>
 </div>
 
-<% @message_answers.each do |message| %>
+<% @message.answers.each do |message| %>
   <%= render :partial => 'message_expanded', :locals => {:message => @message } if message.sender == current_user.id %>
   <%= render :partial => 'message_collapsed', :locals => {:message => @message } if message.sender != current_user.id %>
 <% end %>

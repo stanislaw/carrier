@@ -3,7 +3,7 @@
     <div class="message_ma_date"><%= raw message.date_formatted %></div>
     <div class="message_ma_user"><%= message.sender_name %></div>
     <div>
-      <% if @_messages.include? message %>
+      <% if unread_messages.include? message %>
       <b class='red'>unread</b>
       <% end %>
       <%= raw truncate("%s &raquo; %s" % [message.subject, message.content], :length => 88) %>

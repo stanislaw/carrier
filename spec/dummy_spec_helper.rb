@@ -1,3 +1,4 @@
+$:.unshift File.dirname(__FILE__)
 require 'rubygems'
 
 ENV["RAILS_ENV"] ||= 'test'
@@ -34,5 +35,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :truncation #:drop, {:include => ['migrations']}
     DatabaseCleaner.clean
     migrate("/dummy/db/migrate")
+    puts File.dirname(__FILE__)
+    require "dummy/db/seeds"
   end
 end

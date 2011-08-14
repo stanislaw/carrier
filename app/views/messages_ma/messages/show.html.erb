@@ -11,7 +11,7 @@
   <b>me</b> and <b><%= @message.recipients_names %></b>
 </div>
 
-<% @message_answers.each do |message| %>
+<% @message.answers.each do |message| %>
   <%= render :partial => 'message_collapsed', :locals => {:parent_message => @message, :message => message} %>
 <% end %>
 

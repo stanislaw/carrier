@@ -1,6 +1,4 @@
-<% m = (@_messages & message.chain.messages).size %>
-
-<%= link_to (@sent ? messages_ma.as_sent_message_path(message) : message), :class => "message_ma_wrapper #{'ma_has_new' if m > 0 }" do %>
+<%= link_to (action_name == 'sent' ? messages_ma.as_sent_message_path(message) : message), :class => "message_ma_wrapper #{'ma_has_new' if m > 0 }" do %>
   <div class="message_ma_date"><%= message.date_formatted %></div>
   <div class="message_ma_users">
     <%= truncate(message.sender_name + " + " + message.recipients_names, :length => 20) %>
@@ -9,7 +7,7 @@
     </span>
   </div>    
   <div class="message_ma_body">
-    <%= raw truncate( %|<span class="message_ma_subj %s">%s</span> &raquo; %s| % [('ma_has_new' if m > 0), message.subject, message.content], :length => 140) %>
+    <%= raw truncate(%| <span class="message_ma_subj %s">%s</span> &raquo; %s | % [('ma_has_new' if m > 0), message.subject, message.content], :length => 140) %>
   </div>
 <% end %>
 

@@ -49,6 +49,14 @@ module MessagesMa
       ([message.sender] + message.recipients).without(user.id)
     end
 
+    def & messages
+      messages & chain.messages
+    end
+    
+    def answers
+      chain.messages.without self
+    end
+
     def clear_last!
       self.last = false
       save!
