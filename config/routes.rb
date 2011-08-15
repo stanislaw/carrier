@@ -1,4 +1,4 @@
-MessagesMa::Engine.routes.draw do
+Carrier::Engine.routes.draw do
 
 
   resources :messages do

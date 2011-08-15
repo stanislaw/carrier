@@ -1,4 +1,4 @@
-module MessagesMa
+module Carrier
   module ApplicationHelper
     def error_messages_for(resource)
       if resource.errors.any?

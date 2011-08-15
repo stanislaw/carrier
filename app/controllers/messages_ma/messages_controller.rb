@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-module MessagesMa
+module Carrier
   class MessagesController < ApplicationController
     
     after_filter :only => [:as_sent, :show] { @message.mark_as_read! :for => current_user }

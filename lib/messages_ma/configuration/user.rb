@@ -1,7 +1,7 @@
 require 'singleton'
 require 'sugar-high/class_ext'
 
-module MessagesMa
+module Carrier
   class Configuration
     class User
       include Singleton

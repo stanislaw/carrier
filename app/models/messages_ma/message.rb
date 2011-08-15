@@ -1,7 +1,7 @@
 # encoding: UTF-8
-module MessagesMa
+module Carrier
   class Message < ActiveRecord::Base
-    set_table_name MessagesMa.config.models.table_for :message
+    set_table_name Carrier.config.models.table_for :message
 
     extend Scopes
     include Subject

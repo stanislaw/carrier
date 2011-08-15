@@ -6,7 +6,7 @@ describe "" do
   end
 
   it "should get root page" do
-    get 'messages_ma/messages'
+    get 'carrier/messages'
     response.status.should be(200)
   end
 

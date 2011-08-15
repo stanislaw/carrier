@@ -1,5 +1,5 @@
 <div class="ma_wrapper">
-  &larr; <%= link_to raw(t 'views.simple_messages.inbox_back_link'), messages_ma.messages_path %>    
+  &larr; <%= link_to raw(t 'views.simple_messages.inbox_back_link'), carrier.messages_path %>    
   <div class="message_ma_archive_chain" id="archive_chain">
     <%= render :partial => 'archive_chain', :locals => {:chain => @message.chain} %>
   </div>    

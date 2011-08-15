@@ -1,5 +1,5 @@
 # encoding: UTF-8
-module MessagesMa
+module Carrier
   class ChainsController < ApplicationController
     def archive
       @chain = Chain.find(params[:chain_id])

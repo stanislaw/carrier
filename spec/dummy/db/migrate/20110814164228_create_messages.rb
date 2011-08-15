@@ -21,6 +21,6 @@ class CreateMessages < ActiveRecord::Migration
   end
 
   def table_name
-    MessagesMa.config.models.table_for(:message)
+    Carrier.config.models.table_for(:message)
   end
 end

@@ -1,5 +1,5 @@
 require 'singleton'
-module MessagesMa
+module Carrier
   class Configuration
     class Models
       include Singleton

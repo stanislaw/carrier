@@ -1,4 +1,4 @@
-module MessagesMa
+module Carrier
   module PostHelper
   end
 end

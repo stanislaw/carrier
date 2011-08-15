@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
   resources :posts
 
-  mount MessagesMa::Engine => "/messages_ma" 
+  mount Carrier::Engine => "/carrier" 
 end

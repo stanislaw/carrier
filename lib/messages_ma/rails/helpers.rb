@@ -1,4 +1,4 @@
-module MessagesMa
+module Carrier
   module Rails
     module Helpers
 
@@ -9,7 +9,7 @@ module MessagesMa
       end
 
       def simple_messages_ui
-        MessagesMa.config.ui.style
+        Carrier.config.ui.style
       end
 
       def current_user

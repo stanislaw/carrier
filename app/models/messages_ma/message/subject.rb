@@ -1,4 +1,4 @@
-module MessagesMa
+module Carrier
   class Message < ActiveRecord::Base
     module Subject
       

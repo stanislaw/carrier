@@ -1,4 +1,4 @@
-module MessagesMa
+module Carrier
   class Chain 
     module Scopes
       def self.extended(base)

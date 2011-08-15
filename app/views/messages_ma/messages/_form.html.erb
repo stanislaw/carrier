@@ -1,4 +1,4 @@
-<%= form_for([messages_ma, @message], :html => { :autocomplete => :off }) do |f| %>
+<%= form_for([carrier, @message], :html => { :autocomplete => :off }) do |f| %>
   
 <%= error_messages_for @message %>
 
@@ -7,7 +7,7 @@
   	<div class="field">
       <%= f.label t('views.simple_messages.new_recipients') %><br />
       <div id="recipients">
-        <%= render :partial => "messages_ma/messages/#{simple_messages_ui}/recipients", :locals => {:f => f } %>
+        <%= render :partial => "carrier/messages/#{simple_messages_ui}/recipients", :locals => {:f => f } %>
       </div>
     </div>    
   </div>

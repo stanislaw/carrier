@@ -1,7 +1,7 @@
 development:
   adapter: mysql2
   host: localhost
-  database: messages_ma
+  database: carrier
   username: root 
   password: root
   encoding: utf8
@@ -9,7 +9,7 @@ development:
 test: &test
   adapter: mysql2
   host: localhost
-  database: messages_ma_test
+  database: carrier_test
   username: root
   password: root
   encoding: utf8

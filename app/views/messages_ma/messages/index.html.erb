@@ -1,4 +1,4 @@
-<div class="messages_ma_messagelist"> 
+<div class="carrier_messagelist"> 
   <% @messages.each do |message| %>
     <%= render :partial => 'index_message', :locals => {:message => message, :m => (message & unread_messages).size} %>
   <% end if @messages.size > 0 %>

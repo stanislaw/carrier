@@ -1,5 +1,5 @@
 require 'singleton'
-module MessagesMa
+module Carrier
   class Configuration
 
     autoload_modules :Models, :UI, :User
@@ -21,7 +21,7 @@ module MessagesMa
     end
 
     def conf
-      MessagesMa::Configuration
+      Carrier::Configuration
     end
 
     def root

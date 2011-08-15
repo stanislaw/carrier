@@ -29,6 +29,6 @@ class CreateChains < ActiveRecord::Migration
   end
 
   def table_name
-    MessagesMa.config.models.table_for(:chain)
+    Carrier.config.models.table_for(:chain)
   end
 end

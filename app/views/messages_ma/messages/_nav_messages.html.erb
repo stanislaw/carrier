@@ -1,7 +1,7 @@
-<div class="messages_ma_nav">
+<div class="carrier_nav">
   <ul>
-    <li class="<%= 'active' if request.fullpath =~ /messages(\/\d+)?\z/ && !archived?(@message) %>"><%= link_to raw(t 'views.simple_messages.inbox_link'), messages_ma.messages_path %></li>
-    <li class="<%= 'active' if request.fullpath =~ /messages\/(\d+\/.*)?sent/ %>"><%= link_to raw(t 'views.simple_messages.sent_link'), messages_ma.sent_messages_path %></li>
-    <li class="<%= 'active' if request.fullpath =~ /messages\/archive/ || archived?(@message) %>"><%= link_to raw(t 'views.simple_messages.archived_link'), messages_ma.archive_messages_path %></li>
+    <li class="<%= 'active' if request.fullpath =~ /messages(\/\d+)?\z/ && !archived?(@message) %>"><%= link_to raw(t 'views.simple_messages.inbox_link'), carrier.messages_path %></li>
+    <li class="<%= 'active' if request.fullpath =~ /messages\/(\d+\/.*)?sent/ %>"><%= link_to raw(t 'views.simple_messages.sent_link'), carrier.sent_messages_path %></li>
+    <li class="<%= 'active' if request.fullpath =~ /messages\/archive/ || archived?(@message) %>"><%= link_to raw(t 'views.simple_messages.archived_link'), carrier.archive_messages_path %></li>
   </ul>
 </div>

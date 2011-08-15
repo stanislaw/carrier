@@ -1,8 +1,8 @@
 # encoding: UTF-8
-module MessagesMa
+module Carrier
   class Chain < ActiveRecord::Base
 
-    set_table_name MessagesMa.config.models.table_for :chain
+    set_table_name Carrier.config.models.table_for :chain
 
     extend Scopes
 
