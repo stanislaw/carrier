@@ -13,7 +13,7 @@
 </div>
 
 <% @message.answers.each do |message| %>
-  <%= render :partial => 'message_collapsed', :locals => {:parent_message => @message, :message => message} %>
+  <%= render :partial => 'message_collapsed', :locals => {:message => message} %>
 <% end %>
 
 <div class="message_ma_wrapper ma_open">
