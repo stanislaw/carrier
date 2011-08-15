@@ -603,6 +603,7 @@ Gem::Specification.new do |s|
     "app/views/carrier/messages/simple/_recipients.html.erb",
     "app/views/layouts/carrier/application.html.erb",
     "app/views/partials/_error_messages_for.html.erb",
+    "carrier.gemspec",
     "config/locales/simple_messages.en.yml",
     "config/locales/simple_messages.ru.yml",
     "config/routes.rb",
