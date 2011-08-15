@@ -20,23 +20,30 @@ module MessagesMa
         }
 
         base.scope :top, lambda{ base.where(:last => true) }
- 
+
+        base.scope :reversed, lambda { base.order('created_at DESC')}
+
         base.scope :messages_with, lambda {|user| base
                                                      .top
                                                      .with(user)
                                                      .not_archived_for(user)
-                                                     .joins(:chain) }
+                                                     .joins(:chain)
+                                                     .reversed }
        
         base.scope :messages_for, lambda {|user| base
                                                      .top
                                                      .for(user)
                                                      .not_archived_for(user)
-                                                     .joins(:chain) }
+                                                     .joins(:chain)
+                                                     .reversed }
+
         base.scope :archived_messages_with, lambda {|user| base
                                                      .top
                                                      .with(user)
                                                      .archived_for(user)
-                                                     .joins(:chain) }
+                                                     .joins(:chain)
+                                                     .reversed }
+
         base.scope :unread, lambda {|user| base.with(user).unread_by(user) } 
      
         # How to accomplish this in one query, using scope?
