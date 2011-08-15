@@ -29,13 +29,12 @@ module MessagesMa
                                                      .archived_for(user)
                                                      .joins(:chain) }
         base.scope :unread, lambda {|user| base.with(user).unread_by(user) } 
-      
-        base.class_eval %{
-          def self.sent_by user
-            ids = by(user).map{|m| m.chain_id}
-            with_messages_for(user).where(:chain_id => ids.uniq)
-          end
-        }
+     
+        # How to accomplish this in one query, using scope?
+        base.define_singleton_method :sent_by do |user|
+          ids = by(user).map{|m| m.chain_id}
+          with_messages_for(user).where(:chain_id => ids.uniq)
+        end
       end
     end
   end

@@ -1,0 +1,6 @@
+<%= render :partial => 'messages_ma/messages/rich/multiselect' %>
+<style>
+  /* Плагин растягивается на размер исходного select'а, поэтому задаём вручную: */
+  #message_recipients_ {width: 460px;height:200px;}
+</style>
+<%= select_tag "message[recipients][]", options_for_select(without_current_user_select , @message.recipients), { :multiple => true, :size =>6, :width => 400 } %>

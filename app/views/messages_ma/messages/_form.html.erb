@@ -6,9 +6,9 @@
   <div class="message_ma_new_wrapper_1">
   	<div class="field">
       <%= f.label "Recipients:" %><br />
-        <div id="receiver">
-          <%= render :partial => "messages_ma/messages/#{simple_messages_ui}/one_receiver", :locals => {:f => f } %>
-        </div>
+      <div id="recipients">
+        <%= render :partial => "messages_ma/messages/#{simple_messages_ui}/recipients", :locals => {:f => f } %>
+      </div>
     </div>    
   </div>
   <div class="message_ma_new_wrapper_2">

@@ -10,8 +10,9 @@ module MessagesMa
     paginates_per 25
   
     belongs_to :chain, :counter_cache => true
-    delegate :archived_for?, :to => :chain
     
+    delegate :archived_for?, :archived_for_any_user?, :participants!, :to => :chain
+
     acts_as_readable :on => :created_at
 
     attr_accessor :answers_to
@@ -30,27 +31,26 @@ module MessagesMa
     after_create do
       Message.find(answers_to).clear_last! if answers_to
       mark_as_read! :for => sender_user
-      chain.participants! participants
+      participants! participants
     end
     
-    def self.new_answer id, user 
-      in_answer_to = find id
-      new_message = self.new
-
-      new_message.sender = user.id
-      new_message.recipients = find_recipients in_answer_to, user
-      new_message.subject = re in_answer_to.subject
-      new_message.chain_id = in_answer_to.chain_id
-      new_message.answers_to = in_answer_to.id
-      new_message
-    end
+    class << self
+      def new_answer id, user 
+        in_answer_to = find id
+        new :sender     => user.id,
+            :recipients => find_recipients(in_answer_to, user),
+            :subject    => re(in_answer_to.subject),
+            :chain_id   => in_answer_to.chain_id,
+            :answers_to => in_answer_to.id
+      end
  
-    def self.find_recipients message, user
-      ([message.sender] + message.recipients).without(user.id)
+      def find_recipients message, user
+        ([message.sender] + message.recipients).without(user.id)
+      end
     end
 
     def chain_archived?
-      chain && chain.archived_for_any_user?
+      chain && archived_for_any_user?
     end
     
     def chain!
@@ -62,11 +62,11 @@ module MessagesMa
     end
 
     def & messages
-      messages & chain.messages
+      messages & chain_messages
     end
     
     def answers
-      chain.messages.without self
+      chain_messages.without self
     end
 
     def clear_last!
@@ -114,10 +114,6 @@ module MessagesMa
     
     def chain_messages
       chain.messages
-    end
-
-    def chain_messages_ub user
-      (chain_messages & Message.unread(user)).size
     end
 
     def date_formatted

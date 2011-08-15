@@ -1,8 +1,10 @@
 puts "loading seeds"
 User.delete_all
-User.create(:username => "stanislaw")
-User.create(:username => "marixa")
-User.create(:username => "miloviza")
-User.create(:username => "lordvader")
-User.create(:username => "lucky")
-User.create(:username => "valentine")
+['stanislaw', 'marixa', 'kristian', 'miloviza'].each do |name|
+  User.create!(
+    :username => name, 
+    :email => "#{name}@gmail.com", 
+    :password => "666666",
+    :password_confirmation => "666666"
+  )
+end

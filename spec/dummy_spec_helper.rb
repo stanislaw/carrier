@@ -18,7 +18,7 @@ require 'capybara/rspec'
 #Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 #ActiveRecord::Base.logger = Logger.new(STDERR)
-DatabaseCleaner.strategy = :truncation
+
 def migration_folder(name)
   migrations_path = File.dirname(__FILE__)
   name ? File.join("#{migrations_path}" "#{name}") : "#{migrations_path}/migrations"
@@ -32,10 +32,12 @@ end
 RSpec.configure do |config|
   config.mock_with :rspec
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation #:drop, {:include => ['migrations']}
-    DatabaseCleaner.clean
+    ActiveRecord::Base.connection.tables.map do |table|
+      ActiveRecord::Base.connection.drop_table table
+    end
+
     migrate("/dummy/db/migrate")
-    puts File.dirname(__FILE__)
     require "dummy/db/seeds"
   end
 end
+

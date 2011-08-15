@@ -4,7 +4,7 @@
   <title>MessagesMa</title>
   <%= yield :stylesheets %>
   <%= stylesheet_link_tag "main" %>
-  <%= stylesheet_link_tag "main_#{@ui}" %>
+  <%= stylesheet_link_tag "main_#{simple_messages_ui}" %>
   <% javascript_include_tag "application" %>
   <script src="/assets/jquery.min.js" type="text/javascript"></script>
   <script src="/assets/rails.js" type="text/javascript"></script>
@@ -17,7 +17,7 @@
       <h1><%= raw(t 'views.simple_messages.title') %></h1>
       <div class="messages_ma_nav_line_inner">  
         <div class="messages_ma_new">
-            <%= link_to raw(t 'views.simple_messages.new_link'), messages_ma.new_message_path %>
+          <%= link_to raw(t 'views.simple_messages.new_link'), messages_ma.new_message_path %>
         </div>  
         <%= render :partial => 'nav_messages' %>
       </div> 
@@ -27,7 +27,7 @@
   
   </div>
   <div class="messages_ma_credits">
-    <%= current_user.username %> <%= t raw(t 'views.simple_messages.description') %>
+    <%= current_user.username %> <%= raw(t 'views.simple_messages.description') %>
   </div>
 </body>
 </html>

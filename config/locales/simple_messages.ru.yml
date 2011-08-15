@@ -5,7 +5,7 @@ ru:
 
   views:
     simple_messages:
-      title: "Личные соощения"
+      title: "Личные сообщения"
       description: "Описание плагина..."
       new_link: "Новое"
       inbox_link: "Входящие"
