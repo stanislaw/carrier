@@ -17,16 +17,16 @@ module MessagesMa
     end
 
     def archive
-      @messages = Message.with_archived_for(current_user).page params[:page]
+      @messages = Message.archived_messages_with(current_user).page params[:page]
       render 'index'
     end
 
     def index
-      @messages = Message.with_messages_for(current_user).page params[:page]
+      @messages = Message.messages_for(current_user).page params[:page]
     end
 
     def sent
-      @messages = Message.sent_by(current_user).page params[:page]
+      @messages = Message.messages_sent_by(current_user).page params[:page]
       render 'index'
     end
 
