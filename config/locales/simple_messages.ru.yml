@@ -21,6 +21,11 @@ ru:
       unarchive_link: "Переместить во входящие!"
       thread_archived: "Цепочка в архиве"
 
+      new_header: "Новое сообщение"
+      new_recipients: "Получатели"
+      new_subject: "Тема"
+      new_content: "Сообщение"
+      new_send: "Отправить"
       #last: "Last &raquo;"
       #previous: "&lsaquo; Prev"
       #next: "Next &rsaquo;"

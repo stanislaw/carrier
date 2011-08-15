@@ -21,6 +21,12 @@ en:
       unarchive_link: "Unarchive?"
       thread_archived: "Thread archived"
 
+      new_header: "Creating message"
+      new_recipients: "Recipients"
+      new_subject: "Subject"
+      new_content: "Message"
+      new_send: "Send"
+
       #last: "Last &raquo;"
       #previous: "&lsaquo; Prev"
       #next: "Next &rsaquo;"
