@@ -21,7 +21,7 @@ module MessagesMa
 
         base.scope :top, lambda{ base.where(:last => true) }
 
-        base.scope :reversed, lambda { base.order('created_at DESC')}
+        base.scope :reversed, base.order('created_at DESC')
 
         base.scope :messages_with, lambda {|user| base
                                                      .top
