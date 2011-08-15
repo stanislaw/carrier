@@ -5,6 +5,23 @@ rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
+require 'rake'
+
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "carrier"
+  gem.homepage = "http://github.com/stanislaw/carrier"
+  gem.license = "MIT"
+  gem.summary = %Q{Raw github-like messaging system to reuse across Rails apps}
+  gem.description = %Q{Raw github-like messaging system to reuse across Rails apps. Acts as Rails 3.1 mountable engine. Fast and robust.}
+  gem.email = "s.pankevich@gmail.com"
+  gem.authors = ["stanislaw"]
+  # dependencies defined in Gemfile
+end
+Jeweler::RubygemsDotOrgTasks.new
+
+
 require 'rake/rdoctask'
 
 Rake::RDocTask.new(:rdoc) do |rdoc|

@@ -14,9 +14,11 @@ gem 'sugar-high'
 gem 'rake-kit'
 gem 'cutter'
 
+
 group :development, :test do
   gem 'devise'
-  
+  gem "jeweler",  ">= 1.6.4"
+ 
   #gem 'database_cleaner', :git => "git://github.com/kristianmandrup/database_cleaner.git"
   gem 'factory_girl'
   # Specs
@@ -28,8 +30,6 @@ group :development, :test do
   gem "launchy"
 
   gem "rspec",    ">= 2.5.0"
-  gem "jeweler",  ">= 1.6.4"
   gem "bundler"
-
 end
 
