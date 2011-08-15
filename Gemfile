@@ -5,8 +5,11 @@ gem 'rails', '3.1.0.rc5'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 gem 'rake'#, '0.8.7'
-gem 'pg'
+
+#gem 'pg'
 gem 'mysql2'
+
+gem 'require_all'
 
 gem 'devise'
 
@@ -23,8 +26,6 @@ gem 'rake-kit'
 gem 'cutter'
 
 group :test do
-  gem 'require_all'
-  
   gem 'database_cleaner', :git => "git://github.com/kristianmandrup/database_cleaner.git"
   gem 'factory_girl'
   # Specs

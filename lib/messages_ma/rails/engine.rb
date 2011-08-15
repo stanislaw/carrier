@@ -1,6 +1,10 @@
-require 'require_all'
-
 module MessagesMa
+  
+  def self.requires
+    require_all File.join(::MessagesMa.config.root, 'app/validators')
+    require_all File.join(::Rails.root, 'app/models')
+  end
+  
   def self.include_helpers
     ActiveSupport.on_load(:action_controller) do
       include MessagesMa::Rails::Helpers
@@ -11,7 +15,6 @@ module MessagesMa
   end
 
   def self.bootstrap_unread
-    require_all File.join(::Rails.root, 'app/models')
     ActiveSupport.on_load(:after_initialize) do
       ActiveSupport.on_load(:active_record) do
         p descendants
@@ -25,7 +28,8 @@ module MessagesMa
   class Engine < Rails::Engine
     isolate_namespace MessagesMa
 
-    initializer "messages_ma.helpers" do
+    initializer "messages_ma" do
+      MessagesMa.requires
       MessagesMa.include_helpers
       MessagesMa.bootstrap_unread
     end

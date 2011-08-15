@@ -18,7 +18,7 @@ module MessagesMa
     attr_accessor :answers_to
 
     validates :sender, :presence => true
-    validates :recipients, :presence => true
+    validates :recipients, :presence => true, :recipients => true, :exclude_self => true
     validates :content, :presence => true
 
     before_create do
@@ -99,13 +99,13 @@ module MessagesMa
     end
 
     def recipients_names= recipients_array
-      self.recipients = recipients_array
-                       .scan(/\w+/)
-                       .map{|name| User.find_by_username(name).id}
-                       .compact
-                       .uniq
-    rescue 
-      errors.add(:to, "Check usernames you entered")
+      self.recipients = recipients_array.scan(/\w+/).map do |name| 
+        begin 
+          User.find_by_username!(name).id
+        rescue
+          nil
+        end
+      end.uniq
     end
 
     def participants
