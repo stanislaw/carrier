@@ -15,41 +15,60 @@ Run bundler to bundle gems in the app
 Since Carrier is a Rails 3.1 mountable app, you need to define mount point like:
 
 <pre>
-<code>
 # config/routes.rb
 mount Carrier::Engine => "/carrier" 
-</code>
 </pre>
 
 Carrier works only for authenticated users expecting #current_user method somehow defined. 
 Carrier's controllers namespaces are isolated, so to provide authentication procedure yielding #current_user (before_filter is most common way) add it to Carrier::ApplicationController like:
 
 <pre>
-<code>
-
 # your app's root/app/controllers/carrier/application_controller.rb
 module Carrier
   class ApplicationController < ActionController::Base
     before_filter :authenticate_user! # If using Devise
   end
 end
-
 </pre>
-</code>
 
 This ensures that Carrier will be aware of current authenticated user.
+
+Point your browser to your_apps's url/carrier, fx:
+
+@http://localhost/carrier@
+
+and you are on the go!
+
+h2. Prerequisites
+
+* Rails 3.1
+
+* Carrier has been tested with Devise as authentication system. Any other solution providing #current_user should be just fine too.
+
+* Carrier has been tested to work with MySQL and PostgreSQL. 
+It doesn't work with SQLite3, because sqlite3 doesn't serialize fields (maybe this is the issue of current gem environment only). Scope's queries are using the most basic Arel features so it should be easy to use any other ORM.
 
 h2. Design overview
 
 The Carrier design is very simple:
-Is has messages and chains (Message model, and Chain model). Message model has chain_id i.e. messages are simply grouped in chains. Chains are non-threaded, each chain is just a linear sequence of messages.
 
-All queries to messages and their chains are being done using scopes with joins and includes so performance is expected to be fast as possible (review it and advice how accomplish it even better!).
+It has messages and chains (Message model, and Chain model). Message model has chain_id i.e. messages are simply grouped in chains. Chains are non-threaded, each chain is just a linear sequence of messages.
 
-Carrier now doesn't support deletion of messages. Instead it supports archivations of chains (Chain has #archived_for field to store serialized array of user's ids).
+All queries to messages and their chains are being done using scopes with joins and includes so performance is expected to be fast (review it and advice how accomplish it even better!).
 
+Carrier doesn't support deletion of messages yet. Instead it supports archivation of chains (Chain has #archived_for field to store serialized array of user's ids).
 
 h2. Configuration
+
+Carrier's templates are written in I18n way. Carrier has two locales _:en_ and _:ru_ pre-written. If you change locale in config/application.rb Carrier will try to find corresponding rules from locale's yml files 
+
+More coming...
+
+h2. TODO
+
+* Deletion along with archivation
+* ORM's support
+* More and better tests
 
 h2. Contributors
 
