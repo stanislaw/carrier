@@ -6,11 +6,11 @@ h2. Installiation
 
 Insert into Gemfile
 
-@gem 'cantango'@
+@gem 'carrier'@
 
 Run bundler to bundle gems in the app
 
-@$ bundle@
+@$ bundle update@
 
 Since Carrier is a Rails 3.1 mountable app, you need to define mount point like:
 
@@ -21,9 +21,8 @@ mount Carrier::Engine => "/carrier"
 </code>
 </pre>
 
-Carrier expects #current_user method defined, it means that it works only for authenticated users. 
-
-Carrier's controllers namespaces are isolated so to provide authentification procedure providing #current_user (before_filter is most common way) add it to Carrier::ApplicationController like:
+Carrier works only for authenticated users expecting #current_user method somehow defined. 
+Carrier's controllers namespaces are isolated, so to provide authentication procedure yielding #current_user (before_filter is most common way) add it to Carrier::ApplicationController like:
 
 <pre>
 <code>
@@ -43,14 +42,14 @@ This ensures that Carrier will be aware of current authenticated user.
 h2. Design overview
 
 The Carrier design is very simple:
-It has Message model, and Chain model...
+Is has messages and chains (Message model, and Chain model). Message model has chain_id i.e. messages are simply grouped in chains. Chains are non-threaded, each chain is just a linear sequence of messages.
 
-h2. Rails 3 configuration
+All queries to messages and their chains are being done using scopes with joins and includes so performance is expected to be fast as possible (review it and advice how accomplish it even better!).
 
-h3. Minimal requirements
+Carrier now doesn't support deletion of messages. Instead it supports archivations of chains (Chain has #archived_for field to store serialized array of user's ids).
 
-h2. Application configuration for CanTango
 
+h2. Configuration
 
 h2. Contributors
 
