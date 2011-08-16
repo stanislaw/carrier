@@ -64,6 +64,20 @@ Carrier's templates are written in I18n way. Carrier has two locales _:en_ and _
 
 More coming...
 
+h2. Quick try
+
+Try dummy app located in spec/ folder. Clone repo, then:
+
+<pre>
+# edit Gemfile:
+gem 'mysql' or gem 'pg'
+bundle 
+cd spec/dummy
+rake reset_db # shortcut for rake db:drop => create => migrate => seed
+rails s
+http://localhost/carrier
+</pre>
+
 h2. TODO
 
 * Deletion along with archivation
