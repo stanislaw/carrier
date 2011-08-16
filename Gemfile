@@ -4,7 +4,8 @@ gem 'rails', '3.1.0.rc5'
 
 gem 'rake'
 #gem 'pg'
-#gem 'mysql2'
+gem 'devise'
+gem 'mysql2'
 #gem 'unicorn'
 
 gem 'require_all'

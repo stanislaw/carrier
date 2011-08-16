@@ -1,0 +1,61 @@
+h1. Carrier 
+
+Carrier is result of extracting simple messaging functionality from one working Rails app.
+
+h2. Installiation
+
+Insert into Gemfile
+
+@gem 'cantango'@
+
+Run bundler to bundle gems in the app
+
+@$ bundle@
+
+Since Carrier is a Rails 3.1 mountable app, you need to define mount point like:
+
+<pre>
+<code>
+# config/routes.rb
+mount Carrier::Engine => "/carrier" 
+</code>
+</pre>
+
+Carrier expects #current_user method defined, it means that it works only for authenticated users. 
+
+Carrier's controllers namespaces are isolated so to provide authentification procedure providing #current_user (before_filter is most common way) add it to Carrier::ApplicationController like:
+
+<pre>
+<code>
+
+# your app's root/app/controllers/carrier/application_controller.rb
+module Carrier
+  class ApplicationController < ActionController::Base
+    before_filter :authenticate_user! # If using Devise
+  end
+end
+
+</pre>
+</code>
+
+This ensures that Carrier will be aware of current authenticated user.
+
+h2. Design overview
+
+The Carrier design is very simple:
+It has Message model, and Chain model...
+
+h2. Rails 3 configuration
+
+h3. Minimal requirements
+
+h2. Application configuration for CanTango
+
+
+h2. Contributors
+
+* Stanislaw Pankevich
+
+h2. Copyright
+
+Copyright (c) 2011 Stanislaw Pankevich. See LICENSE for details.
