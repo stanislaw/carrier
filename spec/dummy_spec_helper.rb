@@ -30,6 +30,9 @@ def migrate(name = nil)
 end
 
 RSpec.configure do |config|
+  config.include Warden::Test::Helpers, :type => :request
+  config.after(:each, :type => :request) {Warden.test_reset!}
+
   config.mock_with :rspec
   config.before(:suite) do
     ActiveRecord::Base.connection.tables.map do |table|
