@@ -29,7 +29,7 @@ group :development, :test do
   gem 'rails-app-spec'
   gem 'mocha'
   gem "launchy"
-
+  gem 'shoulda'
   gem "rspec",    ">= 2.5.0"
   gem "bundler"
 end
