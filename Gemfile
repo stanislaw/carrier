@@ -6,7 +6,7 @@ gem 'rake'
 #gem 'pg'
 gem 'devise'
 gem 'mysql2'
-#gem 'unicorn'
+gem 'unicorn'
 
 gem 'require_all'
 gem 'kaminari'

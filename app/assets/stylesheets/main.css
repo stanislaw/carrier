@@ -15,16 +15,6 @@ body {
   line-height:140%;
 }
 
-a, a:link, a:visited {text-decoration:none;}
-
-/* structure */
-
-.carrier_wrapper {
-  width:80%;
-  margin:0 auto;
-  min-height:400px;
-}
-
 .carrier_wrapper h1,
 .carrier_wrapper h2,
 .carrier_wrapper h3 {
@@ -48,16 +38,27 @@ a, a:link, a:visited {text-decoration:none;}
   font-style:italic;
 }
 
+a, a:link, a:visited {text-decoration:none;}
+
+/* structure */
+
+.carrier_wrapper {
+  width:80%;
+  margin:0 auto;
+  min-height:400px;
+}
+
 .carrier_nav_line {
   background-color:#ddd;
   padding:10px 30px;
   border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
+  padding-bottom:6px;
   margin-bottom:10px;
 }
 .carrier_nav_line_inner {
-  margin-bottom:-18px;
+  //margin-bottom:-18px;
 }
 .carrier_new,
 .carrier_nav  {
@@ -97,10 +98,11 @@ a, a:link, a:visited {text-decoration:none;}
   background-color:#fff;
 }
 .carrier_nav li.active a,
-.carrier_new.active a {
+.carrier_new a.active {
   color:#000;
   background-color:#fff;
   padding-bottom:22px;
+  margin-bottom:-18px;
 }
 
 .carrier_messagelist {clear:both; margin-top:10px;}
@@ -169,10 +171,12 @@ span.ma_has_new { font-weight:bold;}
 }
 .message_ma_archive_chain {
   float:right;
+  margin: 0 0 10px 10px;
 }
 .message_ma_archive_chain a {
   display:inline-block;
   padding:2px 6px;
+  margin: 0 0 0 10px;
   border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;

@@ -1,11 +1,7 @@
-<div class="ma_wrapper">
-  &larr; <%= link_to raw(t 'views.simple_messages.inbox_back_link'), carrier.messages_path %>    
+<div class="message_ma_box_info">
   <div class="message_ma_archive_chain" id="archive_chain">
     <%= render :partial => 'archive_chain', :locals => {:chain => @message.chain} %>
-  </div>    
-</div>
-
-<div class="message_ma_box_info">
+  </div>  
   <h2><%= @message.subject_without_re %></h2>
   <%= raw(t('views.simple_messages.participants')) %>
   <%= b raw(t('views.simple_messages.me')) %>,
