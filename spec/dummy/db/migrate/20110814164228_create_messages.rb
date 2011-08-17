@@ -6,7 +6,7 @@ class CreateMessages < ActiveRecord::Migration
       t.string :subject
       t.text :content
       
-      t.string :last, :default => 'false', :null => :false
+      t.boolean :last, :default => false, :null => :false
 
       t.integer :chain_id
  
