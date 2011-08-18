@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20110814164229) do
     t.string   "recipients", :default => "--- []\n\n"
     t.string   "subject"
     t.text     "content"
-    t.string   "last",       :default => "false"
+    t.boolean  "last",       :default => false
     t.integer  "chain_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -22,11 +22,11 @@ module Carrier
     end
 
     def index
-      @messages = Message.messages_for(current_user).page params[:page]
+      @messages = Message.messages_index(current_user).page params[:page]
     end
 
     def sent
-      @messages = Message.messages_sent_by(current_user).page params[:page]
+      @messages = Message.messages_sent(current_user).page params[:page]
       render 'index'
     end
 
