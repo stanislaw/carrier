@@ -21,9 +21,7 @@ module Carrier
       where(c[:archived_for].does_not_match("% #{user.id}\n%") ) 
     }
 
-    scope :archived_for, lambda { |user| 
-        where(c[:archived_for].matches("% #{user.id}\n%") ) 
-    }
+    scope :archived_for, lambda {|user| where(c[:archived_for].matches("% #{user.id}\n%")) }
 
     scope :top, lambda{ where(:last => true) }
 
