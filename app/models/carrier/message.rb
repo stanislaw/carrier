@@ -2,9 +2,8 @@
 module Carrier
   class Message < ActiveRecord::Base
     set_table_name Carrier.config.models.table_for :message
-
-    extend Scopes
-    include Subject
+    
+    concerned_with :scopes, :subject
 
     serialize :recipients, Array
     paginates_per 25
@@ -16,10 +15,6 @@ module Carrier
     acts_as_readable :on => :created_at
 
     attr_accessor :answers_to
-
-    validates :sender, :presence => true
-    validates :recipients, :presence => true, :recipients => true, :exclude_self => true
-    validates :content, :presence => true
 
     before_create do
       default_subject!

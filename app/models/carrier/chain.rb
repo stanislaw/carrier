@@ -4,8 +4,6 @@ module Carrier
 
     set_table_name Carrier.config.models.table_for :chain
 
-    extend Scopes
-
     serialize :participants, Array
     serialize :archived_for, Array
 
@@ -57,8 +55,5 @@ module Carrier
       self.save!
     end
 
-    def unread_messages_count
-
-    end
   end
 end

@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'rails', '3.1.0.rc5'
+gem 'rails', '3.1.0.rc6'
 
 gem 'rake'
 #gem 'pg'
@@ -11,7 +11,7 @@ gem 'unicorn'
 gem 'require_all'
 gem 'kaminari'
 gem 'unread'
-gem 'sugar-high'
+gem 'sugar-high', :git => "git://github.com/stanislaw/sugar-high.git"
 gem 'rake-kit'
 gem 'cutter'
 
@@ -27,7 +27,6 @@ group :development, :test do
   gem "rspec-rails", '>= 2.5'
   gem 'capybara'
   gem 'rails-app-spec'
-  gem 'mocha'
   gem "launchy"
   gem 'shoulda'
   gem "rspec",    ">= 2.5.0"
