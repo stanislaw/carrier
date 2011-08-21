@@ -20,7 +20,6 @@ group :development, :test do
   gem 'devise'
   gem "jeweler",  ">= 1.6.4"
  
-  gem 'database_cleaner', :git => "git://github.com/kristianmandrup/database_cleaner.git"
   gem 'factory_girl'
   # Specs
   gem 'spork'
