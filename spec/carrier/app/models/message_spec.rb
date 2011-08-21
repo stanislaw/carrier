@@ -18,10 +18,19 @@ describe Carrier::Message do
     subject.recipients.should == []
   end
 
-  it "should not save messages with empty .content field" do
-    lambda {
-      subject.content = ''
-      subject.save!
-    }.should raise_error(ActiveRecord::RecordInvalid)
+  concern "Validations" do
+    it "should not save messages with empty .content field" do
+      lambda {
+        subject.content = ''
+        subject.save!
+      }.should raise_error(ActiveRecord::RecordInvalid)
+    end
+    it "should not save messages with wrong recipients" do
+      lambda {
+        subject.sender = 1
+        subject.content = 'something'
+        subject.save!
+      }.should raise_error(ActiveRecord::RecordInvalid)
+    end
   end
 end

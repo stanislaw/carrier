@@ -3,7 +3,7 @@ module Carrier
   class Message < ActiveRecord::Base
     set_table_name Carrier.config.models.table_for :message
     
-    concerned_with :scopes, :subject
+    concerned_with :scopes, :subject, :validations
 
     serialize :recipients, Array
     paginates_per 25

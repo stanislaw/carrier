@@ -22,6 +22,9 @@ RSpec.configure do |config|
   config.after(:each, :type => :request) {Warden.test_reset!}
 
   config.mock_with :rspec
+  
+  config.include Factory::Syntax::Methods
+
   config.before(:suite) do
     with ActiveRecord::Base.connection do
       tables.map do |table|
