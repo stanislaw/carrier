@@ -11,10 +11,10 @@ gem 'unicorn'
 gem 'require_all'
 gem 'kaminari'
 gem 'unread'
-gem 'sugar-high', :git => "git://github.com/stanislaw/sugar-high.git"
+gem 'sugar-high'
+gem 'sweetloader'
 gem 'rake-kit'
 gem 'cutter'
-
 
 group :development, :test do
   gem 'devise'
@@ -25,7 +25,6 @@ group :development, :test do
   gem 'spork'
   gem "rspec-rails", '>= 2.5'
   gem 'capybara'
-  gem 'rails-app-spec'
   gem "launchy"
   gem 'shoulda'
   gem "rspec",    ">= 2.5.0"
