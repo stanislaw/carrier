@@ -5,23 +5,24 @@
 
 Gem::Specification.new do |s|
   s.name = %q{carrier}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["stanislaw"]
-  s.date = %q{2011-08-16}
+  s.authors = [%q{stanislaw}]
+  s.date = %q{2011-10-06}
   s.description = %q{Raw github-like messaging system to reuse across Rails apps. Acts as Rails 3.1 mountable engine. Fast and robust.}
   s.email = %q{s.pankevich@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.textile"
   ]
   s.files = [
     ".document",
+    ".rspec",
     "Gemfile",
     "LICENSE.txt",
     "MIT-LICENSE",
-    "README.rdoc",
+    "README.textile",
     "Rakefile",
     "VERSION",
     "app/assets/images/.gitkeep",
@@ -572,10 +573,10 @@ Gem::Specification.new do |s|
     "app/helpers/carrier/application_helper.rb",
     "app/helpers/carrier/post_helper.rb",
     "app/models/carrier/chain.rb",
-    "app/models/carrier/chain/scopes.rb",
     "app/models/carrier/message.rb",
     "app/models/carrier/message/scopes.rb",
     "app/models/carrier/message/subject.rb",
+    "app/models/carrier/message/validations.rb",
     "app/validators/recipients/exclude_self.rb",
     "app/validators/recipients/recipients_validator.rb",
     "app/views/carrier/chains/archive.js.erb",
@@ -620,20 +621,29 @@ Gem::Specification.new do |s|
     "lib/carrier/rails/helpers.rb",
     "lib/tasks/carrier_tasks.rake",
     "script/rails",
+    "spec/carrier/app/models/message_scopes_spec.rb",
+    "spec/carrier/app/models/message_spec.rb",
     "spec/dummy/Rakefile",
     "spec/dummy/app/assets/javascripts/application.js",
+    "spec/dummy/app/assets/javascripts/default.js",
+    "spec/dummy/app/assets/javascripts/jquery.js",
+    "spec/dummy/app/assets/javascripts/jquery_ujs.js",
     "spec/dummy/app/assets/javascripts/posts.js",
     "spec/dummy/app/assets/stylesheets/application.css",
+    "spec/dummy/app/assets/stylesheets/default.css",
     "spec/dummy/app/assets/stylesheets/posts.css",
     "spec/dummy/app/assets/stylesheets/scaffold.css",
     "spec/dummy/app/controllers/application_controller.rb",
+    "spec/dummy/app/controllers/default_controller.rb",
     "spec/dummy/app/controllers/posts_controller.rb",
     "spec/dummy/app/helpers/application_helper.rb",
+    "spec/dummy/app/helpers/default_helper.rb",
     "spec/dummy/app/helpers/posts_helper.rb",
     "spec/dummy/app/mailers/.gitkeep",
     "spec/dummy/app/models/.gitkeep",
     "spec/dummy/app/models/post.rb",
     "spec/dummy/app/models/user.rb",
+    "spec/dummy/app/views/default/index.html.erb",
     "spec/dummy/app/views/devise/confirmations/new.html.erb",
     "spec/dummy/app/views/devise/mailer/confirmation_instructions.html.erb",
     "spec/dummy/app/views/devise/mailer/reset_password_instructions.html.erb",
@@ -687,83 +697,94 @@ Gem::Specification.new do |s|
     "spec/dummy/script/rails",
     "spec/dummy/test/fixtures/posts.yml",
     "spec/dummy/test/fixtures/users.yml",
+    "spec/dummy/test/functional/default_controller_test.rb",
     "spec/dummy/test/functional/posts_controller_test.rb",
+    "spec/dummy/test/unit/helpers/default_helper_test.rb",
     "spec/dummy/test/unit/helpers/posts_helper_test.rb",
     "spec/dummy/test/unit/post_test.rb",
     "spec/dummy/test/unit/user_test.rb",
     "spec/dummy_spec_helper.rb",
     "spec/integration/main_spec.rb",
+    "spec/integration/messages_spec.rb",
+    "spec/requests/main_spec.rb",
+    "spec/support/aliases.rb",
+    "spec/support/controller_macros.rb",
+    "spec/support/factories.rb",
+    "spec/support/rspec_helpers.rb",
     "test/helper.rb",
     "test/test_carrier.rb"
   ]
   s.homepage = %q{http://github.com/stanislaw/carrier}
-  s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.licenses = [%q{MIT}]
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.8}
   s.summary = %q{Raw github-like messaging system to reuse across Rails apps}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, ["= 3.1.0.rc5"])
-      s.add_runtime_dependency(%q<rake>, [">= 0"])
       s.add_runtime_dependency(%q<require_all>, [">= 0"])
       s.add_runtime_dependency(%q<kaminari>, [">= 0"])
       s.add_runtime_dependency(%q<unread>, [">= 0"])
       s.add_runtime_dependency(%q<sugar-high>, [">= 0"])
-      s.add_runtime_dependency(%q<rake-kit>, [">= 0"])
-      s.add_runtime_dependency(%q<cutter>, [">= 0"])
+      s.add_runtime_dependency(%q<sweetloader>, [">= 0"])
+      s.add_development_dependency(%q<rails>, [">= 3.1.0"])
+      s.add_development_dependency(%q<mysql2>, [">= 0"])
+      s.add_development_dependency(%q<unicorn>, [">= 0"])
       s.add_development_dependency(%q<devise>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
+      s.add_development_dependency(%q<rake-kit>, [">= 0"])
+      s.add_development_dependency(%q<cutter>, [">= 0"])
       s.add_development_dependency(%q<factory_girl>, [">= 0"])
       s.add_development_dependency(%q<spork>, [">= 0"])
       s.add_development_dependency(%q<rspec-rails>, [">= 2.5"])
       s.add_development_dependency(%q<capybara>, [">= 0"])
-      s.add_development_dependency(%q<rails-app-spec>, [">= 0"])
-      s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_development_dependency(%q<launchy>, [">= 0"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 2.5.0"])
       s.add_development_dependency(%q<bundler>, [">= 0"])
     else
-      s.add_dependency(%q<rails>, ["= 3.1.0.rc5"])
-      s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<require_all>, [">= 0"])
       s.add_dependency(%q<kaminari>, [">= 0"])
       s.add_dependency(%q<unread>, [">= 0"])
       s.add_dependency(%q<sugar-high>, [">= 0"])
-      s.add_dependency(%q<rake-kit>, [">= 0"])
-      s.add_dependency(%q<cutter>, [">= 0"])
+      s.add_dependency(%q<sweetloader>, [">= 0"])
+      s.add_dependency(%q<rails>, [">= 3.1.0"])
+      s.add_dependency(%q<mysql2>, [">= 0"])
+      s.add_dependency(%q<unicorn>, [">= 0"])
       s.add_dependency(%q<devise>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 1.6.4"])
+      s.add_dependency(%q<rake-kit>, [">= 0"])
+      s.add_dependency(%q<cutter>, [">= 0"])
       s.add_dependency(%q<factory_girl>, [">= 0"])
       s.add_dependency(%q<spork>, [">= 0"])
       s.add_dependency(%q<rspec-rails>, [">= 2.5"])
       s.add_dependency(%q<capybara>, [">= 0"])
-      s.add_dependency(%q<rails-app-spec>, [">= 0"])
-      s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<launchy>, [">= 0"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 2.5.0"])
       s.add_dependency(%q<bundler>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rails>, ["= 3.1.0.rc5"])
-    s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<require_all>, [">= 0"])
     s.add_dependency(%q<kaminari>, [">= 0"])
     s.add_dependency(%q<unread>, [">= 0"])
     s.add_dependency(%q<sugar-high>, [">= 0"])
-    s.add_dependency(%q<rake-kit>, [">= 0"])
-    s.add_dependency(%q<cutter>, [">= 0"])
+    s.add_dependency(%q<sweetloader>, [">= 0"])
+    s.add_dependency(%q<rails>, [">= 3.1.0"])
+    s.add_dependency(%q<mysql2>, [">= 0"])
+    s.add_dependency(%q<unicorn>, [">= 0"])
     s.add_dependency(%q<devise>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 1.6.4"])
+    s.add_dependency(%q<rake-kit>, [">= 0"])
+    s.add_dependency(%q<cutter>, [">= 0"])
     s.add_dependency(%q<factory_girl>, [">= 0"])
     s.add_dependency(%q<spork>, [">= 0"])
     s.add_dependency(%q<rspec-rails>, [">= 2.5"])
     s.add_dependency(%q<capybara>, [">= 0"])
-    s.add_dependency(%q<rails-app-spec>, [">= 0"])
-    s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<launchy>, [">= 0"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 2.5.0"])
     s.add_dependency(%q<bundler>, [">= 0"])
   end
