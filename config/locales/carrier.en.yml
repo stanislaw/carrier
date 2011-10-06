@@ -1,10 +1,10 @@
 en:
   models:
-    simple_messages:
+    carrier:
       no_subject: "(No subject)"
 
   views:
-    simple_messages:
+    carrier:
       title: "Simple Messages"
       description: "Description goes here..."
       new_link: "New"

@@ -1,10 +1,10 @@
 ru:
   models:
-    simple_messages:
+    carrier:
       no_subject: "(Без темы)"
 
   views:
-    simple_messages:
+    carrier:
       title: "Личные сообщения"
       description: "Описание плагина..."
       new_link: "Новое"
