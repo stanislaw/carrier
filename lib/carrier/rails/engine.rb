@@ -17,7 +17,6 @@ module Carrier
   def self.bootstrap_unread
     ActiveSupport.on_load(:after_initialize) do
       ActiveSupport.on_load(:active_record) do
-        p descendants
         Carrier.config.user.bootstrap_unread! descendants
       end
     end
