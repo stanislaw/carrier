@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
 
   # OTHER
   attr_accessible :name, :username
+
+  validates :username, :presence => true
 end

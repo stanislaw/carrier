@@ -1,3 +1,4 @@
+<%= render :partial => 'nav_messages' %>
 <div class="carrier_messagelist"> 
   <% @messages.each do |message| %>
     <%= render :partial => 'index_message', :locals => {:message => message, :m => (message & unread_messages).size} %>
