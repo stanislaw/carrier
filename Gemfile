@@ -1,25 +1,23 @@
 source "http://rubygems.org"
 
-gem 'rails', '3.1.0.rc6'
-
-gem 'rake'
-#gem 'pg'
-gem 'devise'
-gem 'mysql2'
-gem 'unicorn'
-
 gem 'require_all'
 gem 'kaminari'
 gem 'unread'
 gem 'sugar-high'
 gem 'sweetloader'
-gem 'rake-kit'
-gem 'cutter'
 
 group :development, :test do
+  gem 'rails', '>=3.1.0'
+
+  gem 'mysql2'
+  gem 'unicorn'
+  
   gem 'devise'
   gem "jeweler",  ">= 1.6.4"
- 
+
+  gem 'rake-kit'
+  gem 'cutter'
+
   gem 'factory_girl'
   # Specs
   gem 'spork'
