@@ -5,24 +5,24 @@
 <div class="message_ma_new_wrapper">
   <div class="message_ma_new_wrapper_1">
   	<div class="field">
-      <%= f.label t('views.simple_messages.new_recipients') %><br />
+      <%= f.label t('views.carrier.new_recipients') %><br />
       <div id="recipients">
-        <%= render :partial => "carrier/messages/#{simple_messages_ui}/recipients", :locals => {:f => f } %>
+        <%= render :partial => "carrier/messages/#{carrier_ui}/recipients", :locals => {:f => f } %>
       </div>
     </div>    
   </div>
   <div class="message_ma_new_wrapper_2">
     <div class="field">
-      <%= f.label t('views.simple_messages.new_subject') %><br />
+      <%= f.label t('views.carrier.new_subject') %><br />
       <%= f.text_field :subject %>
     </div>
     <div class="field">
-      <%= f.label t('views.simple_messages.new_content') %><br />
+      <%= f.label t('views.carrier.new_content') %><br />
       <%= f.text_area :content, :rows => 6 %>
     </div>
     <%= f.hidden_field :sender, :value => current_user.id %>
     <div class="actions">
-      <%= f.submit t('views.simple_messages.new_send') %>
+      <%= f.submit t('views.carrier.new_send') %>
     </div>    
   </div> 
 </div>

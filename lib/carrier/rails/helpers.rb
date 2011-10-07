@@ -5,10 +5,10 @@ module Carrier
       def self.included base
         base.send :helper_method, :unread_messages
         base.send :helper_method, :current_user
-        base.send :helper_method, :simple_messages_ui
+        base.send :helper_method, :carrier_ui
       end
 
-      def simple_messages_ui
+      def carrier_ui
         Carrier.config.ui.style
       end
 

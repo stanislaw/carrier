@@ -1,4 +1,19 @@
 en:
+  activerecord:
+    attributes:
+      carrier/message:
+        recipients: "'Recipients' field"
+        content: "'Content' field"
+    errors:
+      models:
+        carrier/message:
+          attributes:
+            recipients:
+              wrong:
+                "is wrong!"
+          #blank: 
+            #""
+
   models:
     carrier:
       no_subject: "(No subject)"

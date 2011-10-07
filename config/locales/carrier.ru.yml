@@ -1,4 +1,18 @@
 ru:
+  activerecord:
+    attributes:
+      carrier/message:
+        recipients: "Поле 'получатели'"
+        content: "Текст сообщения"
+    errors:
+      models:
+        carrier/message:
+          attributes:
+            recipients:
+              wrong:
+                "заполнено неверно"
+          blank: 
+            "не может быть пустым"
   models:
     carrier:
       no_subject: "(Без темы)"
@@ -30,3 +44,5 @@ ru:
       #previous: "&lsaquo; Prev"
       #next: "Next &rsaquo;"
       #truncate: "..."
+      #
+

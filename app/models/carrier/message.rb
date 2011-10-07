@@ -70,7 +70,7 @@ module Carrier
     end
 
     def default_subject!
-      self.subject = I18n.t 'models.simple_messages.no_subject' if !subject || subject.empty?
+      self.subject = I18n.t 'models.carrier.no_subject' if !subject || subject.empty?
     end
 
     def sender_user
