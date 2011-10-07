@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{carrier}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{stanislaw}]
-  s.date = %q{2011-10-06}
+  s.date = %q{2011-10-07}
   s.description = %q{Raw github-like messaging system to reuse across Rails apps. Acts as Rails 3.1 mountable engine. Fast and robust.}
   s.email = %q{s.pankevich@gmail.com}
   s.extra_rdoc_files = [
@@ -549,9 +549,9 @@ Gem::Specification.new do |s|
     "app/assets/jquery.ui/jquery-ui-1.8.14.custom.zip",
     "app/assets/jquery.ui/js/jquery-1.5.1.min.js",
     "app/assets/jquery.ui/js/jquery-ui-1.8.14.custom.min.js",
-    "app/assets/stylesheets/main.css",
-    "app/assets/stylesheets/main_rich.css",
-    "app/assets/stylesheets/main_simple.css",
+    "app/assets/stylesheets/carrier.css",
+    "app/assets/stylesheets/carrier_rich.css",
+    "app/assets/stylesheets/carrier_simple.css",
     "app/assets/stylesheets/rich-multiselect/ui.multiselect.css",
     "app/assets/stylesheets/ui-lightness/images/ui-bg_flat_0_aaaaaa_40x100.png",
     "app/assets/stylesheets/ui-lightness/images/ui-bg_flat_55_fbf9ee_40x100.png",
