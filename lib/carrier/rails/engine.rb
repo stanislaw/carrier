@@ -25,6 +25,7 @@ end
 
 module Carrier
   class Engine < Rails::Engine
+    engine_name :carrier
     isolate_namespace Carrier
 
     initializer "carrier" do

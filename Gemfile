@@ -18,8 +18,8 @@ group :development, :test do
   gem 'rake-kit'
   gem 'cutter'
 
-  gem 'factory_girl'
   # Specs
+  gem 'factory_girl' 
   gem 'spork'
   gem "rspec-rails", '>= 2.5'
   gem 'capybara'
