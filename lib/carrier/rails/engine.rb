@@ -1,8 +1,12 @@
 module Carrier
   
   def self.requires
-    require_all File.join(::Carrier.config.root, 'app/validators')
-    require_all File.join(::Rails.root, 'app/models')
+    validators = Dir[File.join ::Carrier.config.root, "app/validators/**/*.rb"]
+    models = Dir[File.join ::Carrier.config.root, "app/models/**/*.rb"]
+
+    (validators + models).each do |rb_file|
+      require_dependency rb_file
+    end
   end
   
   def self.include_helpers
@@ -35,6 +39,7 @@ module Carrier
     end
 
     config.to_prepare do
+      #require_all Carrier::Engine
     end
   end
 end
