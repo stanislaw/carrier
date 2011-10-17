@@ -10,11 +10,11 @@ module Carrier
     scope :for_or_by, lambda{|user| where(t[:sender].eq(user.id).or(t[:recipients].matches("% #{user.id}\n%"))) }
 
     scope :for_index, lambda{|user|
-      for_or_by(user).where("exists(select * from messages m where (m.recipients LIKE '% #{user.id}\n%' AND m.chain_id = messages.chain_id) )")
+      for_or_by(user).where("exists(select * from #{table_name} m where (m.recipients LIKE '% #{user.id}\n%' AND m.chain_id = #{table_name}.chain_id) )")
     }
 
     scope :for_sent, lambda{|user|
-      for_or_by(user).where("exists(select * from messages m where (m.sender = #{user.id} AND m.chain_id = messages.chain_id) )")
+      for_or_by(user).where("exists(select * from #{table_name} m where (m.sender = #{user.id} AND m.chain_id = #{table_name}.chain_id) )")
     }
    
     scope :not_archived_for, lambda { |user| 
@@ -25,7 +25,7 @@ module Carrier
 
     scope :top, lambda{ where(:last => true) }
 
-    scope :reversed, order('messages.created_at DESC')
+    scope :reversed, order("#{table_name}.created_at DESC")
 
     scope :messages_sent, lambda {|user| top
                                          .for_sent(user)
