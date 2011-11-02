@@ -3,8 +3,5 @@
 <% end %>
 
 <%= content_for :javascripts do %>
-<script type="text/javascript" src="/assets/jquery.ui/jquery.ui.core.min.js"></script>
-<script type="text/javascript" src="/assets/jquery.ui/jquery.ui.widget.min.js"></script>
-<script type="text/javascript" src="/assets/jquery.ui/jquery.ui.position.min.js"></script>
-<script type="text/javascript" src="/assets/jquery.ui/jquery.ui.autocomplete.min.js"></script>
+  <%= javascript_include_tag :autocomplete %>
 <% end %>
