@@ -11,9 +11,11 @@ describe Carrier::Message do
       end
     end
   end 
-    
-  it { should belong_to(:chain) }
   
+  [:chain, :sender_user].each do |as| 
+    it { should belong_to(as) }
+  end
+
   it "should serialize .recipients field" do
     subject.recipients.should == []
   end

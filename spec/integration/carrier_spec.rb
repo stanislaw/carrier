@@ -15,12 +15,6 @@ module DeviseSessionHelpers
   end
 end
 
-def create_some_messages
-end
-
-def create_some_users
-end
-
 feature "Carrier", %q{
   In order to have github-like messaging functionality
   As an user
@@ -28,6 +22,7 @@ feature "Carrier", %q{
 
   background do
     Capybara.reset_sessions!
+    load_seeds
 
     login_user
   end
@@ -36,7 +31,7 @@ feature "Carrier", %q{
   
   scenario "Inbox: listing messages" do
     visit '/carrier/messages'
-    puts    page.body 
+    
     page.should_not have_content("message#1")
     page.should have_content("message#2")
     page.should_not have_content("message#3")
@@ -64,6 +59,13 @@ feature "Carrier", %q{
     page.should have_content("marixa")
     page.should have_content("miloviza")
     page.should have_content("Reply into thread")
+  end
+
+  scenario "Archiving a message", :js => true do
+    visit "/carrier/messages/1"
+    click_link "Archive!"
+  
+    page.should have_content("Unarchive?")
   end
 end
 

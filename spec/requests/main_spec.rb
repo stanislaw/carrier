@@ -4,7 +4,7 @@ describe "Requests" do
   
   describe "Main pages" do
     before do
-      login_as(User.first) 
+      login_as(create(:user)) 
     end
 
     it "should get root" do

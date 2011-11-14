@@ -9,7 +9,8 @@ module Carrier
     paginates_per 25
   
     belongs_to :chain, :counter_cache => true
-    
+    belongs_to :sender_user, :foreign_key => "sender", :class_name => "User"
+
     delegate :archived_for?, :archived_for_any_user?, :participants!, :to => :chain
 
     acts_as_readable :on => :created_at
@@ -71,10 +72,6 @@ module Carrier
 
     def default_subject!
       self.subject = I18n.t 'models.carrier.no_subject' if !subject || subject.empty?
-    end
-
-    def sender_user
-      User.find(sender, :select => 'id, username')
     end
 
     def sender_name

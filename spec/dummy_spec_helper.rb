@@ -15,6 +15,9 @@ require 'factory_girl'
 require_all File.expand_path('../support', __FILE__)
 
 #ActiveRecord::Base.logger = Logger.new(STDERR)
+def load_seeds
+  load File.join(Rails.root, "db/seeds.rb")
+end
 
 RSpec.configure do |config|
   config.include Warden::Test::Helpers, :type => :request
@@ -34,8 +37,18 @@ RSpec.configure do |config|
     with ActiveRecord::Migrator do
       migrate File.expand_path('../dummy/db/migrate', __FILE__)
     end
-
-    require "dummy/db/seeds"
   end
+
+  config.before(:each) do
+    tables_to_truncate = %w|messages chains users|
+
+    with ActiveRecord::Base.connection do
+      (tables & tables_to_truncate).map do |table|
+        execute "TRUNCATE #{table}"
+      end
+    end
+
+  end
+
 end
 
