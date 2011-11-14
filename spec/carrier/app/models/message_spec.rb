@@ -1,16 +1,16 @@
 require 'dummy_spec_helper'
 
 describe Carrier::Message do
-   describe 'Carrier::Message class' do
-     subject {Carrier::Message}
-       its(:table_name) { should == Carrier.config.models.table_for(:message) }
-       
-       describe "#find_recipients" do
-         it "should return all recipients" do
-           pending
-         end
-       end
-   end 
+  describe 'Carrier::Message class' do
+    subject {Carrier::Message}
+    its(:table_name) { should == Carrier.config.models.table_for(:message) }
+     
+    describe "#find_recipients" do
+      it "should return all recipients" do
+        pending
+      end
+    end
+  end 
     
   it { should belong_to(:chain) }
   

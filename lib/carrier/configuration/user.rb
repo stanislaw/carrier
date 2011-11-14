@@ -12,7 +12,9 @@ module Carrier
       end
 
       def classes
-        models.map {|model| try_class model }
+        models.map {|model| 
+          try_class model 
+        }
       end
 
       def bootstrap_unread! available_classes

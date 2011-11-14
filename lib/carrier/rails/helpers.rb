@@ -3,7 +3,7 @@ module Carrier
     module Helpers
 
       def self.included base
-        base.send :helper_method, :unread_messages
+        base.send :helper_method, :unread_messages, :all_messages
         base.send :helper_method, :current_user
         base.send :helper_method, :carrier_ui
       end
@@ -17,8 +17,12 @@ module Carrier
         super
       end
 
+      def all_messages
+        @all_messages ||= Carrier::Message.for_or_by(current_user)
+      end
+
       def unread_messages
-        @unread_messages ||= Message.unread(current_user)
+        @unread_messages ||= Carrier::Message.unread(current_user)
       end
 
     end

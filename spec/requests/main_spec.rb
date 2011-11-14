@@ -1,11 +1,8 @@
 require 'dummy_spec_helper'
 
 describe "Requests" do
-  it "truth" do
-    Rails.application.should be_kind_of(Dummy::Application)
-  end
-
-  describe "Basic pages" do
+  
+  describe "Main pages" do
     before do
       login_as(User.first) 
     end
