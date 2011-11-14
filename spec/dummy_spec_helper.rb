@@ -19,6 +19,20 @@ def load_seeds
   load File.join(Rails.root, "db/seeds.rb")
 end
 
+
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || retrieve_connection
+  end
+end
+
+# Forces all threads to share the same connection. This works on
+# Capybara because it starts the web server in a thread.
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+
 RSpec.configure do |config|
   config.include Warden::Test::Helpers, :type => :request
   config.after(:each, :type => :request) {Warden.test_reset!}
@@ -26,6 +40,8 @@ RSpec.configure do |config|
   config.mock_with :rspec
   
   config.include Factory::Syntax::Methods
+
+  config.use_transactional_fixtures = true
 
   config.before(:suite) do
     with ActiveRecord::Base.connection do
@@ -44,7 +60,7 @@ RSpec.configure do |config|
 
     with ActiveRecord::Base.connection do
       (tables & tables_to_truncate).map do |table|
-        execute "TRUNCATE #{table}"
+        #execute "TRUNCATE #{table}"
       end
     end
 

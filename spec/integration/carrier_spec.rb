@@ -62,7 +62,7 @@ feature "Carrier", %q{
   end
 
   scenario "Archiving a message", :js => true do
-    visit "/carrier/messages/1"
+    visit "/carrier/messages/#{Carrier::Message.last.id}"
     click_link "Archive!"
   
     page.should have_content("Unarchive?")
