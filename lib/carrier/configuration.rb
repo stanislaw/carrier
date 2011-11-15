@@ -2,11 +2,11 @@ require 'singleton'
 module Carrier
   class Configuration
 
-    autoload_modules :Models, :UI, :User
+    autoload_modules :Models, :UI
    
     include Singleton
 
-    [:models, :user].each do |component|
+    [:models].each do |component|
       define_method component do
         conf_class(component).instance
       end
@@ -26,6 +26,10 @@ module Carrier
 
     def root
       File.expand_path("../../..", __FILE__)
+    end
+
+    def check_unread!
+      raise "Add 'acts_as_reader' into your User model" unless ReadMark.reader_class
     end
   end
 end

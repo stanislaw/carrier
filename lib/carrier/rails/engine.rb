@@ -26,12 +26,8 @@ module Carrier
     end
   end
 
-  def self.bootstrap_unread
-    ActiveSupport.on_load(:after_initialize) do
-      ActiveSupport.on_load(:active_record) do
-        Carrier.config.user.bootstrap_unread! descendants
-      end
-    end
+  def self.check_unread!
+    Carrier.config.check_unread!
   end
 end
 
@@ -43,7 +39,7 @@ module Carrier
     initializer "carrier" do
       Carrier.models_requires
       Carrier.carrier_requires
-      Carrier.bootstrap_unread
+      Carrier.check_unread!
       Carrier.include_helpers
     end
 

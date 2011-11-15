@@ -19,6 +19,24 @@ Since Carrier is a Rails 3.1 mountable app, you need to define mount point like:
 mount Carrier::Engine => "/carrier" 
 </pre>
 
+Install Carrier's migrations and run them:
+
+<pre>
+  rake carrier:install:migrations
+  rake db:migrate
+</pre>
+
+Carrier uses "Unread":https://github.com/ledermann/unread to manage read/unread status of messages. So add this into your User model:
+
+<pre>
+# app/models/user.rb
+class User < ActiveRecord::Base
+  # ...
+  acts_as_reader
+  # ...
+end
+</pre>
+
 Carrier works only for authenticated users expecting #current_user method somehow defined. 
 Carrier's controllers namespaces are isolated, so to provide authentication procedure yielding #current_user (before_filter is most common way) add it to Carrier::ApplicationController like:
 

@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
   attr_accessible :name, :username
 
   validates :username, :presence => true
+
+  acts_as_reader
 end
