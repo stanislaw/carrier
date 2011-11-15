@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "carrier"
-  s.version = "0.0.5"
+  s.version = "0.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["stanislaw"]
-  s.date = "2011-11-14"
+  s.date = "2011-11-15"
   s.description = "Raw github-like messaging system to reuse across Rails apps. Acts as Rails 3.1 mountable engine. Fast and robust."
   s.email = "s.pankevich@gmail.com"
   s.extra_rdoc_files = [
@@ -177,7 +177,6 @@ Gem::Specification.new do |s|
     "lib/carrier/configuration.rb",
     "lib/carrier/configuration/models.rb",
     "lib/carrier/configuration/ui.rb",
-    "lib/carrier/configuration/user.rb",
     "lib/carrier/rails.rb",
     "lib/carrier/rails/engine.rb",
     "lib/carrier/rails/helpers.rb",
