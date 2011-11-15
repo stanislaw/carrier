@@ -1,7 +1,7 @@
 puts "Dummy application => loading seeds"
 
-#User.delete_all
-#Carrier::Message.delete_all
+User.delete_all
+Carrier::Message.delete_all
 
 ['stanislaw', 'marixa', 'kristian', 'miloviza'].each do |name|
   User.create!(

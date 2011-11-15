@@ -1,12 +1,18 @@
 module Carrier
   
-  def self.requires
+  def self.carrier_requires
     validators = Dir[File.join ::Carrier.config.root, "app/validators/**/*.rb"]
     models = Dir[File.join ::Carrier.config.root, "app/models/**/*.rb"]
+    
+    (validators + models).each do |rb_file|
+      require_dependency rb_file
+    end
+  end
 
+  def self.models_requires
     app_models = Dir[File.join ::Rails.root, "app/models/**/*.rb"]
 
-    (validators + models + app_models).each do |rb_file|
+    (app_models).each do |rb_file|
       require_dependency rb_file
     end
   end
@@ -35,13 +41,14 @@ module Carrier
     isolate_namespace Carrier
 
     initializer "carrier" do
-      Carrier.requires
+      Carrier.models_requires
+      Carrier.carrier_requires
+      Carrier.bootstrap_unread
+      Carrier.include_helpers
     end
 
     config.to_prepare do
-      Carrier.requires
-      Carrier.bootstrap_unread
-      Carrier.include_helpers
+      Carrier.carrier_requires
     end
   end
 end
