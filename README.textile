@@ -22,8 +22,8 @@ mount Carrier::Engine => "/carrier"
 Install Carrier's migrations and run them:
 
 <pre>
-  rake carrier:install:migrations
-  rake db:migrate
+rake carrier:install:migrations
+rake db:migrate
 </pre>
 
 Carrier uses "Unread":https://github.com/ledermann/unread to manage read/unread status of messages. So add this into your User model:
