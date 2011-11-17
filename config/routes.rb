@@ -1,6 +1,11 @@
+# Prefix for messages. Defaults to '/messages' resulting in 
+# /messages, /messages/1, /messages/sent, /messages/archived 
+
+prefix_for_messages = Carrier.config.routes.prefix_for_messages
+
 Carrier::Engine.routes.draw do
 
-  resources :messages do
+  resources :messages, :path => prefix_for_messages do
     member do
       get :as_sent 
       get :reply

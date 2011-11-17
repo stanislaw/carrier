@@ -26,6 +26,5 @@ describe "Requests" do
       get '/carrier/messages/archive'
       response.status.should be(200)
     end
-
   end
 end

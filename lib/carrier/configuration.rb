@@ -2,11 +2,13 @@ require 'singleton'
 module Carrier
   class Configuration
 
-    autoload_modules :Models, :UI
-   
+    autoload_modules :Models, :UI, :Routes
+ 
+    attr_writer :routes_prefix
+  
     include Singleton
 
-    [:models].each do |component|
+    [:models, :routes].each do |component|
       define_method component do
         conf_class(component).instance
       end
