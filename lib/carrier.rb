@@ -3,7 +3,6 @@ require "carrier/rails/engine" if defined?(Rails)
 require 'sweetloader'
 
 require 'sugar-high/array'
-require 'sugar-high/class_ext'
 require 'sugar-high/rails/concerns'
 require 'sugar-high/dsl'
 
