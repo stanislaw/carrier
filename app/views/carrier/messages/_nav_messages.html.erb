@@ -6,9 +6,9 @@
     </div>
     <div class="carrier_nav">
       <ul>
-        <li class="<%= 'active' if request.fullpath =~ /messages(\/\d+)?\z/ && !archived?(@message) %>"><%= link_to raw(t 'views.carrier.inbox_link'), carrier.messages_path %></li>
-        <li class="<%= 'active' if request.fullpath =~ /messages\/(\d+\/.*)?sent/ %>"><%= link_to raw(t 'views.carrier.sent_link'), carrier.sent_messages_path %></li>
-        <li class="<%= 'active' if request.fullpath =~ /messages\/archive/ || archived?(@message) %>"><%= link_to raw(t 'views.carrier.archived_link'), carrier.archive_messages_path %></li>
+        <li class="<%= 'active' if request.fullpath =~ /#{prefix_for_messages}(\/\d+)?\z/ && !archived?(@message) %>"><%= link_to raw(t 'views.carrier.inbox_link'), carrier.messages_path %></li>
+        <li class="<%= 'active' if request.fullpath =~ /#{prefix_for_messages}\/(\d+\/.*)?sent/ %>"><%= link_to raw(t 'views.carrier.sent_link'), carrier.sent_messages_path %></li>
+        <li class="<%= 'active' if request.fullpath =~ /#{prefix_for_messages}\/archive/ || archived?(@message) %>"><%= link_to raw(t 'views.carrier.archived_link'), carrier.archive_messages_path %></li>
       </ul>
     </div>
   </div>

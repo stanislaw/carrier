@@ -44,6 +44,7 @@ module Carrier
     end
 
     config.to_prepare do
+      #Carrier.models_requires
       Carrier.carrier_requires
     end
   end

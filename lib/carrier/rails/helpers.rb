@@ -5,7 +5,12 @@ module Carrier
       def self.included base
         base.send :helper_method, :unread_messages, :all_messages
         base.send :helper_method, :current_user
+        base.send :helper_method, :prefix_for_messages
         base.send :helper_method, :carrier_ui
+      end
+
+      def prefix_for_messages
+        Carrier.config.routes.prefix_for_messages 
       end
 
       def carrier_ui
