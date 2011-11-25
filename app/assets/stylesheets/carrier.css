@@ -107,6 +107,12 @@ a, a:link, a:visited {text-decoration:none;}
 
 .carrier_messagelist {clear:both; margin-top:10px;}
 
+.no_messages {
+  font-size: 18px;
+  width: 200px;
+  margin: 0 auto;
+  padding: 40px;
+} 
 .message_ma_wrapper {
   padding:12px;
   display:block;
