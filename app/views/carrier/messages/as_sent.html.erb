@@ -1,3 +1,5 @@
+<div id="carrier">
+<div class="carrier_wr">
 <%= render :partial => 'head' %>
 <%= render :partial => 'nav_messages' %>
 <div class="message_ma_box_info">
@@ -33,4 +35,6 @@
 <div class="ma_wrapper">
   <%= link_to raw(t 'views.carrier.reply_link'), reply_message_path(@message), :remote => true %>
   <div id="reply_form"></div>   
+</div>
+</div>
 </div>

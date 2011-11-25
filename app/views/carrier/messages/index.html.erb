@@ -1,9 +1,20 @@
+<div id="carrier">
+<div class="carrier_wr">
 <%= render :partial => 'head' %>
 <%= render :partial => 'nav_messages' %>
 <div class="carrier_messagelist"> 
+  <% if @messages.any? %>
   <% @messages.each do |message| %>
     <%= render :partial => 'index_message', :locals => {:message => message, :m => (message & unread_messages).size} %>
   <% end if @messages.size > 0 %>
   <%= paginate @messages, :window => 4 %>
-</div>  
+  <% end %>
 
+  <% unless @messages.any? %>
+    <div class="no_messages">
+      <%= raw(t('views.carrier.no_messages')) %>
+    </div>
+  <% end %>
+</div>  
+</div>
+</div>
