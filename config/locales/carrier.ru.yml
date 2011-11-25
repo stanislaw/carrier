@@ -40,6 +40,7 @@ ru:
       new_subject: "Тема"
       new_content: "Сообщение"
       new_send: "Отправить"
+      no_messages: "Сообщений нет"
       #last: "Last &raquo;"
       #previous: "&lsaquo; Prev"
       #next: "Next &rsaquo;"

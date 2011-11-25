@@ -41,7 +41,7 @@ en:
       new_subject: "Subject"
       new_content: "Message"
       new_send: "Send"
-
+      no_messages: "No messages yet"
       #last: "Last &raquo;"
       #previous: "&lsaquo; Prev"
       #next: "Next &rsaquo;"
