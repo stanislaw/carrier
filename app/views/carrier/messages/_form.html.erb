@@ -1,11 +1,13 @@
 <%= form_for([carrier, @message], :html => { :autocomplete => :off }) do |f| %>
-  
-<%= error_messages_for @message %>
 
+  <% logger.info(@message.errors.inspect) %>
+<%= error_messages_for @message %>
 <div class="message_ma_new_wrapper">
   <div class="message_ma_new_wrapper_1">
   	<div class="field">
-      <%= f.label :recipients_names, t('views.carrier.new_recipients') %><br />
+      <div>
+        <%= f.label :recipients_names, t('views.carrier.new_recipients') %>
+      </div>
       <div id="recipients">
         <%= render :partial => "carrier/messages/#{carrier_ui}/recipients", :locals => {:f => f } %>
       </div>
@@ -13,11 +15,15 @@
   </div>
   <div class="message_ma_new_wrapper_2">
     <div class="field">
-      <%= f.label :subject, t('views.carrier.new_subject') %><br />
+      <div>
+        <%= f.label :subject, t('views.carrier.new_subject') %>
+      </div>
       <%= f.text_field :subject %>
     </div>
     <div class="field">
-      <%= f.label :content, t('views.carrier.new_content') %><br />
+      <div>
+        <%= f.label :content, t('views.carrier.new_content') %>
+      </div>
       <%= f.text_area :content, :rows => 6 %>
     </div>
     <%= f.hidden_field :sender, :value => current_user.id %>
