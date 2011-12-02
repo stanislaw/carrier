@@ -38,8 +38,10 @@ module Carrier
       @message = Message.find(params[:id], :include => :chain)
     end
 
+    # TODO: introduce [:id or :username] key to be passed with to= param
     def new
       @message = Message.new
+      @message.recipients_names = params[:to] if params[:to]
     end
 
     def create

@@ -31,7 +31,7 @@ module Carrier
     end
 
     def check_unread!
-      raise "Add 'acts_as_reader' into your User model" unless ReadMark.reader_class
+      puts "Add 'acts_as_reader' into your User model" unless ReadMark.reader_class
     end
   end
 end

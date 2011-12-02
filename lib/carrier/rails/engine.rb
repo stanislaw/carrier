@@ -37,15 +37,15 @@ module Carrier
     isolate_namespace Carrier
 
     initializer "carrier" do
-      Carrier.models_requires
-      Carrier.carrier_requires
-      Carrier.check_unread!
-      Carrier.include_helpers
+      #Carrier.models_requires
     end
 
     config.to_prepare do
-      #Carrier.models_requires
       Carrier.carrier_requires
+      # Carrier.models_requires
+      # Carrier.check_unread!
+      Carrier.include_helpers
+      # Carrier.carrier_requires
     end
   end
 end
