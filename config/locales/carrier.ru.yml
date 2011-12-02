@@ -2,13 +2,15 @@ ru:
   activerecord:
     attributes:
       carrier/message:
-        recipients: "Поле 'получатели'"
+        recipients_names: "Поле 'получатели'"
         content: "Текст сообщения"
     errors:
       models:
         carrier/message:
           attributes:
-            recipients:
+            recipients_names:
+              empty:
+                "не может быть пустым" 
               wrong:
                 "заполнено неверно"
           blank: 
@@ -21,7 +23,7 @@ ru:
     carrier:
       title: "Личные сообщения"
       description: "Описание плагина..."
-      new_link: "Новое"
+      new_link: "Написать письмо"
       inbox_link: "Входящие"
       inbox_back_link: "Назад к входящие"
       reply_link: "Ответить в ветку"

@@ -50,7 +50,7 @@ module Carrier
     end
     
     def chain!
-      self.chain = Chain.create if !chain 
+      self.chain = Carrier::Chain.create if !chain 
     end
 
     def make_last

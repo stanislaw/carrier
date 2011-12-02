@@ -3,7 +3,7 @@ class ExcludeSelfValidator < ActiveModel::EachValidator
     recipients = record.send(attribute)
     
     if recipients.include?(record.sender)
-      record.errors.add attribute, (options[:message] || "cannot write to self!")
+      record.errors.add :recipients_names, (options[:message] || "cannot write to self!")
       recipients.delete(record.sender) 
     end
   end
