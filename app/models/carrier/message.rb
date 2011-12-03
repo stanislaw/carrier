@@ -8,7 +8,7 @@ module Carrier
     serialize :recipients, Array
     paginates_per 25
   
-    belongs_to :chain, :counter_cache => true
+    belongs_to :chain, :counter_cache => true, :class_name => "Carrier::Chain"
     belongs_to :sender_user, :foreign_key => "sender", :class_name => "User"
 
     delegate :archived_for?, :archived_for_any_user?, :participants!, :to => :chain

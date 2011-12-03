@@ -9,7 +9,7 @@ module Carrier
 
     paginates_per 25
 
-    has_many :messages, :order => "created_at"
+    has_many :messages, :order => "created_at", :class_name => "Carrier::Message"
 
     accepts_nested_attributes_for :messages, :reject_if => proc { |attrs| attrs.all? {|k,v| v.blank?}}
 
