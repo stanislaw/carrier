@@ -6,7 +6,7 @@
       <% if unread_messages.include? message %>
       <b class='red'>unread</b>
       <% end %>
-      <%= raw truncate("%s &raquo; %s" % [message.subject, message.content], :length => 88) %>
+      <%= simple_format truncate("%s &raquo; %s" % [message.subject, message.content], :length => 88) %>
     </div>
   </div>
 <% end %>

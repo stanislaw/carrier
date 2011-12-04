@@ -7,7 +7,7 @@
     </span>
   </div>    
   <div class="message_ma_body">
-    <%= raw truncate(%| <span class="message_ma_subj %s">%s</span> &raquo; %s | % [('ma_has_new' if m > 0), message.subject, message.content], :length => 140) %>
+    <%= simple_format truncate(%| <span class="message_ma_subj %s">%s</span> &raquo; %s | % [('ma_has_new' if m > 0), message.subject, message.content], :length => 140) %>
   </div>
 <% end %>
 
