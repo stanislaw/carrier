@@ -1,6 +1,6 @@
 <div class="errorExplanation" id="errorExplanation">
-  <h2>Заполните поля верно</h2>
-  <p>Проверьте правильность заполнения следующих полей:</p>
+  <h2><%= t('views.carrier.form_is_not_valid') %></h2>
+  <p><%= t('views.carrier.check_following_fields') %></p>
   <ul>
   <% resource.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>   

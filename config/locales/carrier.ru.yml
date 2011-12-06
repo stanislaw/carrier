@@ -2,17 +2,20 @@ ru:
   activerecord:
     attributes:
       carrier/message:
-        recipients_names: "Поле 'получатели'"
+        recipients: "Поле 'получатели'"
         content: "Текст сообщения"
     errors:
       models:
         carrier/message:
           attributes:
-            recipients_names:
+            recipients:
               empty:
                 "не может быть пустым" 
               wrong:
                 "заполнено неверно"
+              cannot_write_to_self:
+                "вы не можете написать письмо себе!"
+
           blank: 
             "не может быть пустым"
   models:
@@ -21,6 +24,10 @@ ru:
 
   views:
     carrier:
+      # Как бы сказать это более по-русски ;)
+      form_is_not_valid: "Форма заполнено неверно!"
+      check_following_fields: "Проверь правильность заполнения следующих полей:"
+
       title: "Личные сообщения"
       description: "Описание плагина..."
       new_link: "Написать письмо"
@@ -49,3 +56,4 @@ ru:
       #truncate: "..."
       #
 
+      successfully_created: "Сообщение успешно создано"

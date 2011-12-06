@@ -3,7 +3,7 @@ en:
     attributes:
       carrier/message:
         recipients: "'Recipients' field"
-        content: "'Content' field"
+        content: "'Message' field"
     errors:
       models:
         carrier/message:
@@ -11,15 +11,19 @@ en:
             recipients:
               wrong:
                 "is wrong!"
-          #blank: 
-            #""
-
+              empty:
+                "can't be blank"
+              cannot_write_to_self:
+                "cannot write to self!"
   models:
     carrier:
       no_subject: "(No subject)"
 
   views:
     carrier:
+      # What are the better variants of these messages?
+      form_is_not_valid: "The form is not valid"
+      check_following_fields: "Please fill the following fields right:"
       title: "Simple Messages"
       description: "Description goes here..."
       new_link: "New"
@@ -46,3 +50,5 @@ en:
       #previous: "&lsaquo; Prev"
       #next: "Next &rsaquo;"
       #truncate: "..."
+      
+      successfully_created: "Message successfully created"
