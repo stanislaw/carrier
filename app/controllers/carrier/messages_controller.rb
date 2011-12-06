@@ -48,7 +48,7 @@ module Carrier
       @message = Message.new(params[:message])
       respond_to do |format|
         if @message.save
-          format.html { redirect_to(as_sent_message_path(@message), :notice => 'Message successfully created!') }
+          format.html { redirect_to(as_sent_message_path(@message), :notice => t('views.carrier.successfully_created')) }
           format.js
         else
           format.js { render :action => "new" }

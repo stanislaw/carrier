@@ -9,6 +9,7 @@
 </head>
 <body>
   <div class="carrier_wrapper">
+    <%= content_tag :div, notice, :id => "flash_notice" %>
     <%= yield %>
   </div>
 </body>
