@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Carrier
   class Message < ActiveRecord::Base
-    set_table_name Carrier.config.models.table_for :message
+    self.table_name = Carrier.config.models.table_for :message
     
     concerned_with :scopes, :subject, :validations
 
@@ -9,9 +9,11 @@ module Carrier
     paginates_per 25
   
     belongs_to :chain, :counter_cache => true, :class_name => "Carrier::Chain"
-    belongs_to :sender_user, :foreign_key => "sender", :class_name => "User"
-
+    
+    delegate :messages, :to => :chain, :prefix => true
     delegate :archived_for?, :archived_for_any_user?, :participants!, :to => :chain
+    
+    belongs_to :sender_user, :foreign_key => "sender", :class_name => "User"
 
     acts_as_readable :on => :created_at
 
@@ -78,16 +80,16 @@ module Carrier
       sender_user.username
     end
 
-    def recipients_names
-      recipients.collect{|id| User.find(id, :select => "username").username}.join(', ') #
-    end
-
     def recipients_ids
       recipients
     end
 
     def recipients_ids= ra
-      self.recipients = ra.scan(/\w+/).map(&:to_i)
+      self.recipients = ra.scan(/\d+/).map(&:to_i)
+    end
+
+    def recipients_names
+      recipients.collect{|id| User.find(id, :select => "username").username}.join(', ') #
     end
 
     def recipients_names= recipients_array
@@ -101,13 +103,9 @@ module Carrier
     end
 
     def participants
-      [] | recipients << sender
+      ([] | recipients << sender).compact
     end
     
-    def chain_messages
-      chain.messages
-    end
-
     def date_formatted
       created_at.strftime('%H:%M %d.%m')
     end

@@ -7,20 +7,16 @@ module Carrier
     end
 
     def archived? message
-      return false if !message || message.new_record?
-      message.archived_for? current_user
+      message.archived_for? current_user if !message || message.new_record?
     end
 
     def b string
       raw "<b>%s</b>" % string
     end
 
-    def without_current_user
-      User.all.without(current_user).map{|user| "'#{user.username}'" }.join(', ')
-    end
-
+    # Extract this query somewhere... 
     def without_current_user_select
-      User.all.without(current_user).collect {|user| [user.username, user.id] }
+      User.select('id, username').where(User.arel_table[:id].not_in(current_user.id)).collect {|user| [user.username, user.id] }
     end
   end
 end
