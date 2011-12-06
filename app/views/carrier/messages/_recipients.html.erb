@@ -1,0 +1,1 @@
+<%= select("message", "recipients_names", User.all.map{|u| [ u.username, u.username ]}, {}, { :multiple => true, :class => 'chosen', :"data-placeholder" => " " }) %>

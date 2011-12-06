@@ -3,8 +3,7 @@
 <head>
   <title>Carrier</title>
   <%= yield :stylesheets %>
-  <script src="/assets/jquery.min.js" type="text/javascript"></script>
-  <script src="/assets/rails.js" type="text/javascript"></script> 
+  <%= javascript_include_tag 'jquery.min', 'rails' %>
   <%= yield :javascripts %>
   <%= csrf_meta_tags %>
 </head>

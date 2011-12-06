@@ -2,7 +2,7 @@ require 'singleton'
 module Carrier
   class Configuration
 
-    autoload_modules :Models, :User, :UI, :Routes
+    autoload_modules :Models, :User, :Routes
  
     attr_writer :routes_prefix
   
@@ -16,10 +16,6 @@ module Carrier
 
     def conf_class component
       "#{conf}::#{component.to_s.camelize}".constantize
-    end
-
-    def ui
-      conf::UI.instance
     end
 
     def conf
