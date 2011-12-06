@@ -7,7 +7,8 @@ module Carrier
     end
 
     def archived? message
-      message.archived_for? current_user if !message || message.new_record?
+      return if !message || message.new_record?
+      message.archived_for?(current_user) 
     end
 
     def b string
