@@ -88,6 +88,10 @@ module Carrier
       self.recipients = ra.scan(/\d+/).map(&:to_i)
     end
 
+    def recipients= r_arr
+      super r_arr.without("").map(&:to_i)
+    end
+
     def recipients_names
       recipients.collect{|id| User.find(id, :select => "username").username}.join(', ') #
     end

@@ -1,6 +1,6 @@
 $('#reply_form').html('<%= escape_javascript(render :partial => 'reply.html.erb') %>');
 
-$(window).scrollTop($('#message_content').offset().top);
+// stanislaw: TODO $(window).scrollTop($('#reply_form').offset(u).bottom);
 $('#message_content').focus();
 
 

@@ -1,19 +1,19 @@
 <%= form_for(@message, :remote => true) do |f| %>
   
-<%= error_messages_for @message %>  
+  <%= error_messages_for @message %>  
 
-<div class="message_ma_new_wrapper replay_message_ma">
-  <h4><span class=""><%= current_user.username %></span> &rArr; <span class="red"><%= @message.recipients_names %></span></h4>
-  <div class="field">
-    <%= f.label "Сообщение:" %><br />
-    <%= f.text_area :content, :rows => 6 %>
+  <div class="message_ma_new_wrapper replay_message_ma">
+    <h4><span class=""><%= current_user.username %></span> &rArr; <span class="red"><%= @message.recipients_names %></span></h4>
+    <div class="field">
+      <%= f.label "Сообщение:" %><br />
+      <%= f.text_area :content, :rows => 6 %>
+    </div>
+    <%= f.hidden_field :recipients_ids %>
+    <%= f.hidden_field :chain_id %>
+    <%= f.hidden_field :sender %>
+    <%= f.hidden_field :answers_to %>
+    <div class="actions">
+      <%= f.submit 'Отправить' %>
+    </div>
   </div>
-  <%= f.hidden_field :recipients_ids %>
-  <%= f.hidden_field :chain_id %>
-  <%= f.hidden_field :sender %>
-  <%= f.hidden_field :answers_to %>
-  <div class="actions">
-    <%= f.submit 'Отправить' %>
-  </div>
- </div>
 <% end %>
