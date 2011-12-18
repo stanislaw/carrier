@@ -2,7 +2,7 @@
 module Carrier
   class Chain < ActiveRecord::Base
 
-    set_table_name Carrier.config.models.table_for :chain
+    self.table_name = Carrier.config.models.table_for :chain
 
     serialize :participants, Array
     serialize :archived_for, Array

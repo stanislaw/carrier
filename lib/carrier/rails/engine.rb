@@ -36,6 +36,16 @@ module Carrier
     engine_name :carrier
     isolate_namespace Carrier
 
+    if ::Rails.version >= "3.1"
+      initializer :assets do |config|
+        ::Rails.application.config.assets.precompile += %w(
+          carrier/carrier.css
+          carrier/chosen.css
+          carrier/chosen.js
+        )
+      end
+    end
+    
     initializer "carrier" do
       #Carrier.models_requires
     end
