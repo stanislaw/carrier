@@ -8,10 +8,13 @@
       <%= f.label "Сообщение:" %><br />
       <%= f.text_area :content, :rows => 6 %>
     </div>
+
     <%= f.hidden_field :recipients_ids %>
     <%= f.hidden_field :chain_id %>
     <%= f.hidden_field :sender %>
     <%= f.hidden_field :answers_to %>
+    <%= f.hidden_field :subject %>
+
     <div class="actions">
       <%= f.submit 'Отправить' %>
     </div>

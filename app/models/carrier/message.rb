@@ -50,10 +50,6 @@ module Carrier
     def chain_archived?
       chain && archived_for_any_user?
     end
-    
-    def chain!
-      self.chain = Carrier::Chain.create if !chain 
-    end
 
     def make_last
       self.last = true
@@ -73,7 +69,7 @@ module Carrier
     end
 
     def default_subject!
-      self.subject = I18n.t 'models.carrier.no_subject' if !subject || subject.empty?
+      self.subject = I18n.t('models.carrier.no_subject') if !subject || subject.empty?
     end
 
     def sender_name
@@ -115,6 +111,12 @@ module Carrier
     end
 
     protected
+
+    private
+
+    def chain!
+      self.chain = Carrier::Chain.create if !chain 
+    end
 
   end
 end
