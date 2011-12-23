@@ -49,8 +49,10 @@ feature "Carrier", %q{
   scenario "Creating a message" do
     visit "/carrier/messages"
     click_link "New"
-  
-    fill_in "Recipients", :with => "2, 3"
+ 
+    select 'marixa', :from => "Recipients"
+    select 'miloviza', :from => "Recipients"
+
     fill_in "Subject", :with => "Тема тестового сообщения"
     fill_in "Message", :with => "тестовое сообщение"
 
