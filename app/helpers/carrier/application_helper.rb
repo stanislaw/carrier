@@ -12,7 +12,7 @@ module Carrier
     end
 
     def b string
-      raw "<b>%s</b>" % string
+      content_tag :b, string
     end
 
     # Extract this query somewhere... 

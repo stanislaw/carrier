@@ -50,7 +50,7 @@ feature "Carrier", %q{
     visit "/carrier/messages"
     click_link "New"
   
-    fill_in "Recipients", :with => "marixa, miloviza"
+    fill_in "Recipients", :with => "2, 3"
     fill_in "Subject", :with => "Тема тестового сообщения"
     fill_in "Message", :with => "тестовое сообщение"
 

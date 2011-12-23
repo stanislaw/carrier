@@ -3,7 +3,7 @@
 module Carrier
   class MessagesController < ApplicationController
     
-    after_filter :only => [:as_sent, :show] { @message.mark_as_read! :for => current_user }
+    after_filter :only => [:show] { @message.mark_as_read! :for => current_user }
     
     [:collapsed, :expanded].each do |mode|
       define_method(mode) do 
@@ -30,10 +30,6 @@ module Carrier
       render 'index'
     end
 
-    def as_sent
-      @message = Message.find(params[:id], :include => :chain)
-    end
-
     def show
       @message = Message.find(params[:id], :include => :chain)
     end
@@ -48,7 +44,7 @@ module Carrier
       @message = Message.new(params[:message])
       respond_to do |format|
         if @message.save
-          format.html { redirect_to(as_sent_message_path(@message), :notice => t('views.carrier.successfully_created')) }
+          format.html { redirect_to(@message, :notice => t('views.carrier.successfully_created')) }
           format.js
         else
           format.js { render :action => "new" }

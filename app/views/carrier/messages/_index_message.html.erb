@@ -1,4 +1,4 @@
-<%= link_to (action_name == 'sent' ? carrier.as_sent_message_path(message) : message), :class => "message_ma_wrapper #{'ma_has_new' if m > 0 }" do %>
+<%= link_to message, :class => "message_ma_wrapper #{'ma_has_new' if m > 0 }" do %>
   <div class="message_ma_date"><%= message.date_formatted %></div>
   <div class="message_ma_users">
     <%= truncate(message.sender_name + " + " + message.recipients_names, :length => 20) %>
