@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "carrier"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["stanislaw"]
@@ -55,14 +55,11 @@ Gem::Specification.new do |s|
     "app/views/carrier/messages/_head.html.erb",
     "app/views/carrier/messages/_index_message.html.erb",
     "app/views/carrier/messages/_message.html.erb",
-    "app/views/carrier/messages/_message_collapsed.html.erb",
     "app/views/carrier/messages/_nav_messages.html.erb",
     "app/views/carrier/messages/_recipients.html.erb",
     "app/views/carrier/messages/_reply.html.erb",
     "app/views/carrier/messages/as_sent.html.erb",
-    "app/views/carrier/messages/collapsed.js.erb",
     "app/views/carrier/messages/create.js.erb",
-    "app/views/carrier/messages/expanded.js.erb",
     "app/views/carrier/messages/index.html.erb",
     "app/views/carrier/messages/new.html.erb",
     "app/views/carrier/messages/new.js.erb",
