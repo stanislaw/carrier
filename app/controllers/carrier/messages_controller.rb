@@ -5,13 +5,6 @@ module Carrier
     
     after_filter :only => [:show] { @message.mark_as_read! :for => current_user }
     
-    [:collapsed, :expanded].each do |mode|
-      define_method(mode) do 
-        @message = Message.find(params[:id])
-        @message.mark_as_read! :for => current_user if mode == :expanded
-      end
-    end
-
     def reply
       @message = Message.new_answer params[:id], current_user
     end
