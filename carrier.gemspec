@@ -5,16 +5,17 @@
 
 Gem::Specification.new do |s|
   s.name = "carrier"
-  s.version = "0.0.6"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["stanislaw"]
-  s.date = "2011-11-15"
+  s.date = "2011-12-23"
   s.description = "Raw github-like messaging system to reuse across Rails apps. Acts as Rails 3.1 mountable engine. Fast and robust."
   s.email = "s.pankevich@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.textile"
+    "README.textile",
+    "TODO"
   ]
   s.files = [
     ".document",
@@ -24,131 +25,39 @@ Gem::Specification.new do |s|
     "MIT-LICENSE",
     "README.textile",
     "Rakefile",
+    "TODO",
     "VERSION",
     "app/assets/images/.gitkeep",
-    "app/assets/javascripts/autocomplete.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery-ui-i18n.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-af.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-ar-DZ.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-ar.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-az.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-bg.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-bs.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-ca.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-cs.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-da.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-de.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-el.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-en-AU.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-en-GB.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-en-NZ.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-eo.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-es.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-et.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-eu.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-fa.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-fi.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-fo.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-fr-CH.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-fr.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-gl.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-he.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-hr.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-hu.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-hy.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-id.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-is.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-it.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-ja.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-ko.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-kz.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-lt.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-lv.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-ml.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-ms.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-nl.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-no.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-pl.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-pt-BR.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-pt.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-rm.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-ro.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-ru.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-sk.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-sl.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-sq.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-sr-SR.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-sr.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-sv.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-ta.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-th.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-tj.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-tr.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-uk.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-vi.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-zh-CN.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-zh-HK.js",
-    "app/assets/javascripts/autocomplete/i18n/jquery.ui.datepicker-zh-TW.js",
-    "app/assets/javascripts/autocomplete/jquery.ui.autocomplete.min.js",
-    "app/assets/javascripts/autocomplete/jquery.ui.core.min.js",
-    "app/assets/javascripts/autocomplete/jquery.ui.position.min.js",
-    "app/assets/javascripts/autocomplete/jquery.ui.widget.min.js",
-    "app/assets/javascripts/carrier.js",
+    "app/assets/images/carrier/chosen-sprite.png",
+    "app/assets/javascripts/carrier/chosen.jquery.min.js",
+    "app/assets/javascripts/carrier/chosen.js",
     "app/assets/javascripts/jquery.min.js",
     "app/assets/javascripts/rails.js",
-    "app/assets/javascripts/rich-multiselect/jquery-ui.min.js",
-    "app/assets/javascripts/rich-multiselect/locale/ui-multiselect-de.js",
-    "app/assets/javascripts/rich-multiselect/locale/ui-multiselect-en.js",
-    "app/assets/javascripts/rich-multiselect/locale/ui-multiselect-es.js",
-    "app/assets/javascripts/rich-multiselect/locale/ui-multiselect-fr.js",
-    "app/assets/javascripts/rich-multiselect/locale/ui-multiselect-it.js",
-    "app/assets/javascripts/rich-multiselect/plugins/localisation/jquery.localisation-min.js",
-    "app/assets/javascripts/rich-multiselect/plugins/localisation/jquery.localisation-pack.js",
-    "app/assets/javascripts/rich-multiselect/plugins/localisation/jquery.localisation.js",
-    "app/assets/javascripts/rich-multiselect/plugins/scrollTo/README.txt",
-    "app/assets/javascripts/rich-multiselect/plugins/scrollTo/changes.txt",
-    "app/assets/javascripts/rich-multiselect/plugins/scrollTo/jquery.scrollTo-min.js",
-    "app/assets/javascripts/rich-multiselect/plugins/scrollTo/jquery.scrollTo.js",
-    "app/assets/javascripts/rich-multiselect/ui.multiselect.js",
-    "app/assets/stylesheets/carrier.css",
-    "app/assets/stylesheets/carrier_rich.css",
-    "app/assets/stylesheets/carrier_simple.css",
-    "app/assets/stylesheets/rich-multiselect/ui.multiselect.css",
-    "app/assets/stylesheets/ui-lightness/images/ui-bg_flat_0_aaaaaa_40x100.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-bg_flat_55_fbf9ee_40x100.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-bg_flat_65_ffffff_40x100.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-bg_flat_75_cccccc_40x100.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-bg_flat_75_dadada_40x100.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-bg_flat_75_e6e6e6_40x100.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-bg_flat_75_ffffff_40x100.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-bg_flat_95_fef1ec_40x100.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-icons_2e83ff_256x240.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-icons_454545_256x240.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-icons_888888_256x240.png",
-    "app/assets/stylesheets/ui-lightness/images/ui-icons_cd0a0a_256x240.png",
-    "app/assets/stylesheets/ui-lightness/jquery-ui-1.8.14.custom.css",
+    "app/assets/stylesheets/carrier/carrier.css",
+    "app/assets/stylesheets/carrier/chosen.css",
     "app/controllers/carrier/application_controller.rb",
     "app/controllers/carrier/chains_controller.rb",
     "app/controllers/carrier/messages_controller.rb",
     "app/helpers/carrier/application_helper.rb",
-    "app/helpers/carrier/post_helper.rb",
     "app/models/carrier/chain.rb",
     "app/models/carrier/message.rb",
     "app/models/carrier/message/scopes.rb",
     "app/models/carrier/message/subject.rb",
     "app/models/carrier/message/validations.rb",
     "app/validators/recipients/exclude_self.rb",
-    "app/validators/recipients/recipients_validator.rb",
+    "app/validators/recipients/recipients_presence_validator.rb",
+    "app/validators/recipients/right_recipients_validator.rb",
     "app/views/carrier/chains/archive.js.erb",
     "app/views/carrier/chains/unarchive.js.erb",
     "app/views/carrier/messages/_archive_chain.html.erb",
+    "app/views/carrier/messages/_chosen.html.erb",
     "app/views/carrier/messages/_form.html.erb",
     "app/views/carrier/messages/_head.html.erb",
     "app/views/carrier/messages/_index_message.html.erb",
+    "app/views/carrier/messages/_message.html.erb",
     "app/views/carrier/messages/_message_collapsed.html.erb",
-    "app/views/carrier/messages/_message_expanded.html.erb",
     "app/views/carrier/messages/_nav_messages.html.erb",
+    "app/views/carrier/messages/_recipients.html.erb",
     "app/views/carrier/messages/_reply.html.erb",
     "app/views/carrier/messages/as_sent.html.erb",
     "app/views/carrier/messages/collapsed.js.erb",
@@ -158,12 +67,7 @@ Gem::Specification.new do |s|
     "app/views/carrier/messages/new.html.erb",
     "app/views/carrier/messages/new.js.erb",
     "app/views/carrier/messages/reply.js.erb",
-    "app/views/carrier/messages/rich/_multiselect.html.erb",
-    "app/views/carrier/messages/rich/_recipients.html.erb",
     "app/views/carrier/messages/show.html.erb",
-    "app/views/carrier/messages/simple/_autocomplete.html.erb",
-    "app/views/carrier/messages/simple/_autocomplete_includes.html.erb",
-    "app/views/carrier/messages/simple/_recipients.html.erb",
     "app/views/layouts/carrier/application.html.erb",
     "app/views/partials/_error_messages_for.html.erb",
     "carrier.gemspec",
@@ -176,10 +80,12 @@ Gem::Specification.new do |s|
     "lib/carrier.rb",
     "lib/carrier/configuration.rb",
     "lib/carrier/configuration/models.rb",
-    "lib/carrier/configuration/ui.rb",
+    "lib/carrier/configuration/routes.rb",
+    "lib/carrier/configuration/user.rb",
     "lib/carrier/rails.rb",
     "lib/carrier/rails/engine.rb",
     "lib/carrier/rails/helpers.rb",
+    "lib/carrier/version.rb",
     "lib/tasks/carrier_tasks.rake",
     "script/rails",
     "spec/carrier/app/controllers/application_controller_spec.rb",
@@ -289,7 +195,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<unread>, [">= 0"])
       s.add_runtime_dependency(%q<sugar-high>, [">= 0"])
       s.add_runtime_dependency(%q<sweetloader>, [">= 0"])
-      s.add_development_dependency(%q<rails>, [">= 3.1.0"])
+      s.add_development_dependency(%q<rails>, ["~> 3.1"])
       s.add_development_dependency(%q<unicorn>, [">= 0"])
       s.add_development_dependency(%q<mysql2>, [">= 0"])
       s.add_development_dependency(%q<devise>, [">= 0"])
@@ -303,7 +209,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<unread>, [">= 0"])
       s.add_dependency(%q<sugar-high>, [">= 0"])
       s.add_dependency(%q<sweetloader>, [">= 0"])
-      s.add_dependency(%q<rails>, [">= 3.1.0"])
+      s.add_dependency(%q<rails>, ["~> 3.1"])
       s.add_dependency(%q<unicorn>, [">= 0"])
       s.add_dependency(%q<mysql2>, [">= 0"])
       s.add_dependency(%q<devise>, [">= 0"])
@@ -318,7 +224,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<unread>, [">= 0"])
     s.add_dependency(%q<sugar-high>, [">= 0"])
     s.add_dependency(%q<sweetloader>, [">= 0"])
-    s.add_dependency(%q<rails>, [">= 3.1.0"])
+    s.add_dependency(%q<rails>, ["~> 3.1"])
     s.add_dependency(%q<unicorn>, [">= 0"])
     s.add_dependency(%q<mysql2>, [">= 0"])
     s.add_dependency(%q<devise>, [">= 0"])
