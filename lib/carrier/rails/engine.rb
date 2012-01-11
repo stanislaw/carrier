@@ -2,7 +2,7 @@ module Carrier
   
   def self.carrier_requires
     validators = Dir[File.join ::Carrier.config.root, "app/validators/**/*.rb"]
-    models = Dir[File.join ::Carrier.config.root, "app/models/**/*.rb"]
+    models = Dir[File.join ::Carrier.config.root, "app/models/carrier/**/*.rb"]
     
     (validators + models).each do |rb_file|
       require_dependency rb_file
