@@ -3,7 +3,13 @@
 module Carrier
   class MessagesController < ApplicationController
     
-    after_filter :only => [:show] { @message.mark_as_read! :for => current_user }
+    before_filter :only => [:show] do
+      @message = Message.find(params[:id], :include => :chain)
+  
+      @message.chain_messages.each do |message|
+        message.mark_as_read! :for => current_user 
+      end
+    end
     
     def reply
       @message = Message.new_answer params[:id], current_user
@@ -24,7 +30,6 @@ module Carrier
     end
 
     def show
-      @message = Message.find(params[:id], :include => :chain)
     end
 
     # TODO: introduce [:id or :username] key to be passed with to= param

@@ -7,7 +7,7 @@ gem 'sugar-high'
 gem 'sweetloader'
 
 group :development, :test do
-  gem 'rails', '~>3.1'
+  gem 'rails', '~> 3.1.0'
   gem 'unicorn'
   gem 'mysql2'
   gem 'devise'
