@@ -22,7 +22,7 @@ end
 Jeweler::RubygemsDotOrgTasks.new
 
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
