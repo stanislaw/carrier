@@ -9,13 +9,12 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["stanislaw"]
-  s.date = "2011-12-23"
+  s.date = "2012-01-25"
   s.description = "Raw github-like messaging system to reuse across Rails apps. Acts as Rails 3.1 mountable engine. Fast and robust."
   s.email = "s.pankevich@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.textile",
-    "TODO"
+    "README.textile"
   ]
   s.files = [
     ".document",
@@ -25,7 +24,6 @@ Gem::Specification.new do |s|
     "MIT-LICENSE",
     "README.textile",
     "Rakefile",
-    "TODO",
     "VERSION",
     "app/assets/images/.gitkeep",
     "app/assets/images/carrier/chosen-sprite.png",
@@ -180,7 +178,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/stanislaw/carrier"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.11"
+  s.rubygems_version = "1.8.15"
   s.summary = "Raw github-like messaging system to reuse across Rails apps"
 
   if s.respond_to? :specification_version then
@@ -192,7 +190,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<unread>, [">= 0"])
       s.add_runtime_dependency(%q<sugar-high>, [">= 0"])
       s.add_runtime_dependency(%q<sweetloader>, [">= 0"])
-      s.add_development_dependency(%q<rails>, ["~> 3.1"])
+      s.add_development_dependency(%q<rails>, ["~> 3.1.0"])
       s.add_development_dependency(%q<unicorn>, [">= 0"])
       s.add_development_dependency(%q<mysql2>, [">= 0"])
       s.add_development_dependency(%q<devise>, [">= 0"])
@@ -206,7 +204,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<unread>, [">= 0"])
       s.add_dependency(%q<sugar-high>, [">= 0"])
       s.add_dependency(%q<sweetloader>, [">= 0"])
-      s.add_dependency(%q<rails>, ["~> 3.1"])
+      s.add_dependency(%q<rails>, ["~> 3.1.0"])
       s.add_dependency(%q<unicorn>, [">= 0"])
       s.add_dependency(%q<mysql2>, [">= 0"])
       s.add_dependency(%q<devise>, [">= 0"])
@@ -221,7 +219,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<unread>, [">= 0"])
     s.add_dependency(%q<sugar-high>, [">= 0"])
     s.add_dependency(%q<sweetloader>, [">= 0"])
-    s.add_dependency(%q<rails>, ["~> 3.1"])
+    s.add_dependency(%q<rails>, ["~> 3.1.0"])
     s.add_dependency(%q<unicorn>, [">= 0"])
     s.add_dependency(%q<mysql2>, [">= 0"])
     s.add_dependency(%q<devise>, [">= 0"])
