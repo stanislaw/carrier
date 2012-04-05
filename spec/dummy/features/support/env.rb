@@ -3,7 +3,6 @@ ENV['RAILS_ENV'] = 'test'
 require 'require_all'
 require 'cucumber/rails'
 require 'factory_girl_rails'
-
 require_all File.expand_path File.dirname __FILE__
 
 require File.expand_path("../../../config/environment.rb",  __FILE__)
@@ -25,7 +24,7 @@ ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
 Cucumber::Rails::World.use_transactional_fixtures = true
 
-Cucumber::Rails::Database.javascript_strategy = :shared_connection # :truncation
+Cucumber::Rails::Database.javascript_strategy = :shared_connection
 
 include Warden::Test::Helpers
 include FactoryGirl::Syntax::Methods
@@ -34,14 +33,15 @@ include SingletonHelper
 
 include RailsHelper
 
-migrate_if_needed
+migrate_if_needed 
+truncate_tables
 
 Before do
-  # TODO: Why Cucumber doesn't roll transactions
-  truncate_tables
+  Transaction.start
   reset_singletons!
 end
 
 After do
+  Transaction.clean
   Warden.test_reset!
 end
