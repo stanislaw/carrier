@@ -7,18 +7,12 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 require 'require_all'
 require 'rspec/rails'
 require 'cutter'
-require 'capybara/rails'
-require 'capybara/rspec'
 require 'shoulda'
-require 'factory_girl'
+require 'factory_girl_rails'
 
 require_all File.expand_path('../support', __FILE__)
 
 #ActiveRecord::Base.logger = Logger.new(STDERR)
-def load_seeds
-  load File.join(Rails.root, "db/seeds.rb")
-end
-
 
 class ActiveRecord::Base
   mattr_accessor :shared_connection
@@ -39,31 +33,20 @@ RSpec.configure do |config|
 
   config.mock_with :rspec
   
-  config.include Factory::Syntax::Methods
+  config.include FactoryGirl::Syntax::Methods
 
   config.use_transactional_fixtures = true
 
   config.before(:suite) do
     with ActiveRecord::Base.connection do
-      tables.map do |table|
-        drop_table table
-      end
+      # tables.map do |table|
+      #   drop_table table
+      # end
+
+      with ActiveRecord::Migrator do
+        migrate File.expand_path('../dummy/db/migrate', __FILE__)
+      end if tables.empty?
     end
-
-    with ActiveRecord::Migrator do
-      migrate File.expand_path('../dummy/db/migrate', __FILE__)
-    end
-  end
-
-  config.before(:each) do
-    tables_to_truncate = %w|messages chains users|
-
-    with ActiveRecord::Base.connection do
-      (tables & tables_to_truncate).map do |table|
-        #execute "TRUNCATE #{table}"
-      end
-    end
-
   end
 
 end
