@@ -6,18 +6,21 @@ gem 'unread'
 gem 'sugar-high'
 gem 'sweetloader'
 
-group :development, :test do
-  gem 'rails', '~> 3.1.0'
+group :development do
   gem 'unicorn'
+  gem 'rake-kit'
+  gem "jeweler",  ">= 1.6.4"
+end
+
+group :development, :test do
+  gem 'rails', '~> 3.1'
   gem 'mysql2'
   gem 'devise'
-  gem 'rake-kit'
   gem 'cutter'
-  gem "jeweler",  ">= 1.6.4"
-  gem "rspec-rails", '>= 2.5'
 end
 
 group :test do
+  gem "rspec-rails", '>= 2.5'
   gem 'capybara'
   gem 'factory_girl' 
   gem 'spork'
