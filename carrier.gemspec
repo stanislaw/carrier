@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "carrier"
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["stanislaw"]
-  s.date = "2012-01-25"
+  s.date = "2012-04-05"
   s.description = "Raw github-like messaging system to reuse across Rails apps. Acts as Rails 3.1 mountable engine. Fast and robust."
   s.email = "s.pankevich@gmail.com"
   s.extra_rdoc_files = [
@@ -82,7 +82,6 @@ Gem::Specification.new do |s|
     "lib/carrier/rails/helpers.rb",
     "lib/carrier/version.rb",
     "lib/tasks/carrier_tasks.rake",
-    "script/rails",
     "spec/carrier/app/controllers/application_controller_spec.rb",
     "spec/carrier/app/models/message_scopes_spec.rb",
     "spec/carrier/app/models/message_spec.rb",
@@ -127,6 +126,7 @@ Gem::Specification.new do |s|
     "spec/dummy/config.ru",
     "spec/dummy/config/application.rb",
     "spec/dummy/config/boot.rb",
+    "spec/dummy/config/cucumber.yml",
     "spec/dummy/config/database.yml",
     "spec/dummy/config/database_mysql.yml",
     "spec/dummy/config/database_pgsql.yml",
@@ -152,11 +152,25 @@ Gem::Specification.new do |s|
     "spec/dummy/db/migrate/20110814164229_create_chains.rb",
     "spec/dummy/db/schema.rb",
     "spec/dummy/db/seeds.rb",
+    "spec/dummy/factories/message.rb",
+    "spec/dummy/factories/user.rb",
+    "spec/dummy/features/carrier.feature",
+    "spec/dummy/features/step_definitions/debug_steps.rb",
+    "spec/dummy/features/step_definitions/resources_steps.rb",
+    "spec/dummy/features/step_definitions/web_steps.rb",
+    "spec/dummy/features/support/carrier_routes_helper.rb",
+    "spec/dummy/features/support/env.rb",
+    "spec/dummy/features/support/paths.rb",
+    "spec/dummy/features/support/rails_helper.rb",
+    "spec/dummy/features/support/singleton.rb",
+    "spec/dummy/features/support/transaction.rb",
+    "spec/dummy/lib/tasks/cucumber.rake",
     "spec/dummy/log/.gitkeep",
     "spec/dummy/public/404.html",
     "spec/dummy/public/422.html",
     "spec/dummy/public/500.html",
     "spec/dummy/public/favicon.ico",
+    "spec/dummy/script/cucumber",
     "spec/dummy/script/rails",
     "spec/dummy/test/fixtures/posts.yml",
     "spec/dummy/test/fixtures/users.yml",
@@ -167,18 +181,15 @@ Gem::Specification.new do |s|
     "spec/dummy/test/unit/post_test.rb",
     "spec/dummy/test/unit/user_test.rb",
     "spec/dummy_spec_helper.rb",
-    "spec/integration/carrier_spec.rb",
     "spec/requests/main_spec.rb",
     "spec/support/controller_macros.rb",
     "spec/support/factories.rb",
-    "spec/support/rspec_helpers.rb",
-    "test/helper.rb",
-    "test/test_carrier.rb"
+    "spec/support/rspec_helpers.rb"
   ]
   s.homepage = "http://github.com/stanislaw/carrier"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.19"
   s.summary = "Raw github-like messaging system to reuse across Rails apps"
 
   if s.respond_to? :specification_version then
@@ -190,28 +201,26 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<unread>, [">= 0"])
       s.add_runtime_dependency(%q<sugar-high>, [">= 0"])
       s.add_runtime_dependency(%q<sweetloader>, [">= 0"])
-      s.add_development_dependency(%q<rails>, ["~> 3.1.0"])
       s.add_development_dependency(%q<unicorn>, [">= 0"])
+      s.add_development_dependency(%q<rake-kit>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
+      s.add_development_dependency(%q<rails>, ["= 3.2.2"])
       s.add_development_dependency(%q<mysql2>, [">= 0"])
       s.add_development_dependency(%q<devise>, [">= 0"])
-      s.add_development_dependency(%q<rake-kit>, [">= 0"])
       s.add_development_dependency(%q<cutter>, [">= 0"])
-      s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
-      s.add_development_dependency(%q<rspec-rails>, [">= 2.5"])
     else
       s.add_dependency(%q<require_all>, [">= 0"])
       s.add_dependency(%q<kaminari>, [">= 0"])
       s.add_dependency(%q<unread>, [">= 0"])
       s.add_dependency(%q<sugar-high>, [">= 0"])
       s.add_dependency(%q<sweetloader>, [">= 0"])
-      s.add_dependency(%q<rails>, ["~> 3.1.0"])
       s.add_dependency(%q<unicorn>, [">= 0"])
+      s.add_dependency(%q<rake-kit>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 1.6.4"])
+      s.add_dependency(%q<rails>, ["= 3.2.2"])
       s.add_dependency(%q<mysql2>, [">= 0"])
       s.add_dependency(%q<devise>, [">= 0"])
-      s.add_dependency(%q<rake-kit>, [">= 0"])
       s.add_dependency(%q<cutter>, [">= 0"])
-      s.add_dependency(%q<jeweler>, [">= 1.6.4"])
-      s.add_dependency(%q<rspec-rails>, [">= 2.5"])
     end
   else
     s.add_dependency(%q<require_all>, [">= 0"])
@@ -219,14 +228,13 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<unread>, [">= 0"])
     s.add_dependency(%q<sugar-high>, [">= 0"])
     s.add_dependency(%q<sweetloader>, [">= 0"])
-    s.add_dependency(%q<rails>, ["~> 3.1.0"])
     s.add_dependency(%q<unicorn>, [">= 0"])
+    s.add_dependency(%q<rake-kit>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 1.6.4"])
+    s.add_dependency(%q<rails>, ["= 3.2.2"])
     s.add_dependency(%q<mysql2>, [">= 0"])
     s.add_dependency(%q<devise>, [">= 0"])
-    s.add_dependency(%q<rake-kit>, [">= 0"])
     s.add_dependency(%q<cutter>, [">= 0"])
-    s.add_dependency(%q<jeweler>, [">= 1.6.4"])
-    s.add_dependency(%q<rspec-rails>, [">= 2.5"])
   end
 end
 
