@@ -45,6 +45,10 @@ en:
       new_subject: "Subject"
       new_content: "Message"
       new_send: "Send"
+      
+      reply_send: "Reply"
+      reply_content: "Message"
+
       no_messages: "No messages yet"
       #last: "Last &raquo;"
       #previous: "&lsaquo; Prev"

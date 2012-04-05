@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(:version => 20110814164229) do
 
   create_table "chains", :force => true do |t|
-    t.string   "participants",      :default => "--- []\n\n"
-    t.string   "archived_for",      :default => "--- []\n\n"
+    t.string   "participants",      :default => "--- []\n"
+    t.string   "archived_for",      :default => "--- []\n"
     t.integer  "having_chain_id"
     t.string   "having_chain_type"
-    t.string   "chain_type",        :default => "--- :simple\n"
+    t.string   "chain_type",        :default => "--- :simple\n...\n"
     t.integer  "messages_count",    :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
   end
 
   add_index "chains", ["archived_for", "participants"], :name => "participants_and_archived_index"
@@ -30,21 +30,21 @@ ActiveRecord::Schema.define(:version => 20110814164229) do
 
   create_table "messages", :force => true do |t|
     t.integer  "sender"
-    t.string   "recipients", :default => "--- []\n\n"
+    t.string   "recipients", :default => "--- []\n"
     t.string   "subject"
     t.text     "content"
     t.boolean  "last",       :default => false
     t.integer  "chain_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   add_index "messages", ["chain_id"], :name => "index_messages_on_chain_id"
   add_index "messages", ["created_at"], :name => "index_messages_on_created_at"
 
   create_table "posts", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "read_marks", :force => true do |t|
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20110814164229) do
     t.string   "last_sign_in_ip"
     t.string   "name"
     t.string   "username"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

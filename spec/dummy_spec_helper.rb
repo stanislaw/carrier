@@ -12,7 +12,7 @@ require 'factory_girl_rails'
 
 require_all File.expand_path('../support', __FILE__)
 
-#ActiveRecord::Base.logger = Logger.new(STDERR)
+# ActiveRecord::Base.logger = Logger.new(STDERR)
 
 class ActiveRecord::Base
   mattr_accessor :shared_connection
@@ -46,8 +46,11 @@ RSpec.configure do |config|
       with ActiveRecord::Migrator do
         migrate File.expand_path('../dummy/db/migrate', __FILE__)
       end if tables.empty?
+
+      (tables - ['schema_migrations']).map do |table|
+        table_count = execute("SELECT COUNT(*) FROM #{table}").first.first
+        execute "TRUNCATE #{table}" unless table_count == 0
+      end
     end
   end
-
 end
-

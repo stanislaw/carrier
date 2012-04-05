@@ -13,15 +13,15 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rails', '~> 3.1'
+  gem 'rails', '3.2.2'
   gem 'mysql2'
   gem 'devise'
   gem 'cutter'
+  # gem 'ruby-debug19', :require => "ruby-debug"
 end
 
 group :test do
   gem "rspec-rails", '>= 2.5'
-  gem 'capybara'
   gem 'factory_girl_rails' 
   gem 'spork'
   gem "launchy"
