@@ -46,13 +46,8 @@ module Carrier
       end
     end
     
-    initializer "carrier" do
-      #Carrier.models_requires
-    end
-
     config.to_prepare do
       Carrier.carrier_requires
-      Carrier.check_unread!
       # Carrier.models_requires
      
       Carrier.include_helpers
