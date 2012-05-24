@@ -1,6 +1,6 @@
 <% if chain.archived_for?(current_user) %>
 <%= b raw(t 'views.carrier.thread_archived') %>  
-<%= link_to raw(t 'views.carrier.unarchive_link'), unarchive_chain_path(:chain_id => chain, :user_id => current_user), :remote => true, :method => :post %>
+<%= link_to raw(t 'views.carrier.unarchive_link'), carrier.unarchive_chain_path(:chain_id => chain, :user_id => current_user), :remote => true, :method => :post %>
 <% else %>
-<%= link_to raw(t 'views.carrier.archive_link'), archive_chain_path(:chain_id => chain, :user_id => current_user), :remote => true, :method => :post %>
+<%= link_to raw(t 'views.carrier.archive_link'), carrier.archive_chain_path(:chain_id => chain, :user_id => current_user), :remote => true, :method => :post %>
 <% end %>
