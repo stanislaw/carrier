@@ -1,4 +1,6 @@
-require "carrier/rails/engine" if defined?(Rails)
+require 'rails'
+
+require "carrier/rails/engine"
 
 require 'sweetloader'
 
