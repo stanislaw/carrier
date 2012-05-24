@@ -95,7 +95,7 @@ module Carrier
     end
 
     def recipients_names
-      recipients.collect{|id| User.find(id, :select => "username").username}.join(', ') #
+      User.where(:id => recipients).pluck(:username).join(', ')
     end
 
     def recipients_names= recipients_array
@@ -109,7 +109,7 @@ module Carrier
     end
 
     def participants
-      ([] | recipients << sender).compact
+      (recipients + [sender]).compact
     end
     
     def date_formatted
