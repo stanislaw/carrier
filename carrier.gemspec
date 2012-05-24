@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "carrier"
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["stanislaw"]
-  s.date = "2012-04-05"
+  s.date = "2012-05-24"
   s.description = "Raw github-like messaging system to reuse across Rails apps. Acts as Rails 3.1 mountable engine. Fast and robust."
   s.email = "s.pankevich@gmail.com"
   s.extra_rdoc_files = [
@@ -52,12 +52,15 @@ Gem::Specification.new do |s|
     "app/views/carrier/messages/_form.html.erb",
     "app/views/carrier/messages/_head.html.erb",
     "app/views/carrier/messages/_index_message.html.erb",
-    "app/views/carrier/messages/_message.html.erb",
+    "app/views/carrier/messages/_message_collapsed.html.erb",
+    "app/views/carrier/messages/_message_expanded.html.erb",
     "app/views/carrier/messages/_nav_messages.html.erb",
     "app/views/carrier/messages/_recipients.html.erb",
     "app/views/carrier/messages/_reply.html.erb",
     "app/views/carrier/messages/as_sent.html.erb",
+    "app/views/carrier/messages/collapsed.js.erb",
     "app/views/carrier/messages/create.js.erb",
+    "app/views/carrier/messages/expanded.js.erb",
     "app/views/carrier/messages/index.html.erb",
     "app/views/carrier/messages/new.html.erb",
     "app/views/carrier/messages/new.js.erb",
@@ -97,13 +100,11 @@ Gem::Specification.new do |s|
     "spec/dummy/app/assets/stylesheets/scaffold.css",
     "spec/dummy/app/controllers/application_controller.rb",
     "spec/dummy/app/controllers/default_controller.rb",
-    "spec/dummy/app/controllers/posts_controller.rb",
     "spec/dummy/app/helpers/application_helper.rb",
     "spec/dummy/app/helpers/default_helper.rb",
     "spec/dummy/app/helpers/posts_helper.rb",
     "spec/dummy/app/mailers/.gitkeep",
     "spec/dummy/app/models/.gitkeep",
-    "spec/dummy/app/models/post.rb",
     "spec/dummy/app/models/user.rb",
     "spec/dummy/app/views/default/index.html.erb",
     "spec/dummy/app/views/devise/confirmations/new.html.erb",
@@ -183,8 +184,7 @@ Gem::Specification.new do |s|
     "spec/dummy_spec_helper.rb",
     "spec/requests/main_spec.rb",
     "spec/support/controller_macros.rb",
-    "spec/support/factories.rb",
-    "spec/support/rspec_helpers.rb"
+    "spec/support/singleton.rb"
   ]
   s.homepage = "http://github.com/stanislaw/carrier"
   s.licenses = ["MIT"]
@@ -204,7 +204,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<unicorn>, [">= 0"])
       s.add_development_dependency(%q<rake-kit>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
-      s.add_development_dependency(%q<rails>, ["= 3.2.2"])
+      s.add_development_dependency(%q<rails>, [">= 3.1"])
       s.add_development_dependency(%q<mysql2>, [">= 0"])
       s.add_development_dependency(%q<devise>, [">= 0"])
       s.add_development_dependency(%q<cutter>, [">= 0"])
@@ -217,7 +217,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<unicorn>, [">= 0"])
       s.add_dependency(%q<rake-kit>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 1.6.4"])
-      s.add_dependency(%q<rails>, ["= 3.2.2"])
+      s.add_dependency(%q<rails>, [">= 3.1"])
       s.add_dependency(%q<mysql2>, [">= 0"])
       s.add_dependency(%q<devise>, [">= 0"])
       s.add_dependency(%q<cutter>, [">= 0"])
@@ -231,7 +231,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<unicorn>, [">= 0"])
     s.add_dependency(%q<rake-kit>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 1.6.4"])
-    s.add_dependency(%q<rails>, ["= 3.2.2"])
+    s.add_dependency(%q<rails>, [">= 3.1"])
     s.add_dependency(%q<mysql2>, [">= 0"])
     s.add_dependency(%q<devise>, [">= 0"])
     s.add_dependency(%q<cutter>, [">= 0"])
