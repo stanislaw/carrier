@@ -13,7 +13,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rails', '3.2.2'
+  gem 'rails', '>= 3.1'
   gem 'mysql2'
   gem 'devise'
   gem 'cutter'
