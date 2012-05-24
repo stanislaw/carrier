@@ -10,6 +10,7 @@ require 'cutter'
 require 'shoulda'
 require 'factory_girl_rails'
 
+require_all File.expand_path('../dummy/factories', __FILE__)
 require_all File.expand_path('../support', __FILE__)
 
 # ActiveRecord::Base.logger = Logger.new(STDERR)
@@ -32,7 +33,8 @@ RSpec.configure do |config|
   config.after(:each, :type => :request) {Warden.test_reset!}
 
   config.mock_with :rspec
-  
+ 
+  include SingletonHelper
   config.include FactoryGirl::Syntax::Methods
 
   config.use_transactional_fixtures = true

@@ -20,19 +20,11 @@ describe Carrier::Message do
     subject.recipients.should == []
   end
 
-  concern "Validations" do
-    it "should not save messages with empty .content field" do
-      lambda {
-        subject.content = ''
-        subject.save!
-      }.should raise_error(ActiveRecord::RecordInvalid)
-    end
-    it "should not save messages with wrong recipients" do
-      lambda {
-        subject.sender = 1
-        subject.content = 'something'
-        subject.save!
-      }.should raise_error(ActiveRecord::RecordInvalid)
+  context "#recipients_names" do
+    it "should return recipients names joined by ', '" do
+      message = singleton :message
+      message.recipients_names.should == "miloviza, marixa"
     end
   end
+
 end
