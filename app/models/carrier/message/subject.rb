@@ -1,6 +1,7 @@
 module Carrier
   class Message < ActiveRecord::Base
-    
+
+=begin
     class << self
       def re name
         if name.match(/re/).nil?
@@ -19,6 +20,7 @@ module Carrier
     def subject_without_re
       subject.gsub(/re\[\d+\]: /,'')
     end
+=end
 
   end
 end

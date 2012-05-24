@@ -3,11 +3,16 @@
 module Carrier
   class MessagesController < ApplicationController
     
-    before_filter :only => [:show] do
+    before_filter :only => [:show, :as_sent] do
       @message = Message.find(params[:id], :include => :chain)
   
-      @message.chain_messages.each do |message|
-        message.mark_as_read! :for => current_user 
+      @message.mark_chain_as_read_for current_user
+    end
+   
+    [:collapsed, :expanded].each do |mode|
+      define_method(mode) do 
+        @message = Message.find(params[:id])
+        # @message.mark_as_read! :for => current_user if mode == :expanded
       end
     end
     
@@ -42,7 +47,7 @@ module Carrier
       @message = Message.new(params[:message])
       respond_to do |format|
         if @message.save
-          format.html { redirect_to(@message, :notice => t('views.carrier.successfully_created')) }
+          format.html { redirect_to(carrier.messages_path, :notice => t('views.carrier.successfully_created')) }
           format.js
         else
           format.js { render :action => "new" }

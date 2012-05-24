@@ -1,40 +1,47 @@
 <div id="carrier">
-<div class="carrier_wr">
-<%= render :partial => 'head' %>
-<%= render :partial => 'nav_messages' %>
-<div class="message_ma_box_info">
-  <div class="message_ma_archive_chain" id="archive_chain">
-    <%= render :partial => 'archive_chain', :locals => {:chain => @message.chain} %>
-  </div>   
-  <h2><%= @message.subject_without_re %></h2>
-  <%= raw(t('views.carrier.participants')) %>
-  <%= b raw(t('views.carrier.me')) %>,
-  <%= b @message.recipients_names %>
-</div>
+  <div class="carrier_wr">
+    <%= render :partial => 'head' %>
+    <%= render :partial => 'nav_messages' %>
+    <div class="message_ma_box_info">
+      <div class="message_ma_archive_chain" id="archive_chain">
+        <%= render :partial => 'archive_chain', :locals => {:chain => @message.chain} %>
+      </div>   
+      <h2><%= @message.subject %></h2>
 
-<% @message.answers.each do |message| %>
-  <%= render :partial => 'message_expanded', :locals => {:message => message } if message.sender == current_user.id %>
-  <%= render :partial => 'message_collapsed', :locals => {:message => message } if message.sender != current_user.id %>
-<% end %>
+      <%= raw(t('views.carrier.participants')) %>
+      <%= b raw(t('views.carrier.me')) %>,
+      <%= b @message.recipients_names %>
+    </div>
 
-<div class="message_ma_wrapper ma_open">
-  <div class="message_ma_date">
-    <%= @message.date_formatted %>
-  </div>
-  <div class="message_ma_user">
-    <%= @message.sender_name %>
-  </div>
-  <div>
-    <b><%= @message.subject %></b>
-  </div>
-  <div>
-    <%= @message.content %>
-  </div>
-</div>
+    <% @message.answers.each do |message| %>
+    <% if message.sender == current_user.id %>
+    <%= render :partial => 'message_expanded', :locals => {:message => message } %>
+    <% else %>
+    <%= render :partial => 'message_collapsed', :locals => {:message => message } %>
+    <% end %>
+    <% end %>
 
-<div class="ma_wrapper">
-  <%= link_to raw(t 'views.carrier.reply_link'), carrier.reply_message_path(@message), :remote => true %>
-  <div id="reply_form"></div>   
-</div>
-</div>
+    <div class="message_ma_wrapper ma_open">
+      <div class="message_ma_date">
+        <%= @message.date_formatted %>
+      </div>
+      
+      <div class="message_ma_user">
+        <%= @message.sender_name %>
+      </div>
+      
+      <div>
+        <b><%= @message.subject %></b>
+      </div>
+      
+      <div>
+        <%= @message.content %>
+      </div>
+    </div>
+
+    <div class="ma_wrapper">
+      <%= link_to raw(t 'views.carrier.reply_link'), carrier.reply_message_path(@message), :remote => true %>
+      <div id="reply_form"></div>   
+    </div>
+  </div>
 </div>

@@ -37,13 +37,19 @@ module Carrier
         in_answer_to = find id
         new :sender     => user.id,
             :recipients => find_recipients(in_answer_to, user),
-            :subject    => re(in_answer_to.subject),
+            :subject    => in_answer_to.subject,
             :chain_id   => in_answer_to.chain_id,
             :answers_to => in_answer_to.id
       end
  
       def find_recipients message, user
         ([message.sender] + message.recipients).without(user.id)
+      end
+    end
+
+    def mark_chain_as_read_for user
+      chain_messages.each do |message|
+        message.mark_as_read! :for => user
       end
     end
 
@@ -109,8 +115,6 @@ module Carrier
     def date_formatted
       created_at.strftime('%H:%M %d.%m')
     end
-
-    protected
 
     private
 

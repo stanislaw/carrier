@@ -7,6 +7,7 @@ Carrier::Engine.routes.draw do
 
   resources :messages, :path => prefix_for_messages do
     member do
+      get :as_sent
       get :reply
       get :expanded
       get :collapsed

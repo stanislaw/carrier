@@ -1,4 +1,4 @@
-<%= content_tag_for :div, message do %>   
+<%= link_to carrier.collapsed_message_path(message), :remote => true, :class => "message_collapse", :id => "message-#{message.id}" do %>   
   <div class="message_ma_wrapper ma_open">
     <div class="message_ma_date"><%= raw message.date_formatted %></div>
     <div class="message_ma_user"><%= message.sender_name %></div>
