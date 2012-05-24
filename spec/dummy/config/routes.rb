@@ -7,8 +7,6 @@ Rails.application.routes.draw do
     get 'sign_in', :to => 'devise/sessions#new'
   end
 
-  resources :posts
-
   mount Carrier::Engine => "/carrier" 
 
   root :to => "default#index"
