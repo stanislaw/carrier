@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "carrier"
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["stanislaw"]
-  s.date = "2012-05-24"
+  s.date = "2012-05-25"
   s.description = "Raw github-like messaging system to reuse across Rails apps. Acts as Rails 3.1 mountable engine. Fast and robust."
   s.email = "s.pankevich@gmail.com"
   s.extra_rdoc_files = [
