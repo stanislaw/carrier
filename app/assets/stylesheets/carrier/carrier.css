@@ -120,6 +120,7 @@ a, a:link, a:visited {text-decoration:none;}
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   background-color:#ddd;
+  border:1px solid #ddd;
   margin-bottom:4px;
   color:#000;
 }
@@ -260,6 +261,10 @@ label {
   border-top:1px solid #ccc;
 }
 
+/* collapse  */
 
-
-
+.ma_collapse .message_ma_user,
+.ma_collapse .message_ma_content {display:inline-block; vertical-align:top;}
+.ma_collapse .message_ma_user:after {content:' >'; display:inline-block; font-size:10px; margin:0 10px;}
+p {margin:0;}
+.ma_open p, .ma_open .message_ma_content {margin:10px 0;}

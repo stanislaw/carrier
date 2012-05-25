@@ -1,13 +1,13 @@
 <%= link_to carrier.expanded_message_path(message), :remote => true, :class => "message_collapse", :id => "message-#{message.id}" do %>   
-  <div class="message_ma_wrapper">
+  <div class="message_ma_wrapper ma_collapse">
     <div class="message_ma_date"><%= raw message.date_formatted %></div>
     <div class="message_ma_user"><%= message.sender_name %></div>
-    <div>
+    <div class="message_ma_content">
       <% if unread_messages.include? message %>
       <b class='red'>unread</b>
       <% end %>
 
-      <%= simple_format truncate(message.content, :length => 88) %>
+      <%= truncate(message.content, :length => 88) %>
     </div>
   </div>
 <% end %>
