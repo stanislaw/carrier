@@ -1,8 +1,8 @@
-<%= link_to carrier.expanded_message_path(message), :remote => true, :class => "message_collapse", :id => "message-#{message.id}" do %>   
-  <div class="message_ma_wrapper ma_collapse">
-    <div class="message_ma_date"><%= raw message.date_formatted %></div>
-    <div class="message_ma_user"><%= message.sender_name %></div>
-    <div class="message_ma_content">
+<%= link_to carrier.expanded_message_path(message), :remote => true, :id => "message-#{message.id}" do %>   
+  <div class="carrier_message_wrapper carrier_collapse">
+    <div class="carrier_message_date"><%= raw message.date_formatted %></div>
+    <div class="carrier_message_user"><%= message.sender_name %></div>
+    <div class="carrier_message_content">
       <% if unread_messages.include? message %>
       <b class='red'>unread</b>
       <% end %>

@@ -2,8 +2,8 @@
   <div class="carrier_wr">
     <%= render :partial => 'head' %>
     <%= render :partial => 'nav_messages' %>
-    <div class="message_ma_box_info">
-      <div class="message_ma_archive_chain" id="archive_chain">
+    <div class="carrier_message_box_info">
+      <div class="carrier_message_archive_chain" id="archive_chain">
         <%= render :partial => 'archive_chain', :locals => {:chain => @message.chain} %>
       </div>  
       <h2><%= @message.subject %></h2>
@@ -16,11 +16,11 @@
     <%= render :partial => 'message_collapsed', :locals => { :message => message } %>
     <% end %>
 
-    <div class="message_ma_wrapper ma_open">
-      <div class="message_ma_date">
+    <div class="carrier_message_wrapper carrier_open">
+      <div class="carrier_message_date">
         <%= @message.date_formatted %>
       </div>
-      <div class="message_ma_user">
+      <div class="carrier_message_user">
         <%= @message.sender_name %>
       </div>
       <div>
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="ma_wrapper">    
+    <div class="carrier_reply_wrapper">    
       <%= link_to raw(t 'views.carrier.reply_link'), carrier.reply_message_path(@message), :remote => true %>    
       <div id="reply_form"></div>   
     </div>

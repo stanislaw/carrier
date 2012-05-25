@@ -2,7 +2,7 @@
   
   <%= error_messages_for @message %>  
 
-  <div class="message_ma_new_wrapper replay_message_ma">
+  <div class="carrier_message_new_wrapper replay_carrier_message">
     <h4><span class=""><%= current_user.username %></span> &rArr; <span class="red"><%= @message.recipients_names %></span></h4>
     <div class="field">
       <%= f.label :content, t('views.carrier.reply_content') %><br />
